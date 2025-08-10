@@ -15,19 +15,19 @@ const ShopPage = () => {
               title="DIY Slime Kit"
               desc="Create colorful, glittery slime at home! Includes glue, activator, glitter & tools."
               price="₹499"
-              bg="https://via.placeholder.com/300x200?text=Slime+Kit"
+              bg="https://res.cloudinary.com/df2mieky2/image/upload/v1754831666/IMG_3413_iqs2bq.jpg"
             />
             <ProductCard
               title="Beginner Art Set"
               desc="Includes sketchbook, paints, brushes & pencils for young aspiring artists."
               price="₹799"
-              bg="https://via.placeholder.com/300x200?text=Art+Set"
+              bg="https://res.cloudinary.com/df2mieky2/image/upload/v1754831666/IMG_3400_oazvl5.jpg"
             />
             <ProductCard
               title="Mini Tufting Gun Kit"
               desc="Perfect for beginners wanting to try rug tufting at home."
               price="₹2,499"
-              bg="https://via.placeholder.com/300x200?text=Tufting+Kit"
+              bg="https://res.cloudinary.com/df2mieky2/image/upload/v1754831660/IMG_3352_nsdiar.jpg"
             />
           </div>
         </div>

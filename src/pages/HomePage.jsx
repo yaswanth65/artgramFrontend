@@ -437,7 +437,7 @@ const HomePage = () => {
             <p className="text-lg">
               Can't decide which branch to visit? Call our main helpline:
             </p>
-            <p className="text-xl font-bold">📞 +91 7358484266</p>
+            <p className="text-xl font-bold">📞 +91 77660 12299</p>
             <a
               href="https://wa.me/917358484266"
               className="text-secondary hover:underline"

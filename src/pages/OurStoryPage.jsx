@@ -13,7 +13,7 @@ const OurStoryPage = () => {
       {/* About */}
       <section className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-12 items-center">
-          <img src="/OUR STORY/placeholder-image.jpg" alt="Our Story" className="w-full rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300" />
+          <img src="https://res.cloudinary.com/df2mieky2/image/upload/v1754830108/Screenshot_2025-08-10_181702_urntu7.png" alt="Our Story" className="w-full rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300" />
           <div className="space-y-6">
             <h1 className="text-4xl font-bold text-rose-600">ABOUT US</h1>
             <h2 className="text-3xl font-semibold text-gray-700">From Inspiration to Impact</h2>
@@ -45,7 +45,7 @@ const OurStoryPage = () => {
               icon="💡"
               text="ArtGram was born out of a passion to make art accessible to everyone. Started in a small studio with just 5 dedicated artists, we launched our first slime-making workshop with 12 excited participants."
               stat="12 Happy Faces"
-              imageSrc="/OUR STORY/placeholder-image-2020.jpg"
+              imageSrc="https://res.cloudinary.com/df2mieky2/image/upload/v1754843509/Screenshot_2025-08-10_220123_dstox5.png"
             />
             <TimelineItem
               side="right"
@@ -54,7 +54,7 @@ const OurStoryPage = () => {
               icon="🌱"
               text="Expanded to include traditional art classes and clay modeling workshops. Introduced birthday party packages and saw our first corporate team-building event. Our community grew to over 200 regular participants."
               stat="200+ Members"
-              imageSrc="/OUR STORY/placeholder-image-2021.jpg"
+              imageSrc="https://res.cloudinary.com/df2mieky2/image/upload/v1754843595/Screenshot_2025-08-10_220245_kh5xpy.png"
             />
             <TimelineItem
               side="left"
@@ -63,7 +63,7 @@ const OurStoryPage = () => {
               icon="🚀"
               text="Launched our signature tufting workshops and neon art sessions. Opened our second branch in Bangalore. Introduced digital art classes and reached our first milestone of 1000 happy customers."
               stat="1000+ Customers"
-              imageSrc="/OUR STORY/placeholder-image-2022.jpg"
+              imageSrc="https://res.cloudinary.com/df2mieky2/image/upload/v1754843718/Screenshot_2025-08-10_220452_v58xwq.png"
             />
             <TimelineItem
               side="right"
@@ -72,7 +72,7 @@ const OurStoryPage = () => {
               icon="🏆"
               text="Received 'Best Creative Studio' award from the City Arts Council. Launched our third branch in Vijayawada. Hosted our first major art exhibition featuring customer creations, showcasing over 500 artworks."
               stat="500+ Artworks"
-              imageSrc="/OUR STORY/placeholder-image-2023.jpg"
+              imageSrc="https://res.cloudinary.com/df2mieky2/image/upload/v1754831665/HAR05956_cwxrxr.jpg"
             />
             <TimelineItem
               side="left"
@@ -81,7 +81,7 @@ const OurStoryPage = () => {
               icon="💻"
               text="Launched our online booking platform and virtual workshops. Introduced advanced digital art courses and AI-assisted creative sessions. Reached 5000+ satisfied customers across all our branches with 50+ weekly sessions."
               stat="5000+ Happy Customers"
-              imageSrc="/OUR STORY/placeholder-image-2024.jpg"
+              imageSrc="https://res.cloudinary.com/df2mieky2/image/upload/v1754831672/DSC07792_xxy5w1.jpg"
             />
             <TimelineItem
               side="right"
@@ -90,7 +90,7 @@ const OurStoryPage = () => {
               icon="🌟"
               text="Planning nationwide expansion with 10 new branches. Launching our mobile app for seamless bookings and virtual reality art experiences. Our vision: touching 50,000 lives through art by 2026."
               stat="Future: 50K Lives"
-              imageSrc="/OUR STORY/placeholder-image-2025.jpg"
+              imageSrc="https://res.cloudinary.com/df2mieky2/image/upload/v1754830108/Screenshot_2025-08-10_181702_urntu7.png"
             />
           </div>
         </div>

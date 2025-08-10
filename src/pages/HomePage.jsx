@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const slides = [
   {
     label: "Art Making",
-    url: "https://res.cloudinary.com/df2mieky2/image/upload/w_900,q_75,f_auto/v1754630801/HAR05956_c7944n.jpg",
+    url: "https://res.cloudinary.com/df2mieky2/image/upload/w_900,q_75,f_auto/v1754632272/COUROSEL_IMAGE_hkof14.png",
   },
   {
     label: "Slime Play",
@@ -14,7 +14,7 @@ const slides = [
   },
   {
     label: "Neon & Tufting",
-    url: "https://res.cloudinary.com/df2mieky2/image/upload/w_900,q_75,f_auto/v1754632272/COUROSEL_IMAGE_hkof14.png",
+    url: "https://res.cloudinary.com/df2mieky2/image/upload/w_900,q_75,f_auto/v1754630801/HAR05956_c7944n.jpg",
   },
 ];
 

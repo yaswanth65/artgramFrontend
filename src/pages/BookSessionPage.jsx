@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react";
 
 const BookSessionPage = () => {
   // Booking ticket availability
@@ -9,60 +9,70 @@ const BookSessionPage = () => {
     clay: 8,
     sketching: 15,
     resin: 5,
-  })
-  const [activity, setActivity] = useState("")
-  const ticketsLeft = activity && availability[activity] !== undefined ? availability[activity] : undefined
-  const bookingSectionRef = useRef(null)
-  const [highlight, setHighlight] = useState(false)
+  });
+  const [activity, setActivity] = useState("");
+  const ticketsLeft =
+    activity && availability[activity] !== undefined
+      ? availability[activity]
+      : undefined;
+  const bookingSectionRef = useRef(null);
+  const [highlight, setHighlight] = useState(false);
 
   function submitContact(e) {
-    e.preventDefault()
-    alert("Thank you for contacting us! We'll get back to you within 24 hours.")
-    e.currentTarget.reset()
+    e.preventDefault();
+    alert(
+      "Thank you for contacting us! We'll get back to you within 24 hours."
+    );
+    e.currentTarget.reset();
   }
 
   function submitBooking(e) {
-    e.preventDefault()
+    e.preventDefault();
     if (!activity) {
-      alert("Please select an activity to proceed with booking.")
-      return
+      alert("Please select an activity to proceed with booking.");
+      return;
     }
     if (availability[activity] > 0) {
-      alert("Thank you for your booking request! We'll confirm your session within 24 hours.")
-      setAvailability((prev) => ({ ...prev, [activity]: prev[activity] - 1 }))
-      e.currentTarget.reset()
-      setActivity("")
+      alert(
+        "Thank you for your booking request! We'll confirm your session within 24 hours."
+      );
+      setAvailability((prev) => ({ ...prev, [activity]: prev[activity] - 1 }));
+      e.currentTarget.reset();
+      setActivity("");
     } else {
       alert(
-        "Sorry, this activity is currently sold out. Please choose another activity or contact us for alternatives.",
-      )
+        "Sorry, this activity is currently sold out. Please choose another activity or contact us for alternatives."
+      );
     }
   }
 
   function scrollToBooking() {
-    if (!bookingSectionRef.current) return
-    setHighlight(true)
-    bookingSectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" })
-    setTimeout(() => setHighlight(false), 2000)
+    if (!bookingSectionRef.current) return;
+    setHighlight(true);
+    bookingSectionRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    setTimeout(() => setHighlight(false), 2000);
     setTimeout(() => {
-      const input = document.getElementById("bookingName")
-      input?.focus()
-    }, 800)
+      const input = document.getElementById("bookingName");
+      input?.focus();
+    }, 800);
   }
 
   // Used by "Book Now" button in header if added
   useEffect(() => {
-    const btn = document.getElementById("bookSessionBtn")
+    const btn = document.getElementById("bookSessionBtn");
     if (btn) {
       btn.addEventListener("click", (e) => {
-        e.preventDefault()
-        scrollToBooking()
-      })
+        e.preventDefault();
+        scrollToBooking();
+      });
     }
     return () => {
-      if (btn) btn.removeEventListener("click", (e) => e)
-    }
-  }, [])
+      if (btn) btn.removeEventListener("click", (e) => e);
+    };
+  }, []);
 
   return (
     <div>
@@ -76,9 +86,12 @@ const BookSessionPage = () => {
           }}
         />
         <div className="relative z-[1] px-6 max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-black text-yellow-400 mb-3">Get in Touch</h1>
+          <h1 className="text-4xl md:text-5xl font-black text-yellow-400 mb-3">
+            Get in Touch
+          </h1>
           <p className="text-lg">
-            We'd love to hear from you! Whether it's a question, feedback, or collaboration idea—drop us a message.
+            We'd love to hear from you! Whether it's a question, feedback, or
+            collaboration idea—drop us a message.
           </p>
         </div>
       </header>
@@ -91,7 +104,7 @@ const BookSessionPage = () => {
             title="Call Us"
             text={
               <span>
-                <strong>+91 7358484266</strong>
+                <strong>+91 9686846100</strong>
                 <br />
                 Mon-Sat 10AM-8PM
                 <br />
@@ -104,7 +117,7 @@ const BookSessionPage = () => {
             <h5 className="text-rose-600 font-bold mb-2">WhatsApp</h5>
             <p>
               <a
-                href="https://wa.me/7358484266?text=Hi, I have a question about ArtGram!"
+                href="https://wa.me/9686846100?text=Hi, I have a question about ArtGram!"
                 target="_blank"
                 className="inline-block rounded-full bg-rose-600 text-white px-4 py-2 font-semibold hover:bg-rose-700 transition-colors no-underline"
                 rel="noreferrer"
@@ -134,13 +147,24 @@ const BookSessionPage = () => {
         className={`py-20 ${highlight ? "animate-pulse" : ""} bg-slate-100`}
       >
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-3xl font-bold text-center text-rose-600 mb-10">Quick Session Booking</h2>
+          <h2 className="text-3xl font-bold text-center text-rose-600 mb-10">
+            Quick Session Booking
+          </h2>
           <div className="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow hover:-translate-y-1 transition-all">
-            <h3 className="text-2xl font-bold mb-4">🎨 Book Your Art Session</h3>
-            <form id="bookingForm" onSubmit={submitBooking} className="space-y-4">
+            <h3 className="text-2xl font-bold mb-4">
+              🎨 Book Your Art Session
+            </h3>
+            <form
+              id="bookingForm"
+              onSubmit={submitBooking}
+              className="space-y-4"
+            >
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="bookingName" className="font-semibold mb-1 block">
+                  <label
+                    htmlFor="bookingName"
+                    className="font-semibold mb-1 block"
+                  >
                     Full Name *
                   </label>
                   <input
@@ -152,7 +176,10 @@ const BookSessionPage = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="bookingPhone" className="font-semibold mb-1 block">
+                  <label
+                    htmlFor="bookingPhone"
+                    className="font-semibold mb-1 block"
+                  >
                     Phone Number *
                   </label>
                   <input
@@ -167,7 +194,10 @@ const BookSessionPage = () => {
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="bookingDate" className="font-semibold mb-1 block">
+                  <label
+                    htmlFor="bookingDate"
+                    className="font-semibold mb-1 block"
+                  >
                     Preferred Date *
                   </label>
                   <input
@@ -178,7 +208,10 @@ const BookSessionPage = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="bookingTime" className="font-semibold mb-1 block">
+                  <label
+                    htmlFor="bookingTime"
+                    className="font-semibold mb-1 block"
+                  >
                     Preferred Time *
                   </label>
                   <input
@@ -192,7 +225,10 @@ const BookSessionPage = () => {
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="bookingActivity" className="font-semibold mb-1 block">
+                  <label
+                    htmlFor="bookingActivity"
+                    className="font-semibold mb-1 block"
+                  >
                     Choose Activity *
                   </label>
                   <select
@@ -208,7 +244,10 @@ const BookSessionPage = () => {
                     <option value="sketching">✏️ Sketching - ₹299</option>
                     <option value="resin">💎 Resin Art - ₹599</option>
                   </select>
-                  <div className="mt-2 font-semibold text-rose-600 text-sm" id="ticketsLeftDisplay">
+                  <div
+                    className="mt-2 font-semibold text-rose-600 text-sm"
+                    id="ticketsLeftDisplay"
+                  >
                     {ticketsLeft !== undefined
                       ? ticketsLeft > 0
                         ? `${ticketsLeft} tickets available`
@@ -217,7 +256,10 @@ const BookSessionPage = () => {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="participants" className="font-semibold mb-1 block">
+                  <label
+                    htmlFor="participants"
+                    className="font-semibold mb-1 block"
+                  >
                     Number of Participants
                   </label>
                   <select
@@ -234,7 +276,10 @@ const BookSessionPage = () => {
               </div>
 
               <div>
-                <label htmlFor="bookingNotes" className="font-semibold mb-1 block">
+                <label
+                  htmlFor="bookingNotes"
+                  className="font-semibold mb-1 block"
+                >
                   Additional Notes
                 </label>
                 <textarea
@@ -253,7 +298,8 @@ const BookSessionPage = () => {
                   🎨 Book Now
                 </button>
                 <p className="mt-3 text-slate-500 text-sm">
-                  * We'll confirm your booking within 24 hours via call or WhatsApp
+                  * We'll confirm your booking within 24 hours via call or
+                  WhatsApp
                 </p>
               </div>
             </form>
@@ -266,7 +312,11 @@ const BookSessionPage = () => {
         <div className="mx-auto max-w-6xl px-4">
           <div className="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow">
             <h3 className="text-2xl font-bold mb-4">Send Us a Message</h3>
-            <form id="contactForm" onSubmit={submitContact} className="space-y-4">
+            <form
+              id="contactForm"
+              onSubmit={submitContact}
+              className="space-y-4"
+            >
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="font-semibold mb-1 block">
@@ -351,17 +401,27 @@ const BookSessionPage = () => {
       {/* Studios and Map */}
       <section className="py-16 bg-gradient-to-br from-slate-50 to-slate-200">
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-3xl font-bold text-center text-rose-600 mb-10">Visit Our Studios</h2>
+          <h2 className="text-3xl font-bold text-center text-rose-600 mb-10">
+            Visit Our Studios
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <StudioCard
               title="🏛️ Hyderabad"
               img="https://wallpapercave.com/wp/wp6539521.jpg"
-              address={["2nd Floor, HITEC City Hub", "Cyber Towers, Madhapur", "Hyderabad - 500081, Telangana"]}
+              address={[
+                "2nd Floor, HITEC City Hub",
+                "Cyber Towers, Madhapur",
+                "Hyderabad - 500081, Telangana",
+              ]}
             />
             <StudioCard
               title="🌟 Bangalore"
               img="https://images.unsplash.com/photo-1512034400317-42096a6901fe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80"
-              address={["3rd Floor, Brigade Gateway", "Malleshwaram West", "Bangalore - 560055, Karnataka"]}
+              address={[
+                "3rd Floor, Brigade Gateway",
+                "Malleshwaram West",
+                "Bangalore - 560055, Karnataka",
+              ]}
             />
             <StudioCard
               title="🏞️ Vijayawada"
@@ -395,7 +455,9 @@ const BookSessionPage = () => {
       {/* Map */}
       <section className="py-12">
         <div className="mx-auto max-w-6xl px-4 text-center">
-          <h4 className="text-xl font-semibold mb-4">Find Our Hyderabad Studio</h4>
+          <h4 className="text-xl font-semibold mb-4">
+            Find Our Hyderabad Studio
+          </h4>
           <div className="w-full aspect-video rounded-xl shadow overflow-hidden">
             <iframe
               src="https://maps.google.com/maps?q=HITEC+City+Hyderabad&z=15&output=embed"
@@ -409,8 +471,8 @@ const BookSessionPage = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
 const ContactCard = ({ icon, title, text }) => {
   return (
@@ -419,8 +481,8 @@ const ContactCard = ({ icon, title, text }) => {
       <h5 className="text-rose-600 font-bold mb-2">{title}</h5>
       <p className="text-slate-600 leading-relaxed m-0">{text}</p>
     </div>
-  )
-}
+  );
+};
 
 const StudioCard = ({ title, img, address }) => {
   return (
@@ -445,13 +507,13 @@ const StudioCard = ({ title, img, address }) => {
         </div>
         <div className="flex gap-3">
           <a
-            href="tel:+917358484266"
+            href="tel:+919686846100"
             className="flex-1 min-w-[120px] text-center bg-rose-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-rose-700 transition-colors no-underline"
           >
             📞 Call Now
           </a>
           <a
-            href="https://wa.me/917358484266?text=Hi,%20I'm%20interested%20in%20ArtGram%20activities!"
+            href="https://wa.me/919686846100?text=Hi,%20I'm%20interested%20in%20ArtGram%20activities!"
             target="_blank"
             className="flex-1 min-w-[120px] text-center bg-green-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-600 transition-colors no-underline"
             rel="noreferrer"
@@ -461,7 +523,7 @@ const StudioCard = ({ title, img, address }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BookSessionPage
+export default BookSessionPage;

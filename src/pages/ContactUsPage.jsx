@@ -1,64 +1,72 @@
-"use client"
+"use client";
 
 const ContactUsPage = () => {
   function openGmail(email) {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
     if (isMobile) {
-      const gmailAppUrl = `googlegmail://co?to=${email}`
-      const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`
-      const a = document.createElement("a")
-      a.href = gmailAppUrl
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
+      const gmailAppUrl = `googlegmail://co?to=${email}`;
+      const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
+      const a = document.createElement("a");
+      a.href = gmailAppUrl;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
       setTimeout(() => {
-        window.open(gmailWebUrl, "_blank")
-      }, 1500)
+        window.open(gmailWebUrl, "_blank");
+      }, 1500);
     } else {
-      const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`
-      window.open(gmailWebUrl, "_blank")
+      const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
+      window.open(gmailWebUrl, "_blank");
     }
   }
 
   function openWhatsApp(phoneNumber, message) {
-    const encodedMessage = encodeURIComponent(message)
-    const whatsappWeb = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`
-    const whatsappMobile = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappWeb = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+    const whatsappMobile = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
     if (isMobile) {
-      const a = document.createElement("a")
-      a.href = whatsappMobile
-      a.target = "_blank"
-      a.rel = "noopener noreferrer"
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
+      const a = document.createElement("a");
+      a.href = whatsappMobile;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
       setTimeout(() => {
-        const b = document.createElement("a")
-        b.href = whatsappWeb
-        b.target = "_blank"
-        b.rel = "noopener noreferrer"
-        document.body.appendChild(b)
-        b.click()
-        document.body.removeChild(b)
-      }, 2000)
+        const b = document.createElement("a");
+        b.href = whatsappWeb;
+        b.target = "_blank";
+        b.rel = "noopener noreferrer";
+        document.body.appendChild(b);
+        b.click();
+        document.body.removeChild(b);
+      }, 2000);
     } else {
-      const webLink = document.createElement("a")
-      webLink.href = whatsappWeb
-      webLink.target = "_blank"
-      webLink.rel = "noopener noreferrer"
-      document.body.appendChild(webLink)
-      webLink.click()
-      document.body.removeChild(webLink)
+      const webLink = document.createElement("a");
+      webLink.href = whatsappWeb;
+      webLink.target = "_blank";
+      webLink.rel = "noopener noreferrer";
+      document.body.appendChild(webLink);
+      webLink.click();
+      document.body.removeChild(webLink);
     }
   }
 
   function onSubmit(e) {
-    e.preventDefault()
-    const form = e.currentTarget
-    const name = form.elements.namedItem("name").value
-    alert(`Thank you for contacting us, ${name}! We'll get back to you shortly.`)
-    form.reset()
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = form.elements.namedItem("name").value;
+    alert(
+      `Thank you for contacting us, ${name}! We'll get back to you shortly.`
+    );
+    form.reset();
   }
 
   return (
@@ -66,9 +74,12 @@ const ContactUsPage = () => {
       {/* Hero */}
       <section className="bg-gradient-to-br from-rose-600 to-rose-700 text-white py-20 text-center">
         <div className="mx-auto max-w-6xl px-4">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Get in Touch</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
+            Get in Touch
+          </h1>
           <p className="text-lg">
-            We'd love to hear from you! Whether it's a question, feedback, or collaboration idea—drop us a message.
+            We'd love to hear from you! Whether it's a question, feedback, or
+            collaboration idea—drop us a message.
           </p>
         </div>
       </section>
@@ -78,9 +89,17 @@ const ContactUsPage = () => {
         <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-5 gap-8">
           <div className="md:col-span-3">
             <h3 className="text-2xl font-semibold mb-4">Send Us a Message</h3>
-            <form id="contactForm" onSubmit={onSubmit} noValidate className="space-y-4">
+            <form
+              id="contactForm"
+              onSubmit={onSubmit}
+              noValidate
+              className="space-y-4"
+            >
               <div>
-                <label htmlFor="name" className="block font-semibold text-slate-900 mb-2">
+                <label
+                  htmlFor="name"
+                  className="block font-semibold text-slate-900 mb-2"
+                >
                   Full Name *
                 </label>
                 <input
@@ -93,7 +112,10 @@ const ContactUsPage = () => {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block font-semibold text-slate-900 mb-2">
+                <label
+                  htmlFor="email"
+                  className="block font-semibold text-slate-900 mb-2"
+                >
                   Email Address *
                 </label>
                 <input
@@ -106,7 +128,10 @@ const ContactUsPage = () => {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block font-semibold text-slate-900 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block font-semibold text-slate-900 mb-2"
+                >
                   Message *
                 </label>
                 <textarea
@@ -141,8 +166,8 @@ const ContactUsPage = () => {
               </div>
               <div>
                 <strong>Phone:</strong>{" "}
-                <a href="tel:+917358484266" className="hover:underline">
-                  +91 7358484266
+                <a href="tel:+919686846100" className="hover:underline">
+                  +91 9686846100
                 </a>
               </div>
               <div>
@@ -186,9 +211,14 @@ const ContactUsPage = () => {
                   Hyderabad, Telangana 500002
                 </>
               }
-              phone="+91 7358484266"
+              phone="+91 9686846100"
               spec="Specialties: Slime Making, Traditional Art"
-              onWhatsApp={() => openWhatsApp("917358484266", "Hi, I am interested in ArtGram activities in Hyderabad!")}
+              onWhatsApp={() =>
+                openWhatsApp(
+                  "919686846100",
+                  "Hi, I am interested in ArtGram activities in Hyderabad!"
+                )
+              }
             />
             <BranchCard
               img="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
@@ -203,9 +233,14 @@ const ContactUsPage = () => {
                   Bangalore, Karnataka 560052
                 </>
               }
-              phone="+91 7358484266"
+              phone="+91 9686846100"
               spec="Specialties: Digital Art, Tufting"
-              onWhatsApp={() => openWhatsApp("917358484266", "Hi, I am interested in ArtGram activities in Bangalore!")}
+              onWhatsApp={() =>
+                openWhatsApp(
+                  "919686846100",
+                  "Hi, I am interested in ArtGram activities in Bangalore!"
+                )
+              }
             />
             <BranchCard
               img="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
@@ -220,10 +255,13 @@ const ContactUsPage = () => {
                   Vijayawada, Andhra Pradesh 520001
                 </>
               }
-              phone="+91 7358484266"
+              phone="+91 9686846100"
               spec="Specialties: Clay Modeling, Neon Art"
               onWhatsApp={() =>
-                openWhatsApp("917358484266", "Hi, I am interested in ArtGram activities in Vijayawada!")
+                openWhatsApp(
+                  "919686846100",
+                  "Hi, I am interested in ArtGram activities in Vijayawada!"
+                )
               }
             />
           </div>
@@ -282,7 +320,9 @@ const ContactUsPage = () => {
       {/* Map */}
       <section className="bg-slate-100 py-8">
         <div className="mx-auto max-w-6xl px-4 text-center">
-          <h4 className="text-xl font-semibold mb-4">Visit Our Hyderabad Studio</h4>
+          <h4 className="text-xl font-semibold mb-4">
+            Visit Our Hyderabad Studio
+          </h4>
           <div className="w-full aspect-video rounded-lg shadow overflow-hidden">
             <iframe
               src="https://maps.google.com/maps?q=hyderabad,india&z=14&output=embed"
@@ -296,13 +336,17 @@ const ContactUsPage = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
 const BranchCard = ({ img, tag, name, address, phone, spec, onWhatsApp }) => {
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)] transition-all">
-      <img src={img || "/placeholder.svg"} alt={name} className="w-full h-52 object-cover border-b-4 border-rose-600" />
+      <img
+        src={img || "/placeholder.svg"}
+        alt={name}
+        className="w-full h-52 object-cover border-b-4 border-rose-600"
+      />
       <div className="p-6">
         <span className="inline-block bg-rose-600 text-white px-3 py-1 rounded-full text-xs font-medium mb-3">
           {tag}
@@ -329,8 +373,8 @@ const BranchCard = ({ img, tag, name, address, phone, spec, onWhatsApp }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const StudioCard = ({ icon, title, text }) => {
   return (
@@ -341,7 +385,7 @@ const StudioCard = ({ icon, title, text }) => {
       <h5 className="text-slate-900 font-semibold mb-2">{title}</h5>
       <p className="text-slate-600 text-sm">{text}</p>
     </div>
-  )
-}
+  );
+};
 
-export default ContactUsPage
+export default ContactUsPage;

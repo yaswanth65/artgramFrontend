@@ -55,10 +55,14 @@ const TuftingActivityPage = () => {
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <img
-                src="https://images.unsplash.com/photo-1608500218965-0c2c0596026a?auto=format&fit=crop&w=400&q=40"
-                alt="Tufting"
-                className="rounded-xl"
+              <video
+                src="https://res.cloudinary.com/df2mieky2/video/upload/v1754651184/IMG_0327_djuhsr.mov"
+                controls
+                autoPlay
+                loop
+                muted
+                className="rounded-xl w-full h-full object-contain"
+                style={{ maxHeight: "500px", background: "#fff" }}
               />
             </div>
             <div className="flex flex-col justify-center space-y-6">

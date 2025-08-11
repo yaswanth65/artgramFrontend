@@ -273,7 +273,7 @@ export default function SlimePlayPage() {
               Secure your spot for the ultimate slime adventure! Limited slots available.
             </p>
 
-            {/* Step 1: Select Date */}
+            {/* Step 1: Select Date - FIXED */}
             {currentStep === 1 && (
               <div className="bg-white rounded-2xl p-6 shadow-lg mb-5">
                 <div className="flex justify-between items-center border-b-2 border-gray-100 pb-4 mb-5">
@@ -293,8 +293,8 @@ export default function SlimePlayPage() {
                       key={dateItem.value}
                       className={`bg-white border-2 rounded-lg p-4 text-center cursor-pointer transition-all min-w-24 ${
                         bookingData.date === dateItem.value 
-                          ? 'border-green-400 bg-green-400 text-white -translate-y-1' 
-                          : 'border-gray-200 hover:border-green-400 hover:-translate-y-1'
+                          ? 'border-green-400 bg-green-400 text-black -translate-y-1 shadow-lg' 
+                          : 'border-gray-200 hover:border-green-400 hover:bg-green-50 hover:text-black hover:-translate-y-1'
                       }`}
                       onClick={() => selectDate(dateItem.value)}
                     >
@@ -306,7 +306,7 @@ export default function SlimePlayPage() {
                 </div>
                 <div className="flex justify-end">
                   <button 
-                    className="bg-green-400 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-500 transition-colors"
+                    className="bg-green-400 text-black px-6 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition-colors"
                     onClick={() => nextStep(2)}
                   >
                     Next
@@ -315,7 +315,7 @@ export default function SlimePlayPage() {
               </div>
             )}
 
-            {/* Step 2: Select Location */}
+            {/* Step 2: Select Location - FIXED */}
             {currentStep === 2 && (
               <div className="bg-white rounded-2xl p-6 shadow-lg mb-5">
                 <div className="flex justify-between items-center border-b-2 border-gray-100 pb-4 mb-5">
@@ -331,8 +331,8 @@ export default function SlimePlayPage() {
                       key={location.id}
                       className={`bg-white border-2 rounded-xl p-6 text-center cursor-pointer transition-all min-w-48 ${
                         bookingData.location === location.id 
-                          ? 'border-green-400 bg-green-400 text-white -translate-y-2 shadow-xl' 
-                          : 'border-gray-200 hover:border-green-400 hover:-translate-y-2 hover:shadow-xl'
+                          ? 'border-green-400 bg-green-400 text-black -translate-y-2 shadow-xl' 
+                          : 'border-gray-200 hover:border-green-400 hover:bg-green-50 hover:text-black hover:-translate-y-2 hover:shadow-xl'
                       }`}
                       onClick={() => selectLocation(location.id)}
                     >
@@ -349,7 +349,7 @@ export default function SlimePlayPage() {
                     Back
                   </button>
                   <button 
-                    className="bg-green-400 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-500 transition-colors"
+                    className="bg-green-400 text-black px-6 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition-colors"
                     onClick={() => nextStep(3)}
                   >
                     Next
@@ -358,7 +358,7 @@ export default function SlimePlayPage() {
               </div>
             )}
 
-            {/* Step 3: Select Session */}
+            {/* Step 3: Select Session - Already correct with text-black */}
             {currentStep === 3 && (
               <div className="bg-white rounded-2xl p-6 shadow-lg mb-5">
                 <div className="flex justify-between items-center border-b-2 border-gray-100 pb-4 mb-5">
@@ -368,8 +368,8 @@ export default function SlimePlayPage() {
                   <div 
                     className={`bg-white border-2 rounded-2xl p-6 text-center cursor-pointer transition-all min-w-48 ${
                       bookingData.session === 'complete' 
-                        ? 'border-green-400 bg-green-400 text-white -translate-y-2 shadow-xl' 
-                        : 'border-gray-200 hover:border-green-400 hover:-translate-y-2 hover:shadow-xl'
+                        ? 'border-green-400 bg-green-400 text-black -translate-y-2 shadow-xl' 
+                        : 'border-gray-200 hover:border-green-400 hover:bg-green-50 hover:text-black hover:-translate-y-2 hover:shadow-xl'
                     }`}
                     onClick={() => selectSession('complete', '850')}
                   >
@@ -382,8 +382,8 @@ export default function SlimePlayPage() {
                   <div 
                     className={`bg-white border-2 rounded-2xl p-6 text-center cursor-pointer transition-all min-w-48 ${
                       bookingData.session === 'basic' 
-                        ? 'border-green-400 bg-green-400 text-white -translate-y-2 shadow-xl' 
-                        : 'border-gray-200 hover:border-green-400 hover:-translate-y-2 hover:shadow-xl'
+                        ? 'border-green-400 bg-green-400 text-black -translate-y-2 shadow-xl' 
+                        : 'border-gray-200 hover:border-green-400 hover:bg-green-50 hover:text-black hover:-translate-y-2 hover:shadow-xl'
                     }`}
                     onClick={() => selectSession('basic', '750')}
                   >
@@ -402,7 +402,7 @@ export default function SlimePlayPage() {
                     Back
                   </button>
                   <button 
-                    className="bg-green-400 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-500 transition-colors"
+                    className="bg-green-400 text-black px-6 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition-colors"
                     onClick={() => nextStep(4)}
                   >
                     Next
@@ -411,7 +411,7 @@ export default function SlimePlayPage() {
               </div>
             )}
 
-            {/* Step 4: Select Time */}
+            {/* Step 4: Select Time - Already correct with text-black */}
             {currentStep === 4 && (
               <div className="bg-white rounded-2xl p-6 shadow-lg mb-5">
                 <div className="flex justify-between items-center border-b-2 border-gray-100 pb-4 mb-5">
@@ -430,12 +430,12 @@ export default function SlimePlayPage() {
                       key={slot.time}
                       className={`border-2 rounded-xl p-4 text-center cursor-pointer transition-all min-w-28 ${
                         slot.status === 'sold-out' 
-                          ? 'border-red-300 bg-gray-100 cursor-not-allowed opacity-60' 
+                          ? 'border-red-300 bg-gray-100 cursor-not-allowed opacity-60 text-gray-500' 
                           : bookingData.time === slot.time 
-                            ? 'border-green-400 bg-green-400 text-white -translate-y-1' 
+                            ? 'border-green-400 bg-green-400 text-black -translate-y-1 shadow-lg' 
                             : slot.status === 'filling-fast'
-                              ? 'border-yellow-400 bg-yellow-50 hover:border-green-400 hover:-translate-y-1'
-                              : 'border-green-300 hover:border-green-400 hover:-translate-y-1'
+                              ? 'border-yellow-400 bg-yellow-50 text-black hover:border-green-400 hover:bg-green-50 hover:-translate-y-1'
+                              : 'border-green-300 bg-white text-black hover:border-green-400 hover:bg-green-50 hover:-translate-y-1'
                       }`}
                       onClick={() => slot.status !== 'sold-out' && selectTime(slot.time)}
                     >
@@ -456,7 +456,7 @@ export default function SlimePlayPage() {
                     Back
                   </button>
                   <button 
-                    className="bg-green-400 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-500 transition-colors"
+                    className="bg-green-400 text-black px-6 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition-colors"
                     onClick={() => nextStep(5)}
                   >
                     Next
@@ -564,7 +564,7 @@ export default function SlimePlayPage() {
                       </div>
                     </div>
                     <button 
-                      className="w-full bg-gradient-to-r from-green-400 to-blue-500 text-white py-4 rounded-xl font-bold text-lg hover:from-blue-500 hover:to-green-400 transition-all"
+                      className="w-full bg-gradient-to-r from-green-400 to-blue-500 text-black py-4 rounded-xl font-bold text-lg hover:from-blue-500 hover:to-green-400 transition-all"
                       onClick={confirmBooking}
                     >
                       Confirm Booking

@@ -52,11 +52,11 @@ export default function SlimePlayPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-100 to-purple-100">
-      {/* Hero Section - */}
+      {/* Hero Section - Video Updated */}
       <section className="relative h-[70vh] bg-black flex items-center justify-center text-center text-white overflow-hidden">
-        {/* Video background added */}
+        {/* Video background updated */}
         <video 
-            src="https://res.cloudinary.com/df2mieky2/video/upload/v1754831674/vecteezy_background-of-colored-slime-video_22137021_CSpJoKNA_c57oal.mp4"
+            src="https://res.cloudinary.com/df2mieky2/video/upload/v1755029444/HYDERABAD_Slime_xa1l3x.mp4"
             autoPlay
             loop
             muted
@@ -75,62 +75,104 @@ export default function SlimePlayPage() {
       </section>
 
       {/* Package Overview Section */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-5">
-          <h2 className="text-4xl font-bold text-center text-red-600 mb-12">
-            Choose Your Slime Adventure
-          </h2>
-          <div className="grid lg:grid-cols-2 gap-10">
-            {/* Base Package */}
-            <div className="bg-gradient-to-br from-green-50 to-white rounded-3xl p-8 shadow-2xl border-4 border-green-400">
-              <h3 className="text-3xl font-black text-center text-red-600 mb-4">Rs 750/- Base Package</h3>
-              <div className="space-y-4 mb-6">
-                <div className="bg-white rounded-2xl p-5">
-                    <h4 className="text-lg font-bold text-red-600">Slime Play <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">45 min</span></h4>
-                    <p className="text-sm text-gray-600 leading-tight mt-1">Touch different colours and textures, slime throwing, jumping, magnetic slime and much more!</p>
-                </div>
-                {/* Slime Demo section updated */}
-                <div className="bg-white rounded-2xl p-5">
-                    <h4 className="text-lg font-bold text-red-600">Slime Demo <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">15 min</span></h4>
-                    <p className="text-sm text-gray-600 leading-tight mt-1">Watch live slime making by our staff. 200ml fresh slime to take home with choice of scent & charms.</p>
-                   
-                </div>
-              </div>
-              <div className="text-center border-t-2 border-gray-100 pt-5">
-                <div className="text-lg font-semibold text-green-400 mb-4">⏱️ Total: 1 Hour</div>
-                {/* Button functionality is to select the package and move to the booking section. */}
-                <a href="#booking" onClick={() => selectSession('basic', '750')} className="bg-green-400 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-500 transition-colors">
-                  Choose Base Package
-                </a>
-              </div>
+     <section className="py-20">
+  <div className="max-w-6xl mx-auto px-5">
+    <h2 className="text-4xl font-bold text-center text-red-600 mb-12">
+      Choose Your Slime Adventure
+    </h2>
+    <div className="grid lg:grid-cols-2 gap-10">
+      {/* Base Package */}
+      <div className="bg-gradient-to-br from-green-50 to-white rounded-3xl p-8 shadow-2xl border-4 border-green-400">
+        <h3 className="text-3xl font-black text-center text-red-600 mb-4">Rs 750/- Base Package</h3>
+        <div className="space-y-4 mb-6">
+          {/* Slime Play */}
+          <div className="bg-white rounded-2xl p-5 flex items-start gap-4">
+            <img
+              src="https://res.cloudinary.com/df2mieky2/image/upload/v1754831671/HAR05994_de7kjp.jpg"
+              alt="Slime Play"
+              className="w-16 h-16 object-cover rounded-lg border"
+            />
+            <div>
+              <h4 className="text-lg font-bold text-red-600">
+                Slime Play <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">45 min</span>
+              </h4>
+              <p className="text-sm text-gray-600 leading-tight mt-1">
+                Touch different colours and textures, slime throwing, jumping, magnetic slime and much more!
+              </p>
             </div>
-            {/* Premium Package */}
-            <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-white rounded-3xl p-8 shadow-2xl border-4 border-purple-500">
-                {/* Name changed to Premium Experience */}
-                <h3 className="text-3xl font-black text-center text-red-600 mb-2">Rs 850/- Premium Experience</h3>
-                <p className="text-gray-600 text-lg font-medium text-center mb-4">Ultimate Slime Adventure</p>
-                <div className="mb-6">
-                  <div className="text-center font-semibold text-gray-600 mb-4 p-3 bg-purple-100 rounded-lg">
-                    Everything in Base Package +
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 border-2 border-pink-400">
-                    <h4 className="text-lg font-bold text-red-600">✨ Glow in Dark Experience <span className="bg-gradient-to-r from-pink-400 to-purple-500 text-white px-2 py-1 rounded-full text-xs font-semibold">+15 min</span></h4>
-                    <p className="text-sm text-gray-600 leading-tight mt-1">15 minutes of magical glowing slime in our special dark room. Watch your slime transform!</p>
-                  </div>
-                </div>
-                <div className="text-center border-t-2 border-purple-100 pt-5">
-                  <div className="text-lg font-semibold text-purple-600 mb-4">⏱️ Total: 1 Hour 15 Minutes</div>
-                  <a href="#booking" onClick={() => selectSession('complete', '850')} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-pink-500 hover:to-purple-500 transition-all">
-                    Choose Premium Pack
-                  </a>
-                </div>
+          </div>
+
+          {/* Slime Demo */}
+          <div className="bg-white rounded-2xl p-5 flex items-start gap-4">
+            <img
+              src="https://res.cloudinary.com/df2mieky2/image/upload/v1754831672/DSC07792_xxy5w1.jpg"
+              alt="Slime Demo"
+              className="w-16 h-16 object-cover rounded-lg border"
+            />
+            <div>
+              <h4 className="text-lg font-bold text-red-600">
+                Slime Demo <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">15 min</span>
+              </h4>
+              <p className="text-sm text-gray-600 leading-tight mt-1">
+                Watch live slime making by our staff. 200ml fresh slime to take home with choice of scent & charms.
+              </p>
             </div>
           </div>
         </div>
-      </section>
+        <div className="text-center border-t-2 border-gray-100 pt-5">
+          <div className="text-lg font-semibold text-green-400 mb-4">⏱️ Total: 1 Hour</div>
+          <a
+            href="#booking"
+            onClick={() => selectSession('basic', '750')}
+            className="bg-green-400 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-500 transition-colors"
+          >
+            Choose Base Package
+          </a>
+        </div>
+      </div>
 
-       {/* Additional Information Section - */}
-       <section className="py-20 bg-gradient-to-br from-green-50 to-purple-50">
+      {/* Premium Package */}
+      <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-white rounded-3xl p-8 shadow-2xl border-4 border-purple-500">
+        <h3 className="text-3xl font-black text-center text-red-600 mb-2">Rs 850/- Premium Experience</h3>
+        <p className="text-gray-600 text-lg font-medium text-center mb-4">Ultimate Slime Adventure</p>
+        <div className="mb-6">
+          <div className="text-center font-semibold text-gray-600 mb-4 p-3 bg-purple-100 rounded-lg">
+            Everything in Base Package +
+          </div>
+          <div className="bg-white rounded-2xl p-6 border-2 border-pink-400 flex items-start gap-4">
+            <img
+              src="https://res.cloudinary.com/df2mieky2/image/upload/v1754831818/Screenshot_2025-08-10_184600_dugdpm.png"
+              alt="Glow in Dark"
+              className="w-16 h-16 object-cover rounded-lg border"
+            />
+            <div>
+              <h4 className="text-lg font-bold text-red-600">
+                ✨ Glow in Dark Experience <span className="bg-gradient-to-r from-pink-400 to-purple-500 text-white px-2 py-1 rounded-full text-xs font-semibold">+15 min</span>
+              </h4>
+              <p className="text-sm text-gray-600 leading-tight mt-1">
+                15 minutes of magical glowing slime in our special dark room. Watch your slime transform!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="text-center border-t-2 border-purple-100 pt-5">
+          <div className="text-lg font-semibold text-purple-600 mb-4">⏱️ Total: 1 Hour 15 Minutes</div>
+          <a
+            href="#booking"
+            onClick={() => selectSession('complete', '850')}
+            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-pink-500 hover:to-purple-500 transition-all"
+          >
+            Choose Premium Pack
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      {/* Additional Information Section - */}
+      <section className="py-20 bg-gradient-to-br from-green-50 to-purple-50">
         <div className="max-w-6xl mx-auto px-5">
           {/* Title Changed */}
           <h2 className="text-4xl font-bold text-center text-red-600 mb-12">Additional Information</h2>
@@ -299,18 +341,18 @@ export default function SlimePlayPage() {
                   <div>
                     <h4 className="text-xl font-semibold mb-4">Contact Information</h4>
                     <div className="space-y-4">
+                        <div>
+                         <label className="block font-semibold text-gray-700 mb-1">Parent/Guardian Name *</label>
+                         <input type="text" className="w-full border-2 border-gray-200 rounded-lg p-3" placeholder="Enter your name" />
+                       </div>
                        <div>
-                        <label className="block font-semibold text-gray-700 mb-1">Parent/Guardian Name *</label>
-                        <input type="text" className="w-full border-2 border-gray-200 rounded-lg p-3" placeholder="Enter your name" />
-                      </div>
-                      <div>
-                        <label className="block font-semibold text-gray-700 mb-1">Phone Number *</label>
-                        <input type="tel" className="w-full border-2 border-gray-200 rounded-lg p-3" placeholder="+91 XXXXX XXXXX" />
-                      </div>
-                      <div>
-                        <label className="block font-semibold text-gray-700 mb-1">Email Address</label>
-                        <input type="email" className="w-full border-2 border-gray-200 rounded-lg p-3" placeholder="your.email@example.com" />
-                      </div>
+                         <label className="block font-semibold text-gray-700 mb-1">Phone Number *</label>
+                         <input type="tel" className="w-full border-2 border-gray-200 rounded-lg p-3" placeholder="+91 XXXXX XXXXX" />
+                       </div>
+                       <div>
+                         <label className="block font-semibold text-gray-700 mb-1">Email Address</label>
+                         <input type="email" className="w-full border-2 border-gray-200 rounded-lg p-3" placeholder="your.email@example.com" />
+                       </div>
                     </div>
                   </div>
 

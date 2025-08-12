@@ -2,6 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+// Define gallery images to be used in the carousel and the gallery section
+const galleryImages = [
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651196/DSC07703_y0ykmy.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651200/HAR05892_zs7cre.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651194/IMG_0168_kqn6hv.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651192/HAR05922_vmmr5p.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651195/DSC07659_zj2pcc.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651197/HAR05826_iefkzg.jpg",
+];
+
 const TuftingActivityPage = () => {
   // State for managing the current step in the booking process
   const [step, setStep] = useState("date");
@@ -18,6 +28,8 @@ const TuftingActivityPage = () => {
     customerPhone: "",
     customerEmail: "",
   });
+  // State for the image carousel
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Effect to generate the next 7 days for date selection
   useEffect(() => {
@@ -30,6 +42,15 @@ const TuftingActivityPage = () => {
     }
     setDates(arr);
   }, []);
+
+  // Effect for the auto-playing image carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
+    }, 4000); // Change image every 4 seconds
+    return () => clearInterval(timer);
+  }, []);
+
 
   // Available tufting session options
   const sessions = [
@@ -59,22 +80,31 @@ const TuftingActivityPage = () => {
 
   return (
     <div>
-      {/* Hero Section */}
-      <header className="relative text-white text-center py-28 bg-gradient-to-tr from-purple-600 to-pink-600 overflow-hidden">
+      {/* Hero Section with Video Background */}
+      <header className="relative text-white text-center py-28 overflow-hidden h-screen flex items-center justify-center">
+        <video
+          src="https://res.cloudinary.com/df2mieky2/video/upload/v1754651184/IMG_0327_djuhsr.mov"
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-1"></div>
         <div className="relative z-10 max-w-3xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-black mb-6 drop-shadow">
-            🧶 INDIA'S PREMIER TUFTING STUDIO 🧶
+          <h1 className="text-4xl md:text-6xl font-black mb-6 drop-shadow-lg">
+            🎨 India's Premiere Art Studio 🎨
           </h1>
           <a
             href="#tufting-booking"
-            className="inline-block rounded-full bg-gradient-to-tr from-yellow-400 to-orange-400 text-slate-800 font-bold px-6 py-3 shadow hover:-translate-y-0.5 transition-all no-underline"
+            className="inline-block rounded-full bg-gradient-to-tr from-yellow-400 to-orange-400 text-slate-800 font-bold px-6 py-3 shadow-lg hover:-translate-y-0.5 transition-all no-underline"
           >
             🎯 BOOK YOUR TUFTING ADVENTURE NOW!
           </a>
         </div>
       </header>
 
-      {/* What is Tufting Section */}
+      {/* What is Tufting Section with Mini Carousel */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -82,26 +112,32 @@ const TuftingActivityPage = () => {
               🤔 What is Tufting?
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              A modern take on the traditional craft of rug making. Using a special
-              tufting gun, you'll punch yarn into a stretched fabric canvas to
-              create your own vibrant, textured masterpiece.
+              A modern take on the traditional craft of rug making. Using a special tufting gun,
+              you'll punch yarn into a stretched fabric canvas to create your own vibrant,
+              textured masterpiece.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Video Component */}
-            <div className="w-full h-full min-h-[480px] bg-black rounded-2xl shadow-xl overflow-hidden">
-              <video
-                src="https://res.cloudinary.com/df2mieky2/video/upload/v1754651184/IMG_0327_djuhsr.mov"
-                alt="A person using a tufting gun to create a rug."
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-              >
-                Your browser does not support the video tag.
-              </video>
+            {/* Mini Carousel Component */}
+            <div className="relative w-full h-auto aspect-[4/3] bg-gray-200 rounded-2xl shadow-xl overflow-hidden">
+              <img
+                key={currentImageIndex} // Key helps React trigger the animation
+                src={galleryImages[currentImageIndex]}
+                alt="A student's tufting creation"
+                className="w-full h-full object-cover animate-fade-in"
+              />
+               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {galleryImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-all ${
+                      currentImageIndex === index ? 'bg-white scale-125' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
             {/* Feature Cards */}
@@ -109,31 +145,31 @@ const TuftingActivityPage = () => {
               <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="text-4xl mb-3">🎨</div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800">
-                  Creative Expression
+                  Tufting Fun & Creativity
                 </h3>
                 <p className="text-gray-600">
-                  Design your own patterns, choose from premium yarns, and bring
-                  your artistic vision to life through the art of tufting.
+                  Tufting is an exciting and creative process where you can craft beautiful wall hangings,
+                  rugs, coasters, or even charms for your bags and jackets using woolen yarn and a tufting gun.
                 </p>
               </div>
               <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-4xl mb-3">🧘‍♀️</div>
+                <div className="text-4xl mb-3">🧵</div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800">
-                  Mindful Crafting
+                  Guided by Experts
                 </h3>
                 <p className="text-gray-600">
-                  Experience the meditative rhythm of tufting. Perfect for stress
-                  relief, focus building, and mindful creativity.
+                  With a wide range of vibrant color options and step-by-step guidance from our expert
+                  instructors, you'll enjoy a unique, hands-on experience tailored for adults exploring new skills.
                 </p>
               </div>
               <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="text-4xl mb-3">🏠</div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800">
-                  Take Home Masterpieces
+                  Take Your Art Home
                 </h3>
                 <p className="text-gray-600">
-                  Create functional art! Make beautiful rugs, coasters, or wall
-                  hangings that you'll treasure forever.
+                  Whether it's a bold rug, a cozy coaster, or a charming wall piece, you'll leave with a
+                  functional work of art that reflects your personality and creativity.
                 </p>
               </div>
             </div>
@@ -168,20 +204,13 @@ const TuftingActivityPage = () => {
             🖼️ Tufting Gallery - Student Creations
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {[
-              "https://res.cloudinary.com/df2mieky2/image/upload/f_auto,q_40,w_400/v1754651196/DSC07703_y0ykmy.jpg",
-              "https://res.cloudinary.com/df2mieky2/image/upload/f_auto,q_40,w_400/v1754651200/HAR05892_zs7cre.jpg",
-              "https://res.cloudinary.com/df2mieky2/image/upload/f_auto,q_40,w_400/v1754651194/IMG_0168_kqn6hv.jpg",
-              "https://res.cloudinary.com/df2mieky2/image/upload/f_auto,q_40,w_400/v1754651192/HAR05922_vmmr5p.jpg",
-              "https://res.cloudinary.com/df2mieky2/image/upload/f_auto,q_40,w_400/v1754651195/DSC07659_zj2pcc.jpg",
-              "https://res.cloudinary.com/df2mieky2/image/upload/f_auto,q_40,w_400/v1754651197/HAR05826_iefkzg.jpg",
-            ].map((src) => (
+            {galleryImages.map((src) => (
               <div key={src} className="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                 <img
                   src={src}
                   alt="Tufting creation by a student"
                   className="w-full h-[250px] object-cover"
-                  onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x250/f9699c/white?text=Art' }}
+                  onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x250/f9699c/white?text=Art' }}
                 />
               </div>
             ))}
@@ -220,11 +249,10 @@ const TuftingActivityPage = () => {
                     <button
                       key={iso}
                       onClick={() => setBooking((b) => ({ ...b, date: iso }))}
-                      className={`min-w-[100px] text-center rounded-lg border-2 px-4 py-3 transition-all ${
-                        selected
-                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5"
-                          : "border-gray-300 bg-white hover:-translate-y-0.5"
-                      }`}
+                      className={`min-w-[100px] text-center rounded-lg border-2 px-4 py-3 transition-all ${selected
+                        ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5"
+                        : "border-gray-300 bg-white hover:-translate-y-0.5"
+                        }`}
                     >
                       <div className="text-xs font-semibold">{label}</div>
                       <div className="text-xl font-extrabold">{d.getDate()}</div>
@@ -255,11 +283,10 @@ const TuftingActivityPage = () => {
                     <button
                       key={l.id}
                       onClick={() => setBooking((b) => ({ ...b, location: l.id }))}
-                      className={`min-w-[200px] text-center rounded-xl border-2 px-6 py-5 transition-all ${
-                        selected
-                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5 shadow"
-                          : "border-gray-300 bg-white hover:-translate-y-0.5"
-                      }`}
+                      className={`min-w-[200px] text-center rounded-xl border-2 px-6 py-5 transition-all ${selected
+                        ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5 shadow"
+                        : "border-gray-300 bg-white hover:-translate-y-0.5"
+                        }`}
                     >
                       <div className="font-bold">{l.name}</div>
                       <div className="text-sm opacity-80">{l.detail}</div>
@@ -285,11 +312,10 @@ const TuftingActivityPage = () => {
                     <div
                       key={s.id}
                       onClick={() => setBooking((b) => ({ ...b, session: s }))}
-                      className={`min-w-[200px] cursor-pointer rounded-xl border-2 px-6 py-6 text-center transition-all ${
-                        selected
-                          ? "border-purple-600 bg-purple-600 text-white -translate-y-1 shadow-xl"
-                          : "border-gray-300 bg-white hover:-translate-y-1"
-                      }`}
+                      className={`min-w-[200px] cursor-pointer rounded-xl border-2 px-6 py-6 text-center transition-all ${selected
+                        ? "border-purple-600 bg-purple-600 text-white -translate-y-1 shadow-xl"
+                        : "border-gray-300 bg-white hover:-translate-y-1"
+                        }`}
                     >
                       <div className="text-2xl mb-1">
                         {s.id === "beginner" ? "🌟" : s.id === "advanced" ? "🎨" : "👑"}
@@ -329,13 +355,12 @@ const TuftingActivityPage = () => {
                     <div
                       key={slot.t}
                       onClick={() => setBooking((b) => ({ ...b, time: slot.t }))}
-                      className={`min-w-[120px] text-center rounded-lg border-2 px-4 py-3 transition-all cursor-pointer ${
-                        selected
-                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5"
-                          : slot.cls === "filling-fast"
+                      className={`min-w-[120px] text-center rounded-lg border-2 px-4 py-3 transition-all cursor-pointer ${selected
+                        ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5"
+                        : slot.cls === "filling-fast"
                           ? "border-orange-400"
                           : "border-gray-300 bg-white hover:-translate-y-0.5"
-                      }`}
+                        }`}
                     >
                       <div className="font-bold">{slot.label}</div>
                       <div className="text-xs opacity-80">
@@ -429,11 +454,10 @@ const TuftingActivityPage = () => {
                     Total Amount: ₹{total.toLocaleString()}
                   </div>
                   <button
-                    className={`mt-3 w-full rounded-full font-bold py-3 transition-all ${
-                        canProceedToBook
-                        ? 'bg-yellow-400 text-slate-800 hover:-translate-y-0.5'
-                        : 'bg-gray-400 text-gray-700 cursor-not-allowed'
-                    }`}
+                    className={`mt-3 w-full rounded-full font-bold py-3 transition-all ${canProceedToBook
+                      ? 'bg-yellow-400 text-slate-800 hover:-translate-y-0.5'
+                      : 'bg-gray-400 text-gray-700 cursor-not-allowed'
+                      }`}
                     onClick={() => {
                       if (canProceedToBook) {
                         alert("🧶 Tufting session booked successfully! We will contact you within 2 hours to confirm your creative adventure.");
@@ -476,11 +500,10 @@ const TuftStep = ({ title, color, isVisible, onBack, onNext, canNext, children }
             <button
               onClick={onNext}
               disabled={!canNext}
-              className={`px-4 py-1.5 rounded-full font-semibold transition-all ${
-                canNext
-                  ? "text-white hover:-translate-y-px"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
-              }`}
+              className={`px-4 py-1.5 rounded-full font-semibold transition-all ${canNext
+                ? "text-white hover:-translate-y-px"
+                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                }`}
               style={{ backgroundColor: canNext ? color : undefined }}
             >
               Next →

@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 
 // Carousel images for hero section
 const carouselImages = [
-  "https://res.cloudinary.com/df2mieky2/image/upload/v1754632272/COUROSEL_IMAGE_hkof14.png",
-  "https://res.cloudinary.com/df2mieky2/image/upload/v1754831665/HAR05956_cwxrxr.jpg", // Placeholder for second image
-  "https://res.cloudinary.com/df2mieky2/image/upload/v1754651197/HAR05826_iefkzg.jpg", // Placeholder for third image
+  "https://res.cloudinary.com/df2mieky2/image/upload/v1754651195/DSC07659_zj2pcc.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/v1755025999/IMG-20250807-WA0003_u999yh.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/v1755026061/HAR05826_hv05wz.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/v1754651197/HAR05826_iefkzg.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/v1754831665/HAR05956_cwxrxr.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/v1754831662/IMG_4561_axaohh.jpg",
 ];
 
 const HomePage = () => {
@@ -244,33 +247,48 @@ const HomePage = () => {
 
       {/* Instagram Feed Placeholder */}
       <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-            From Our Instagram
-          </h2>
-          <p className="text-gray-600 mb-8">
-            Follow us{" "}
-            <a
-              href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-pink-600 hover:text-purple-600 hover:underline transition-colors"
-            >
-              @artgram_yourhobbylobby
-            </a>
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="bg-white aspect-square rounded-xl shadow-xl flex items-center justify-center text-gray-500 hover:shadow-2xl transition-shadow duration-300 border-2 border-gradient-to-r from-pink-200 to-purple-200"
-              >
-                IG Post {i}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+  <div className="container mx-auto px-6 text-center">
+    <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+      From Our Instagram
+    </h2>
+    <p className="text-gray-600 mb-8">
+      Follow us{" "}
+      <a
+        href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold text-pink-600 hover:text-purple-600 hover:underline transition-colors"
+      >
+        @artgram_yourhobbylobby
+      </a>
+    </p>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+      {[
+        "https://res.cloudinary.com/df2mieky2/image/upload/v1755027036/Screenshot_2025-08-13_010005_eg9zck.png",
+        "https://res.cloudinary.com/df2mieky2/image/upload/v1755026984/Screenshot_2025-08-13_005822_i6lhh6.png",
+        "https://res.cloudinary.com/df2mieky2/image/upload/v1755026835/Screenshot_2025-08-13_005644_w2ul15.png",
+        "https://res.cloudinary.com/df2mieky2/image/upload/v1755026734/Screenshot_2025-08-13_005505_dgcpr6.png"
+      ].map((src, i) => (
+        <a
+          key={i}
+          href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-white aspect-square rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 border-2 border-gradient-to-r from-pink-200 to-purple-200 block"
+        >
+          <img
+            src={src}
+            alt={`Instagram Post ${i + 1}`}
+            className="w-full h-full object-cover"
+          />
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
 
       {/* Testimonials Section */}
       <section className="py-24 bg-white">

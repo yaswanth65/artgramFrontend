@@ -297,29 +297,39 @@ const EventsPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-rose-600 via-rose-700 to-purple-800 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/10 animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-24 h-24 rounded-full bg-white/5 animate-pulse delay-1000"></div>
-          <div className="absolute bottom-20 left-1/4 w-40 h-40 rounded-full bg-white/5 animate-pulse delay-500"></div>
+      <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-rose-900 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          {[...Array(6)].map((_, i) => (
+            <div 
+              key={i}
+              className="absolute w-24 h-24 rounded-full bg-white/5 backdrop-blur-sm animate-pulse"
+              style={{
+                left: `${15 + (i * 15)}%`,
+                top: `${20 + (i % 2) * 40}%`,
+                animationDelay: `${i * 0.5}s`,
+                animationDuration: `${3 + i}s`
+              }}
+            />
+          ))}
         </div>
-        <div className="relative mx-auto max-w-6xl px-4 py-24 text-center">
+
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 text-center">
           <div className="mb-6 inline-block rounded-full bg-white/10 px-6 py-2 backdrop-blur-sm">
-            <span className="text-sm font-medium">
+            <span className="text-sm font-medium text-white">
               ✨ Creating Magical Moments
             </span>
           </div>
-          <h1 className="mb-6 text-5xl font-extrabold leading-tight md:text-7xl">
+          <h1 className="mb-6 text-5xl font-extrabold leading-tight text-white md:text-7xl">
             Special{" "}
             <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
               Events
             </span>
           </h1>
-          <p className="mb-4 text-xl opacity-90 md:text-2xl">
+          <p className="mb-4 text-xl text-white/90 md:text-2xl">
             Celebrate life's special moments with creative experiences
           </p>
-          <p className="text-lg opacity-80">
+          <p className="text-lg text-white/80">
             Birthday parties, corporate events, and community workshops
           </p>
         </div>

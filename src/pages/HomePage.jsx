@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 
 // Carousel images for hero section
 const carouselImages = [
-  "https://res.cloudinary.com/df2mieky2/image/upload/v1754651195/DSC07659_zj2pcc.jpg",
-  "https://res.cloudinary.com/df2mieky2/image/upload/v1755025999/IMG-20250807-WA0003_u999yh.jpg",
-  "https://res.cloudinary.com/df2mieky2/image/upload/v1755026061/HAR05826_hv05wz.jpg",
-  "https://res.cloudinary.com/df2mieky2/image/upload/v1754651197/HAR05826_iefkzg.jpg",
-  "https://res.cloudinary.com/df2mieky2/image/upload/v1754831665/HAR05956_cwxrxr.jpg",
-  "https://res.cloudinary.com/df2mieky2/image/upload/v1754831662/IMG_4561_axaohh.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651195/DSC07659_zj2pcc.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1755025999/IMG-20250807-WA0003_u999yh.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1755026061/HAR05826_hv05wz.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651197/HAR05826_iefkzg.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754831665/HAR05956_cwxrxr.jpg",
+  "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754831662/IMG_4561_axaohh.jpg",
 ];
 
 const HomePage = () => {
@@ -172,19 +172,19 @@ const HomePage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             <ActivityCard
-              img="https://res.cloudinary.com/df2mieky2/image/upload/v1754632272/COUROSEL_IMAGE_hkof14.png"
+              img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754632272/COUROSEL_IMAGE_hkof14.png"
               title="🎨 Art Making"
               text="Enjoy 30+ hands on activities for all age groups"
               bgColor="bg-gradient-to-br from-pink-100 to-purple-100"
             />
             <ActivityCard
-              img="https://res.cloudinary.com/df2mieky2/image/upload/v1754630801/HAR05956_c7944n.jpg"
+              img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754630801/HAR05956_c7944n.jpg"
               title="🌈 Slime Play"
               text="Get messy and creative with colorful, stretchy slime! Perfect for kids and adults who love sensory fun."
               bgColor="bg-gradient-to-br from-blue-100 to-cyan-100"
             />
             <ActivityCard
-              img="https://res.cloudinary.com/df2mieky2/image/upload/v1754651197/HAR05826_iefkzg.jpg"
+              img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651197/HAR05826_iefkzg.jpg"
               title="🧶 Tufting"
               text="Explore a new art form: make your own rugs and coasters to decorate your home."
               bgColor="bg-gradient-to-br from-green-100 to-emerald-100"
@@ -247,48 +247,45 @@ const HomePage = () => {
 
       {/* Instagram Feed Placeholder */}
       <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
-  <div className="container mx-auto px-6 text-center">
-    <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-      From Our Instagram
-    </h2>
-    <p className="text-gray-600 mb-8">
-      Follow us{" "}
-      <a
-        href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-bold text-pink-600 hover:text-purple-600 hover:underline transition-colors"
-      >
-        @artgram_yourhobbylobby
-      </a>
-    </p>
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-      {[
-        "https://res.cloudinary.com/df2mieky2/image/upload/v1755027036/Screenshot_2025-08-13_010005_eg9zck.png",
-        "https://res.cloudinary.com/df2mieky2/image/upload/v1755026984/Screenshot_2025-08-13_005822_i6lhh6.png",
-        "https://res.cloudinary.com/df2mieky2/image/upload/v1755026835/Screenshot_2025-08-13_005644_w2ul15.png",
-        "https://res.cloudinary.com/df2mieky2/image/upload/v1755026734/Screenshot_2025-08-13_005505_dgcpr6.png"
-      ].map((src, i) => (
-        <a
-          key={i}
-          href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white aspect-square rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 border-2 border-gradient-to-r from-pink-200 to-purple-200 block"
-        >
-          <img
-            src={src}
-            alt={`Instagram Post ${i + 1}`}
-            className="w-full h-full object-cover"
-          />
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
-
-
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+            From Our Instagram
+          </h2>
+          <p className="text-gray-600 mb-8">
+            Follow us{" "}
+            <a
+              href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-pink-600 hover:text-purple-600 hover:underline transition-colors"
+            >
+              @artgram_yourhobbylobby
+            </a>
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {[
+              "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1755027036/Screenshot_2025-08-13_010005_eg9zck.png",
+              "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1755026984/Screenshot_2025-08-13_005822_i6lhh6.png",
+              "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1755026835/Screenshot_2025-08-13_005644_w2ul15.png",
+              "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1755026734/Screenshot_2025-08-13_005505_dgcpr6.png",
+            ].map((src, i) => (
+              <a
+                key={i}
+                href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white aspect-square rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 border-2 border-gradient-to-r from-pink-200 to-purple-200 block"
+              >
+                <img
+                  src={src}
+                  alt={`Instagram Post ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials Section */}
       <section className="py-24 bg-white">
@@ -328,7 +325,7 @@ const HomePage = () => {
           phone="+917766012299"
           bgColor="from-orange-400 via-red-400 to-pink-400"
           textColor="text-white"
-          imageUrl="https://res.cloudinary.com/df2mieky2/image/upload/v1754637272/wp6539521_vvafqv.jpg"
+          imageUrl="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637272/wp6539521_vvafqv.jpg"
           cityTag="Pearl City"
         />
         <EnhancedBranchCard
@@ -337,7 +334,7 @@ const HomePage = () => {
           phone="+919216345672"
           bgColor="from-purple-500 via-indigo-500 to-blue-500"
           textColor="text-white"
-          imageUrl="https://res.cloudinary.com/df2mieky2/image/upload/v1754637352/jayanth-muppaneni-y96JVdGu7XU-unsplash_1_kooajm.jpg"
+          imageUrl="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637352/jayanth-muppaneni-y96JVdGu7XU-unsplash_1_kooajm.jpg"
           cityTag="Garden City"
         />
         <EnhancedBranchCard
@@ -346,7 +343,7 @@ const HomePage = () => {
           phone="+919686846100"
           bgColor="from-pink-500 via-rose-500 to-red-500"
           textColor="text-white"
-          imageUrl="https://res.cloudinary.com/df2mieky2/image/upload/v1754637135/durgamma_temple_vj_6472215382_l3h6wj.jpg"
+          imageUrl="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637135/durgamma_temple_vj_6472215382_l3h6wj.jpg"
           cityTag="Business Capital"
         />
       </div>

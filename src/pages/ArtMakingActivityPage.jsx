@@ -1,165 +1,309 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState, useEffect } from "react";
 
 export default function ArtMakingActivityPage() {
-  const [selectedDate, setSelectedDate] = useState("2025-08-12")
-  const [selectedArt, setSelectedArt] = useState("canvas")
-  const [selectedTime, setSelectedTime] = useState("12:00")
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeCard, setActiveCard] = useState(null);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const artForms = [
+    "Mosaic art",
+    "Glass painting",
+    "Lippan art",
+    "Piggy bank painting",
+    "Welcome boards",
+    "Mandalas",
+    "Tissue art",
+    "Mirror mosaic",
+    "String art",
+    "Clutch painting",
+    "Tote bag painting",
+    "Shoe painting",
+    "Block printing",
+  ];
+
+  const features = [
+    {
+      icon: "🎨",
+      title: "30+ Art Varieties",
+      description:
+        "Discover endless creative possibilities with our diverse collection of art forms.",
+      color: "from-rose-400 to-pink-400",
+    },
+    {
+      icon: "👥",
+      title: "Collaborative Creation",
+      description:
+        "Share the magical journey of creation with loved ones on a single masterpiece.",
+      color: "from-violet-400 to-purple-400",
+    },
+    {
+      icon: "🏠",
+      title: "Cherish Forever",
+      description:
+        "Take home your unique creation as a beautiful memory of your artistic journey.",
+      color: "from-blue-400 to-indigo-400",
+    },
+    {
+      icon: "⏰",
+      title: "Timeless Experience",
+      description:
+        "Create at your own pace without any time constraints or pressure.",
+      color: "from-emerald-400 to-teal-400",
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-purple-600 to-pink-600 text-white py-32 text-center overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><pattern id='paint' patternUnits='userSpaceOnUse' width='20' height='20'><circle cx='10' cy='10' r='2' fill='rgba(255,255,255,0.1)'/></pattern></defs><rect width='100' height='100' fill='url(%23paint)'/></svg>")`,
-            }}
-          ></div>
+    <div className="bg-gradient-to-br from-slate-50 via-purple-50 to-rose-50 pt-[10px]">
+      {/* Artistic Hero Section */}
+      <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-rose-900 overflow-hidden pb-6">
+        {/* Background Video */}
+        <video
+          src="https://res.cloudinary.com/df2mieky2/video/upload/v1754831677/vecteezy_mixing-paint-in-palette_21422891_xS2W3sA_G_vcrrvy.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+        />
+
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-24 h-24 rounded-full bg-white/5 backdrop-blur-sm animate-pulse"
+              style={{
+                left: `${15 + i * 15}%`,
+                top: `${20 + (i % 2) * 40}%`,
+                animationDelay: `${i * 0.5}s`,
+                animationDuration: `${3 + i}s`,
+              }}
+            />
+          ))}
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-5">
-          <h1 className="text-6xl font-black mb-5 drop-shadow-lg animate-bounce">Art Making Studio</h1>
-          <p className="text-xl mb-8 max-w-3xl mx-auto opacity-95">
-            Design your own compositions, choose from professional-grade materials, and bring your artistic vision to
-            life through various mediums and techniques.
+        {/* Hero Content */}
+        <div
+          className={`relative z-10 text-center max-w-5xl mx-auto px-6 transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <div className="mb-8">
+            <h1 className="text-7xl md:text-8xl font-bold bg-gradient-to-r from-white via-purple-200 to-rose-200 bg-clip-text text-transparent mb-6 leading-tight">
+              Art Making Studio
+            </h1>
+            <div className="w-32 h-1 bg-gradient-to-r from-purple-400 to-rose-400 mx-auto rounded-full mb-8" />
+          </div>
+
+          <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-light">
+            Where imagination meets creation. Design your own masterpieces with
+            premium materials and bring your artistic vision to life in our
+            serene creative sanctuary.
           </p>
-          <a
-            href="#booking"
-            className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse"
-          >
-            Start Creating Now
-          </a>
+
+          <div className="mt-12 flex flex-wrap justify-center gap-6">
+            <button className="group bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 transition-all duration-300">
+              <span className="flex items-center gap-3">
+                Start Creating
+                <div className="w-2 h-2 bg-white rounded-full group-hover:animate-ping" />
+              </span>
+            </button>
+            <button className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold text-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+              View Gallery
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* Content Section */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-5">
-          <div className="bg-white rounded-3xl p-10 shadow-2xl">
-            <h2 className="text-4xl font-bold text-center text-purple-600 mb-8">Art Making Experience</h2>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 border-l-4 border-purple-600">
-                <h5 className="text-xl font-semibold text-purple-600 mb-3 flex items-center">
-                  <span className="text-red-500 mr-2">🎨</span> 30+ Art Varieties Available
-                </h5>
-                <p className="text-gray-700">
-                  Choose from Mosaic art, Mandalas, Glass painting, Canvas painting, Clay modeling, Pottery, Jewelry
-                  making, and many more creative options.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 border-l-4 border-purple-600">
-                <h5 className="text-xl font-semibold text-purple-600 mb-3 flex items-center">
-                  <span className="text-red-500 mr-2">👥</span> Share the Creative Journey
-                </h5>
-                <p className="text-gray-700">
-                  Two people can collaborate on a single art piece. Perfect for couples, friends, or parent-child
-                  bonding experiences.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 border-l-4 border-purple-600">
-                <h5 className="text-xl font-semibold text-purple-600 mb-3 flex items-center">
-                  <span className="text-red-500 mr-2">🏠</span> Take Your Creation Home
-                </h5>
-                <p className="text-gray-700">
-                  Every piece you create is yours to keep. Walk away with beautiful handmade art that reflects your
-                  creativity and personal style.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 border-l-4 border-purple-600">
-                <h5 className="text-xl font-semibold text-purple-600 mb-3 flex items-center">
-                  <span className="text-red-500 mr-2">⏰</span> No Time Pressure
-                </h5>
-                <p className="text-gray-700">
-                  Stay as long as your art takes to complete. No time limits - focus on your creativity without rushing.
-                </p>
-              </div>
+      {/* Main Content */}
+      <section className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Experience Section */}
+          <div className="mb-20">
+            <div className="text-center mb-16">
+              <h2 className="text-5xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 to-rose-600 bg-clip-text text-transparent mb-4">
+                Your Artistic Journey
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Immerse yourself in a world of creativity where every stroke
+                tells a story
+              </p>
             </div>
 
-            {/* Stats Section */}
-            <div className="flex flex-wrap justify-around mt-12 text-center">
-              <div className="m-3">
-                <span className="block text-4xl font-bold text-purple-300">30+</span>
-                <span className="block text-sm text-gray-600 mt-1">Art Varieties</span>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, index) => (
+                <div
+                  key={feature.title}
+                  className={`group relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-100
+                    ${activeCard === index ? "scale-105" : "hover:scale-102"}`}
+                  onMouseEnter={() => setActiveCard(index)}
+                  onMouseLeave={() => setActiveCard(null)}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-300`}
+                  />
+
+                  <div className="relative z-10">
+                    <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-purple-600 transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Pricing Section with Artistic Design */}
+          <div className="mb-20">
+            <div className="bg-gradient-to-br from-white via-purple-50 to-rose-50 rounded-3xl p-12 shadow-2xl border border-purple-100">
+              <div className="grid lg:grid-cols-3 gap-12 items-center">
+                {/* Pricing Info */}
+                <div className="lg:col-span-2 space-y-8">
+                  <div>
+                    <h3 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-rose-600 bg-clip-text text-transparent mb-6">
+                      Creative Pricing
+                    </h3>
+                    <div className="flex items-baseline gap-4 mb-6">
+                      <span className="text-6xl font-bold text-gray-800">
+                        ₹350
+                      </span>
+                      <span className="text-2xl text-gray-500">to</span>
+                      <span className="text-6xl font-bold text-gray-800">
+                        ₹2000
+                      </span>
+                    </div>
+                    <p className="text-lg text-gray-600 mb-8">
+                      Choose your art form and pay accordingly - no hidden
+                      costs!
+                    </p>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {[
+                      "Choose your preferred art form",
+                      "All premium materials included",
+                      "Expert guidance available",
+                      "No booking required",
+                      "Walk-in anytime",
+                      "Take your creation home",
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3 group">
+                        <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-rose-400 rounded-full group-hover:scale-150 transition-transform duration-300" />
+                        <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Special Offer */}
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-purple-600 to-indigo-600 rounded-3xl p-8 text-white text-center shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-rose-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                      HOT!
+                    </div>
+                    <h4 className="text-2xl font-bold mb-4">Special Combo</h4>
+                    <div className="text-4xl font-bold mb-2">10% OFF</div>
+                    <p className="text-purple-100 mb-6">
+                      Art + Slime making on the same day
+                    </p>
+                    <button className="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors duration-300">
+                      Learn More
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="m-3">
-                <span className="block text-4xl font-bold text-purple-300">2+</span>
-                <span className="block text-sm text-gray-600 mt-1">Years Minimum Age</span>
-              </div>
-              <div className="m-3">
-                <span className="block text-4xl font-bold text-purple-300">₹350-₹2000</span>
-                <span className="block text-sm text-gray-600 mt-1">Price Range</span>
-              </div>
-              <div className="m-3">
-                <span className="block text-4xl font-bold text-purple-300">11AM-7PM</span>
-                <span className="block text-sm text-gray-600 mt-1">Walk-in Hours</span>
+            </div>
+          </div>
+
+          {/* Art Forms Gallery */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-4xl font-bold text-gray-800 mb-4">
+                Explore Art Forms
+              </h3>
+              <p className="text-xl text-gray-600">
+                Discover the perfect medium for your creativity
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {artForms.map((art, index) => (
+                <div
+                  key={art}
+                  className="group bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-purple-200"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-rose-400 rounded-full mx-auto mb-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-white text-lg">🎨</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-800 group-hover:text-purple-600 transition-colors duration-300">
+                      {art}
+                    </h4>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats Section */}
+          <div className="bg-gradient-to-r from-purple-600 via-indigo-600 to-rose-600 rounded-3xl p-12 text-white text-center shadow-2xl">
+            <div className="grid md:grid-cols-4 gap-8">
+              {[
+                { value: "30+", label: "Art Varieties", icon: "🎨" },
+                { value: "2+", label: "Years Min Age", icon: "👶" },
+                { value: "₹350-₹2000", label: "Price Range", icon: "💰" },
+                { value: "11AM-7PM", label: "Open Hours", icon: "🕐" },
+              ].map((stat, i) => (
+                <div key={i} className="group">
+                  <div className="text-4xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {stat.icon}
+                  </div>
+                  <div className="text-4xl font-bold mb-2">{stat.value}</div>
+                  <div className="text-purple-100 font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Brochure Section */}
+          <div className="mt-20 text-center">
+            <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-12 shadow-xl border border-gray-100">
+              <div className="max-w-2xl mx-auto">
+                <h3 className="text-3xl font-bold text-gray-800 mb-6">
+                  Download Our Brochure
+                </h3>
+                <p className="text-xl text-gray-600 mb-8">
+                  Get detailed information about all our art forms and pricing
+                  across different branches
+                </p>
+                <button className="group bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                  <span className="flex items-center justify-center gap-3">
+                    📋 Download Now
+                    <div className="w-0 group-hover:w-4 h-0.5 bg-white rounded transition-all duration-300" />
+                  </span>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Pricing Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-5">
-          <h2 className="text-4xl font-bold text-center text-purple-600 mb-10">Flexible Pricing</h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            <div className="bg-white rounded-3xl p-8 shadow-xl text-center max-w-sm">
-              <div className="text-4xl mb-4">🎨</div>
-              <h4 className="text-2xl font-semibold text-purple-600 mb-2">Pay As You Choose</h4>
-              <h3 className="text-3xl font-bold text-red-500 mb-6">₹350 - ₹2000</h3>
-              <ul className="space-y-3 text-left">
-                <li className="flex items-center">
-                  <span className="text-green-500 mr-2">✓</span> Choose your preferred art form
-                </li>
-                <li className="flex items-center">
-                  <span className="text-green-500 mr-2">✓</span> Materials included
-                </li>
-                <li className="flex items-center">
-                  <span className="text-green-500 mr-2">✓</span> Expert guidance available
-                </li>
-                <li className="flex items-center">
-                  <span className="text-green-500 mr-2">✓</span> No booking required
-                </li>
-                <li className="flex items-center">
-                  <span className="text-green-500 mr-2">✓</span> Walk-in anytime
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-3xl p-8 shadow-xl text-center max-w-sm border-4 border-purple-600">
-              <div className="text-4xl mb-4">🎯</div>
-              <h4 className="text-2xl font-semibold text-purple-600 mb-2">Special Combo Offer</h4>
-              <h3 className="text-3xl font-bold text-red-500 mb-6">10% OFF</h3>
-              <ul className="space-y-3 text-left">
-                <li className="flex items-center">
-                  <span className="text-green-500 mr-2">✓</span> Art + Slime same day
-                </li>
-                <li className="flex items-center">
-                  <span className="text-green-500 mr-2">✓</span> Automatic discount applied
-                </li>
-                <li className="flex items-center">
-                  <span className="text-green-500 mr-2">✓</span> Perfect for full day fun
-                </li>
-                <li className="flex items-center">
-                  <span className="text-green-500 mr-2">✓</span> Maximum value experience
-                </li>
-                <li className="flex items-center text-red-500 font-bold">
-                  <span className="text-green-500 mr-2">✓</span> Save money, double the fun!
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      
     </div>
-  )
+  );
 }

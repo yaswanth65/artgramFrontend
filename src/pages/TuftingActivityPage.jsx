@@ -3,10 +3,23 @@
 import { useEffect, useMemo, useState } from "react";
 
 const TuftingActivityPage = () => {
+  // State for managing the current step in the booking process
   const [step, setStep] = useState("date");
+  // State for storing available dates
   const [dates, setDates] = useState([]);
-  const [booking, setBooking] = useState({});
+  // State for storing all booking details
+  const [booking, setBooking] = useState({
+    date: "",
+    location: "",
+    session: null,
+    time: "",
+    quantity: "",
+    customerName: "",
+    customerPhone: "",
+    customerEmail: "",
+  });
 
+  // Effect to generate the next 7 days for date selection
   useEffect(() => {
     const today = new Date();
     const arr = [];
@@ -18,24 +31,36 @@ const TuftingActivityPage = () => {
     setDates(arr);
   }, []);
 
+  // Available tufting session options
   const sessions = [
     { id: "beginner", price: 2000, label: "Small - 8x8 (Inches)" },
     { id: "advanced", price: 3500, label: "Medium - 12x12 (Inches)" },
     { id: "master", price: 4500, label: "Big - 14x14 (Inches)" },
   ];
 
+  // Memoized calculation for the total booking cost
   const total = useMemo(
     () =>
       booking.session && booking.quantity
-        ? booking.session.price * booking.quantity
+        ? booking.session.price * Number(booking.quantity)
         : 0,
     [booking.session, booking.quantity]
   );
 
+  // Handler for input changes to keep state updated
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setBooking((prev) => ({ ...prev, [id]: value }));
+  };
+
+  // Check if all required fields for the final step are filled
+  const canProceedToBook =
+    booking.customerName && booking.customerPhone && booking.customerEmail && booking.quantity;
+
   return (
     <div>
-      {/* Hero */}
-      <header className="relative text-black text-center py-28 bg-gradient-to-tr from-purple-600 to-pink-600 overflow-hidden">
+      {/* Hero Section */}
+      <header className="relative text-white text-center py-28 bg-gradient-to-tr from-purple-600 to-pink-600 overflow-hidden">
         <div className="relative z-10 max-w-3xl mx-auto px-6">
           <h1 className="text-4xl md:text-5xl font-black mb-6 drop-shadow">
             🧶 INDIA'S PREMIER TUFTING STUDIO 🧶
@@ -49,79 +74,97 @@ const TuftingActivityPage = () => {
         </div>
       </header>
 
-      <section className="py-20">
+      {/* What is Tufting Section */}
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-secondary mb-10">
-            🤔 What is Tufting?
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-black text-rose-600 mb-2">
+              🤔 What is Tufting?
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              A modern take on the traditional craft of rug making. Using a special
+              tufting gun, you'll punch yarn into a stretched fabric canvas to
+              create your own vibrant, textured masterpiece.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Video Component */}
+            <div className="w-full h-full min-h-[480px] bg-black rounded-2xl shadow-xl overflow-hidden">
               <video
                 src="https://res.cloudinary.com/df2mieky2/video/upload/v1754651184/IMG_0327_djuhsr.mov"
-                controls
+                alt="A person using a tufting gun to create a rug."
+                className="w-full h-full object-cover"
                 autoPlay
                 loop
                 muted
-                className="rounded-xl w-full h-full object-contain"
-                style={{ maxHeight: "500px", background: "#fff" }}
-              />
+                playsInline
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
+
+            {/* Feature Cards */}
             <div className="flex flex-col justify-center space-y-6">
-              <div className="p-4 bg-white rounded-xl shadow-md">
-                <div className="text-3xl mb-2">🎨</div>
-                <h3 className="text-xl font-bold mb-2">Creative Expression</h3>
-                <p>
+              <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="text-4xl mb-3">🎨</div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">
+                  Creative Expression
+                </h3>
+                <p className="text-gray-600">
                   Design your own patterns, choose from premium yarns, and bring
-                  your artistic vision to life through the ancient art of
-                  tufting.
+                  your artistic vision to life through the art of tufting.
                 </p>
               </div>
-              <div className="p-4 bg-white rounded-xl shadow-md">
-                <div className="text-3xl mb-2">🧘‍♀️</div>
-                <h3 className="text-xl font-bold mb-2">Mindful Crafting</h3>
-                <p>
-                  Experience the meditative rhythm of tufting. Perfect for
-                  stress relief, focus building, and mindful creativity.
+              <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="text-4xl mb-3">🧘‍♀️</div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">
+                  Mindful Crafting
+                </h3>
+                <p className="text-gray-600">
+                  Experience the meditative rhythm of tufting. Perfect for stress
+                  relief, focus building, and mindful creativity.
                 </p>
               </div>
-              <div className="p-4 bg-white rounded-xl shadow-md">
-                <div className="text-3xl mb-2">🏠</div>
-                <h3 className="text-xl font-bold mb-2">
+              <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="text-4xl mb-3">🏠</div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">
                   Take Home Masterpieces
                 </h3>
-                <p>
-                  Create functional art! Every session produces beautiful rugs,
-                  coasters, wall hangings, or decorative pieces you'll treasure
-                  forever.
+                <p className="text-gray-600">
+                  Create functional art! Make beautiful rugs, coasters, or wall
+                  hangings that you'll treasure forever.
                 </p>
               </div>
             </div>
           </div>
-          <div className="grid md:grid-cols-4 gap-8 mt-16 text-center">
-            <div className="p-4 bg-white rounded-xl shadow-md">
-              <p className="text-3xl font-bold">25,000+</p>
-              <p>Happy Tufters</p>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center">
+            <div className="p-6 bg-white rounded-2xl shadow-lg">
+              <p className="text-4xl font-bold text-rose-600">25,000+</p>
+              <p className="text-gray-600 font-medium">Happy Tufters</p>
             </div>
-            <div className="p-4 bg-white rounded-xl shadow-md">
-              <p className="text-3xl font-bold">500+</p>
-              <p>Unique Designs</p>
+            <div className="p-6 bg-white rounded-2xl shadow-lg">
+              <p className="text-4xl font-bold text-rose-600">500+</p>
+              <p className="text-gray-600 font-medium">Unique Designs</p>
             </div>
-            <div className="p-4 bg-white rounded-xl shadow-md">
-              <p className="text-3xl font-bold">100%</p>
-              <p>Premium Materials</p>
+            <div className="p-6 bg-white rounded-2xl shadow-lg">
+              <p className="text-4xl font-bold text-rose-600">100%</p>
+              <p className="text-gray-600 font-medium">Premium Materials</p>
             </div>
-            <div className="p-4 bg-white rounded-xl shadow-md">
-              <p className="text-3xl font-bold">3</p>
-              <p>Studio Locations</p>
+            <div className="p-6 bg-white rounded-2xl shadow-lg">
+              <p className="text-4xl font-bold text-rose-600">3</p>
+              <p className="text-gray-600 font-medium">Studio Locations</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Gallery */}
+      {/* Gallery Section */}
       <section className="py-16 bg-pink-50">
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-3xl font-bold text-center mb-10">
+          <h2 className="text-3xl font-bold text-center mb-10 text-rose-600">
             🖼️ Tufting Gallery - Student Creations
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -133,11 +176,12 @@ const TuftingActivityPage = () => {
               "https://res.cloudinary.com/df2mieky2/image/upload/f_auto,q_40,w_400/v1754651195/DSC07659_zj2pcc.jpg",
               "https://res.cloudinary.com/df2mieky2/image/upload/f_auto,q_40,w_400/v1754651197/HAR05826_iefkzg.jpg",
             ].map((src) => (
-              <div key={src} className="rounded-xl overflow-hidden shadow">
+              <div key={src} className="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src={src || "/placeholder.svg"}
-                  alt="Tufting creation"
+                  src={src}
+                  alt="Tufting creation by a student"
                   className="w-full h-[250px] object-cover"
+                  onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x250/f9699c/white?text=Art' }}
                 />
               </div>
             ))}
@@ -145,7 +189,7 @@ const TuftingActivityPage = () => {
         </div>
       </section>
 
-      {/* Booking */}
+      {/* Booking Section */}
       <section
         id="tufting-booking"
         className="py-16"
@@ -157,7 +201,7 @@ const TuftingActivityPage = () => {
               🎯 BOOK YOUR TUFTING EXPERIENCE NOW!
             </h2>
 
-            {/* STEP 1: SELECT DATE */}
+            {/* Step 1: Date Selection */}
             <TuftStep
               title="📅 Select Date"
               color="#9b59b6"
@@ -176,10 +220,10 @@ const TuftingActivityPage = () => {
                     <button
                       key={iso}
                       onClick={() => setBooking((b) => ({ ...b, date: iso }))}
-                      className={`min-w-[100px] text-center rounded-lg border-2 px-4 py-3 transition-all duration-200 ${
+                      className={`min-w-[100px] text-center rounded-lg border-2 px-4 py-3 transition-all ${
                         selected
-                          ? "border-purple-600 bg-purple-100 shadow-lg text-purple-800 transform scale-105" 
-                          : "border-gray-300 bg-white hover:border-purple-400 hover:bg-purple-50 hover:shadow-md"
+                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5"
+                          : "border-gray-300 bg-white hover:-translate-y-0.5"
                       }`}
                     >
                       <div className="text-xs font-semibold">{label}</div>
@@ -191,7 +235,7 @@ const TuftingActivityPage = () => {
               </div>
             </TuftStep>
 
-            {/* STEP 2: SELECT LOCATION */}
+            {/* Step 2: Location Selection */}
             <TuftStep
               title="📍 Select Location"
               color="#9b59b6"
@@ -211,10 +255,10 @@ const TuftingActivityPage = () => {
                     <button
                       key={l.id}
                       onClick={() => setBooking((b) => ({ ...b, location: l.id }))}
-                      className={`min-w-[200px] text-center rounded-xl border-2 px-6 py-5 transition-all duration-200 ${
+                      className={`min-w-[200px] text-center rounded-xl border-2 px-6 py-5 transition-all ${
                         selected
-                          ? "border-purple-600 bg-purple-100 shadow-lg text-purple-800 transform scale-105" 
-                          : "border-gray-300 bg-white hover:border-purple-400 hover:bg-purple-50 hover:shadow-md hover:-translate-y-1"
+                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5 shadow"
+                          : "border-gray-300 bg-white hover:-translate-y-0.5"
                       }`}
                     >
                       <div className="font-bold">{l.name}</div>
@@ -225,7 +269,7 @@ const TuftingActivityPage = () => {
               </div>
             </TuftStep>
 
-            {/* STEP 3: SELECT SESSION */}
+            {/* Step 3: Session Selection */}
             <TuftStep
               title="🧶 Select Tufting Session (Per 2 Persons) ONLY 15+ YEARS"
               color="#9b59b6"
@@ -241,10 +285,10 @@ const TuftingActivityPage = () => {
                     <div
                       key={s.id}
                       onClick={() => setBooking((b) => ({ ...b, session: s }))}
-                      className={`min-w-[200px] cursor-pointer rounded-xl border-2 px-6 py-6 text-center transition-all duration-200 ${
+                      className={`min-w-[200px] cursor-pointer rounded-xl border-2 px-6 py-6 text-center transition-all ${
                         selected
-                          ? "border-purple-600 bg-purple-600 text-black shadow-xl transform scale-105"
-                          : "border-gray-300 bg-white hover:border-purple-400 hover:bg-purple-50 hover:shadow-lg hover:-translate-y-1"
+                          ? "border-purple-600 bg-purple-600 text-white -translate-y-1 shadow-xl"
+                          : "border-gray-300 bg-white hover:-translate-y-1"
                       }`}
                     >
                       <div className="text-2xl mb-1">
@@ -254,7 +298,7 @@ const TuftingActivityPage = () => {
                       <div className="text-sm opacity-80">
                         02 - 04 Hr (Depending on Size)
                       </div>
-                      <div className={`mt-2 font-bold ${selected ? "text-black" : "text-red-600"}`}>
+                      <div className={`mt-2 font-bold ${selected ? "text-white" : "text-red-600"}`}>
                         ₹ {s.price}
                       </div>
                     </div>
@@ -263,7 +307,147 @@ const TuftingActivityPage = () => {
               </div>
             </TuftStep>
 
-            {/* Add your remaining steps (time, quantity, etc.) here following the same pattern */}
+            {/* Step 4: Time Slot Selection */}
+            <TuftStep
+              title="⏰ Select Time Slot"
+              color="#9b59b6"
+              isVisible={step === "time"}
+              onBack={() => setStep("session")}
+              onNext={() => setStep("details")}
+              canNext={Boolean(booking.time)}
+            >
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { t: "09:00", label: "9:00 AM", cls: "available" },
+                  { t: "11:30", label: "11:30 AM", cls: "available" },
+                  { t: "14:00", label: "2:00 PM", cls: "available" },
+                  { t: "16:30", label: "4:30 PM", cls: "available" },
+                  { t: "19:00", label: "7:00 PM", cls: "filling-fast" },
+                ].map((slot) => {
+                  const selected = booking.time === slot.t;
+                  return (
+                    <div
+                      key={slot.t}
+                      onClick={() => setBooking((b) => ({ ...b, time: slot.t }))}
+                      className={`min-w-[120px] text-center rounded-lg border-2 px-4 py-3 transition-all cursor-pointer ${
+                        selected
+                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5"
+                          : slot.cls === "filling-fast"
+                          ? "border-orange-400"
+                          : "border-gray-300 bg-white hover:-translate-y-0.5"
+                      }`}
+                    >
+                      <div className="font-bold">{slot.label}</div>
+                      <div className="text-xs opacity-80">
+                        {slot.cls === "filling-fast" ? "Filling Fast" : "Available"}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </TuftStep>
+
+            {/* Step 5: Your Details */}
+            <TuftStep
+              title="👤 Your Details"
+              color="#9b59b6"
+              isVisible={step === "details"}
+              onBack={() => setStep("time")}
+              canNext={false}
+            >
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block font-semibold mb-1">Full Name *</label>
+                  <input
+                    id="customerName"
+                    type="text"
+                    value={booking.customerName}
+                    onChange={handleInputChange}
+                    className="w-full border-2 border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block font-semibold mb-1">Phone Number *</label>
+                  <input
+                    id="customerPhone"
+                    type="tel"
+                    value={booking.customerPhone}
+                    onChange={handleInputChange}
+                    className="w-full border-2 border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600"
+                    placeholder="+91 12345 67890"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block font-semibold mb-1">Email Address *</label>
+                  <input
+                    id="customerEmail"
+                    type="email"
+                    value={booking.customerEmail}
+                    onChange={handleInputChange}
+                    className="w-full border-2 border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block font-semibold mb-1">Number of Participants *</label>
+                  <select
+                    id="quantity"
+                    value={booking.quantity}
+                    onChange={handleInputChange}
+                    className="w-full border-2 border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600"
+                    required
+                  >
+                    <option value="" disabled>Select quantity</option>
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5 People</option>
+                    <option value="6">6+ People (Group Booking)</option>
+                  </select>
+                </div>
+              </div>
+
+              {booking.quantity && booking.session && (
+                <div
+                  className="mt-6 rounded-2xl p-6 text-white"
+                  style={{ background: "linear-gradient(135deg, #9b59b6, #e91e63)" }}
+                >
+                  <h5 className="font-bold mb-2">📋 Tufting Booking Summary</h5>
+                  <div className="text-sm space-y-1">
+                    <div><strong>Date:</strong> {booking.date ? new Date(booking.date).toLocaleDateString('en-GB') : ""}</div>
+                    <div><strong>Location:</strong> <span className="capitalize">{booking.location}</span></div>
+                    <div><strong>Session:</strong> {booking.session.label}</div>
+                    <div><strong>Time:</strong> {booking.time}</div>
+                    <div><strong>Participants:</strong> {booking.quantity}</div>
+                  </div>
+                  <div className="mt-3 text-center font-extrabold text-xl">
+                    Total Amount: ₹{total.toLocaleString()}
+                  </div>
+                  <button
+                    className={`mt-3 w-full rounded-full font-bold py-3 transition-all ${
+                        canProceedToBook
+                        ? 'bg-yellow-400 text-slate-800 hover:-translate-y-0.5'
+                        : 'bg-gray-400 text-gray-700 cursor-not-allowed'
+                    }`}
+                    onClick={() => {
+                      if (canProceedToBook) {
+                        alert("🧶 Tufting session booked successfully! We will contact you within 2 hours to confirm your creative adventure.");
+                      } else {
+                        alert("Please fill in all required fields.");
+                      }
+                    }}
+                    disabled={!canProceedToBook}
+                  >
+                    🧶 PROCEED TO BOOK TUFTING SESSION
+                  </button>
+                </div>
+              )}
+            </TuftStep>
           </div>
         </div>
       </section>
@@ -271,18 +455,10 @@ const TuftingActivityPage = () => {
   );
 };
 
-const TuftStep = ({
-  title,
-  color,
-  isVisible,
-  onBack,
-  onNext,
-  canNext,
-  children,
-}) => {
+const TuftStep = ({ title, color, isVisible, onBack, onNext, canNext, children }) => {
   if (!isVisible) return null;
   return (
-    <div className="mb-6">
+    <div className="mb-6 bg-white rounded-2xl p-5 shadow">
       <div className="flex items-center justify-between gap-3 border-b pb-3 mb-4">
         <h4 className="text-lg font-bold" style={{ color }}>
           {title}
@@ -291,7 +467,7 @@ const TuftStep = ({
           {onBack && (
             <button
               onClick={onBack}
-              className="px-4 py-1.5 rounded-full bg-gray-600 text-black font-semibold hover:bg-gray-500 transition-colors duration-200"
+              className="px-4 py-1.5 rounded-full bg-gray-600 text-white font-semibold hover:bg-gray-500 transition-colors"
             >
               ← Back
             </button>
@@ -300,9 +476,9 @@ const TuftStep = ({
             <button
               onClick={onNext}
               disabled={!canNext}
-              className={`px-4 py-1.5 rounded-full font-semibold transition-all duration-200 ${
+              className={`px-4 py-1.5 rounded-full font-semibold transition-all ${
                 canNext
-                  ? "text-black hover:opacity-90"
+                  ? "text-white hover:-translate-y-px"
                   : "bg-gray-200 text-gray-400 cursor-not-allowed"
               }`}
               style={{ backgroundColor: canNext ? color : undefined }}

@@ -10,20 +10,30 @@ export default function ArtMakingActivityPage() {
     setIsVisible(true);
   }, []);
 
-  const artForms = [
+  const artFormsKids = [
     "Mosaic art",
-    "Glass painting",
-    "Lippan art",
-    "Piggy bank painting",
+    "Piggy banks",
     "Welcome boards",
-    "Mandalas",
-    "Tissue art",
-    "Mirror mosaic",
-    "String art",
-    "Clutch painting",
-    "Tote bag painting",
-    "Shoe painting",
+    "Glass painting",
+    "Rangoli stencils",
+    "Letter arts",
+    "Spin art",
+    "Key holders",
+    "Name boards",
+    "Acrylic pour"
+  ];
+
+  const artFormsAdults = [
     "Block printing",
+    "Clutch painting",
+    "Glass painting",
+    "Mandalas",
+    "Couple boards",
+    "Pichwai arts",
+    "Madhubani",
+    "Tissue art",
+    "Home decor crafts",
+    "Gods painting"
   ];
 
   const features = [
@@ -95,8 +105,8 @@ export default function ArtMakingActivityPage() {
         >
           <h1
             className="text-5xl md:text-7xl font-extrabold pt-2 pb-5
-               bg-gradient-to-r from-purple-300 via-pink-200 to-rose-300 
-               bg-clip-text text-transparent"
+                bg-gradient-to-r from-purple-300 via-pink-200 to-rose-300 
+                bg-clip-text text-transparent"
           >
             Art Making Studio
           </h1>
@@ -109,7 +119,7 @@ export default function ArtMakingActivityPage() {
           </p>
 
           <div className="mt-12 flex flex-wrap justify-center gap-6">
-           
+            
             <button className="bg-white/10 backdrop-blur-sm text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
               View Gallery
             </button>
@@ -227,19 +237,19 @@ export default function ArtMakingActivityPage() {
             </div>
           </div>
 
-          {/* Art Forms Gallery */}
+          {/* Art Forms Gallery - Kids Section */}
           <div className="mb-20">
             <div className="text-center mb-8 md:mb-12">
               <h3 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3 md:mb-4">
-                Explore Art Forms
+                Art Forms for Kids 🧑‍🎨
               </h3>
               <p className="text-lg md:text-xl text-gray-600">
-                Discover the perfect medium for your creativity
+                Fun and creative projects for our young artists
               </p>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-              {artForms.map((art, index) => (
+              {artFormsKids.map((art, index) => (
                 <div
                   key={art}
                   className="group bg-gradient-to-br from-white to-gray-50 rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-purple-200"
@@ -256,6 +266,37 @@ export default function ArtMakingActivityPage() {
               ))}
             </div>
           </div>
+          
+          {/* Art Forms Gallery - Adults Section */}
+          <div className="mb-20">
+            <div className="text-center mb-8 md:mb-12">
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3 md:mb-4">
+                Art Forms for Adults 🧑‍🎨
+              </h3>
+              <p className="text-lg md:text-xl text-gray-600">
+                Explore a range of sophisticated and intricate art techniques
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+              {artFormsAdults.map((art, index) => (
+                <div
+                  key={art}
+                  className="group bg-gradient-to-br from-white to-gray-50 rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-purple-200"
+                >
+                  <div className="text-center">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-purple-400 to-rose-400 rounded-full mx-auto mb-2 md:mb-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-white text-base md:text-lg">🎨</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-800 group-hover:text-purple-600 transition-colors duration-300 text-sm md:text-base">
+                      {art}
+                    </h4>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
 
           {/* Stats Section */}
           <div className="bg-gradient-to-r from-purple-600 via-indigo-600 to-rose-600 rounded-3xl p-8 md:p-12 text-white text-center shadow-2xl">

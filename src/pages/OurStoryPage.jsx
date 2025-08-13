@@ -114,14 +114,14 @@ const OurStoryPage = () => {
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           {[...Array(8)].map((_, i) => (
-            <div
+            <div 
               key={i}
               className="absolute w-32 h-32 rounded-full bg-white/5 backdrop-blur-sm animate-pulse"
               style={{
-                left: `${10 + i * 12}%`,
+                left: `${10 + (i * 12)}%`,
                 top: `${10 + (i % 3) * 30}%`,
                 animationDelay: `${i * 0.8}s`,
-                animationDuration: `${4 + i}s`,
+                animationDuration: `${4 + i}s`
               }}
             />
           ))}
@@ -129,14 +129,23 @@ const OurStoryPage = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className={`transition-all duration-1000 delay-300 ${
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+            }`}>
+              <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-rose-400 rounded-3xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300" />
+                <img
+                  src="https://res.cloudinary.com/df2mieky2/image/upload/q_auto,f_auto,w_800/v1754830108/Screenshot_2025-08-10_181702_urntu7.png"
+                  alt="A vibrant Artgram studio space with people creating art"
+                  className="relative max-w-[400px] w-full mx-auto rounded-3xl shadow-2xl transform group-hover:scale-105 transition-all duration-500"
+                />
+              </div>
+            </div>
+
             {/* Content */}
-            <div
-              className={`space-y-8 transition-all duration-1000 ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-8"
-              }`}
-            >
+            <div className={`space-y-8 transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            }`}>
               <div>
                 <h1 className="text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-rose-200 bg-clip-text text-transparent mb-4">
                   Our Story
@@ -146,52 +155,23 @@ const OurStoryPage = () => {
                   From a Spark of Passion to a Creative Community
                 </h2>
               </div>
-
+              
               <div className="space-y-6 text-lg text-white/80 leading-relaxed">
                 <p>
-                  Artgram began with a simple dream: to make art accessible,
-                  joyful, and a part of everyday life. What started as a small
-                  initiative has blossomed into a vibrant community, nurturing
-                  creativity across all ages and backgrounds.
+                  Artgram is the ultimate destination for birthdays, get-togethers, and corporate events. Whether you're planning a cozy gathering or a grand celebration, we offer tailored packages to suit every occasion. Enjoy a private room with captivating activities, exquisite food with a buffet setup, and stunning décor. With capacity to accommodate 60 people, Artgram perfectly suits your venue destination needs. From thoughtful return gifts to extra attractions like face painting, tattoos, or hair braiding, we have you covered. Whatever your vision, Artgram ensures a seamless, joyful experience for you and your guests! 
                 </p>
-                <p>
-                  We believe art is a powerful tool for communication, healing,
-                  and personal growth. Through our diverse programs and events,
-                  we've had the privilege of touching hundreds of lives,
-                  empowering individuals to create fearlessly and express their
-                  unique stories.
-                </p>
+                
               </div>
 
               <div className="flex flex-wrap gap-4">
                 <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
                   <span className="text-2xl">🎨</span>
-                  <span className="text-white font-semibold">
-                    500+ Happy Artists
-                  </span>
+                  <span className="text-white font-semibold">500+ Happy Artists</span>
                 </div>
                 <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
                   <span className="text-2xl">🏢</span>
                   <span className="text-white font-semibold">5+ Branches</span>
                 </div>
-              </div>
-            </div>
-
-            {/* Image */}
-            <div
-              className={`transition-all duration-1000 delay-300 ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-8"
-              }`}
-            >
-              <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-rose-400 rounded-3xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300" />
-                <img
-                  src="https://res.cloudinary.com/df2mieky2/image/upload/q_auto,f_auto,w_800/v1754830108/Screenshot_2025-08-10_181702_urntu7.png"
-                  alt="A vibrant Artgram studio space with people creating art"
-                  className="relative w-full rounded-3xl shadow-2xl transform group-hover:scale-105 transition-all duration-500"
-                />
               </div>
             </div>
           </div>

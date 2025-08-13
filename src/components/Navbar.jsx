@@ -45,7 +45,7 @@ const Navbar = () => {
   const isActive = (paths) => paths.includes(location.pathname)
 
   return (
-    <nav id="universalNavbar" className="fixed top-0 inset-x-0 z-[1030] bg-white shadow-sm">
+    <nav id="universalNavbar" className="fixed top-8 inset-x-0 z-[1030] bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex items-center justify-between h-[76px]">
           <div className="flex items-center gap-4">

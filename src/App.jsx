@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import DiscountBar from "./components/DiscountBar"
 import HomePage from "./pages/HomePage"
 import ActivitiesPage from "./pages/ActivitiesPage"
 import ArtMakingActivityPage from "./pages/ArtMakingActivityPage"
@@ -16,8 +17,9 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-100 text-slate-900">
       <BrowserRouter>
+        <DiscountBar />
         <Navbar />
-        <main className="pt-[76px]">
+        <main className="pt-[100px]">
           <Routes>
             {/* Support both root and index.html */}
             <Route path="/" element={<HomePage />} />

@@ -246,46 +246,46 @@ const HomePage = () => {
       </section>
 
       {/* Instagram Feed Placeholder */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-            From Our Instagram
-          </h2>
-          <p className="text-gray-600 mb-8">
-            Follow us{" "}
-            <a
-              href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-pink-600 hover:text-purple-600 hover:underline transition-colors"
-            >
-              @artgram_yourhobbylobby
-            </a>
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {[
-              "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1755027036/Screenshot_2025-08-13_010005_eg9zck.png",
-              "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1755026984/Screenshot_2025-08-13_005822_i6lhh6.png",
-              "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1755026835/Screenshot_2025-08-13_005644_w2ul15.png",
-              "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1755026734/Screenshot_2025-08-13_005505_dgcpr6.png",
-            ].map((src, i) => (
-              <a
-                key={i}
-                href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white aspect-square rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 border-2 border-gradient-to-r from-pink-200 to-purple-200 block"
-              >
-                <img
-                  src={src}
-                  alt={`Instagram Post ${i + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+        <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+  <div className="container mx-auto px-6 text-center">
+    <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+      From Our Instagram
+    </h2>
+    <p className="text-gray-600 mb-8">
+      Follow us{" "}
+      <a
+        href="https://www.instagram.com/artgram_yourhobbylobby/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold text-pink-600 hover:text-purple-600 hover:underline transition-colors"
+      >
+        @artgram_yourhobbylobby
+      </a>
+    </p>
+
+    <div class="flex justify-center gap-6 flex-wrap">
+  
+    <iframe 
+        src="https://www.instagram.com/reel/DGS5MUppMc4/embed" 
+        width="400" 
+        height="480" 
+        frameborder="0" 
+        scrolling="no" 
+        allowtransparency="true">
+    </iframe>
+
+  
+    <iframe src="https://www.instagram.com/reel/DNC-sJuR0A4/embed?utm_source=ig_embed&hidecaption=true" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+
+
+  
+    <iframe src="https://www.instagram.com/reel/DM91tFgvQrS/embed?utm_source=ig_embed&hidecaption=false" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+
+</div>
+
+  </div>
+</section>
+
 
       {/* Testimonials Section */}
       <section className="py-24 bg-white">

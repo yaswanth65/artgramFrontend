@@ -288,34 +288,36 @@ const HomePage = () => {
 
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-white">
+       <section className="py-24 bg-white ">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-16 text-center">
             In their own words: Artgram experiences
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <TestimonialCard
-              stars="⭐⭐⭐⭐⭐"
-              text="Had a wonderful time doing the slime activity! Everything was well-organized, and the staff were so kind, patient, and engaging. It was a lot of fun for both kids and adults!"
-              name="Tejaswi Kalisetty"
-              bgColor="bg-gradient-to-br from-pink-100 to-rose-100"
-            />
-            <TestimonialCard
-              stars="⭐⭐⭐⭐⭐"
-              text="We hosted a onesie-themed baby shower at Artgram, and it was the best decision! Their team was attentive and turned a simple idea into a beautiful, memorable event."
-              name="Mohana Swetha Nune"
-              bgColor="bg-gradient-to-br from-blue-100 to-cyan-100"
-            />
-            <TestimonialCard
-              stars="⭐⭐⭐⭐⭐"
-              text="I celebrated my daughter's birthday party here and everyone had a fantastic time! The venue was spacious, bright, and easy to reach, and the team was very responsive."
-              name="Bhaswati Bhar"
-              bgColor="bg-gradient-to-br from-green-100 to-emerald-100"
-            />
-          </div>
+
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto text-white">
+  <TestimonialCard
+    stars="⭐⭐⭐⭐⭐"
+    text="Had a wonderful time doing the slime activity! Everything was well-organized, and the staff were so kind, patient, and engaging. It was a lot of fun for both kids and adults!"
+    name="Tejaswi Kalisetty"
+    bgColor="bg-gradient-to-br from-gray-600 to-blue-900 text-white"
+  />
+  <TestimonialCard
+    stars="⭐⭐⭐⭐⭐"
+    text="We hosted a onesie-themed baby shower at Artgram, and it was the best decision! Their team was attentive and turned a simple idea into a beautiful, memorable event."
+    name="Mohana Swetha Nune"
+    bgColor="bg-gradient-to-br from-gray-600 to-blue-900 text-white"
+  />
+  <TestimonialCard
+    stars="⭐⭐⭐⭐⭐"
+    text="I celebrated my daughter's birthday party here and everyone had a fantastic time! The venue was spacious, bright, and easy to reach, and the team was very responsive."
+    name="Bhaswati Bhar"
+    bgColor="bg-gradient-to-br from-gray-600 to-blue-900 text-white"
+  />
+</div>
+
         </div>
       </section>
-
       {/* Enhanced Branches Section */}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 max-w-7xl mx-auto">
@@ -381,11 +383,11 @@ const TestimonialCard = ({ stars, text, name, bgColor }) => {
     <div
       className={`${bgColor} p-8 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 border border-white/50`}
     >
-      <div className="flex flex-col h-full text-gray-800">
+      <div className="flex flex-col h-full text-white">
         <div className="text-2xl mb-4 text-amber-500">{stars}</div>
-        <p className="leading-relaxed mb-6 flex-grow italic">"{text}"</p>
+        <p className="leading-relaxed mb-6 flex-grow italic opacity-90">"{text}"</p>
         <div className="flex items-center mt-auto">
-          <p className="font-bold text-lg">{name}</p>
+          <p className="font-bold text-lg opacity-95">{name}</p>
         </div>
       </div>
     </div>

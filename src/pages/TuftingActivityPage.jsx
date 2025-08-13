@@ -249,10 +249,11 @@ const TuftingActivityPage = () => {
                     <button
                       key={iso}
                       onClick={() => setBooking((b) => ({ ...b, date: iso }))}
-                      className={`min-w-[100px] text-center rounded-lg border-2 px-4 py-3 transition-all ${selected
-                        ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5"
-                        : "border-gray-300 bg-white hover:-translate-y-0.5"
-                        }`}
+                      className={`min-w-[100px] text-center rounded-lg border-2 px-4 py-3 transition-all ${
+                        selected
+                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5"
+                          : "border-gray-300 bg-white hover:-translate-y-0.5"
+                      }`}
                     >
                       <div className="text-xs font-semibold">{label}</div>
                       <div className="text-xl font-extrabold">{d.getDate()}</div>
@@ -283,10 +284,11 @@ const TuftingActivityPage = () => {
                     <button
                       key={l.id}
                       onClick={() => setBooking((b) => ({ ...b, location: l.id }))}
-                      className={`min-w-[200px] text-center rounded-xl border-2 px-6 py-5 transition-all ${selected
-                        ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5 shadow"
-                        : "border-gray-300 bg-white hover:-translate-y-0.5"
-                        }`}
+                      className={`min-w-[200px] text-center rounded-xl border-2 px-6 py-5 transition-all ${
+                        selected
+                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5 shadow"
+                          : "border-gray-300 bg-white hover:-translate-y-0.5"
+                      }`}
                     >
                       <div className="font-bold">{l.name}</div>
                       <div className="text-sm opacity-80">{l.detail}</div>
@@ -312,10 +314,11 @@ const TuftingActivityPage = () => {
                     <div
                       key={s.id}
                       onClick={() => setBooking((b) => ({ ...b, session: s }))}
-                      className={`min-w-[200px] cursor-pointer rounded-xl border-2 px-6 py-6 text-center transition-all ${selected
-                        ? "border-purple-600 bg-purple-600 text-white -translate-y-1 shadow-xl"
-                        : "border-gray-300 bg-white hover:-translate-y-1"
-                        }`}
+                      className={`min-w-[200px] cursor-pointer rounded-xl border-2 px-6 py-6 text-center transition-all ${
+                        selected
+                          ? "border-purple-600 bg-purple-600 text-white -translate-y-1 shadow-xl"
+                          : "border-gray-300 bg-white hover:-translate-y-1"
+                      }`}
                     >
                       <div className="text-2xl mb-1">
                         {s.id === "beginner" ? "🌟" : s.id === "advanced" ? "🎨" : "👑"}
@@ -355,12 +358,13 @@ const TuftingActivityPage = () => {
                     <div
                       key={slot.t}
                       onClick={() => setBooking((b) => ({ ...b, time: slot.t }))}
-                      className={`min-w-[120px] text-center rounded-lg border-2 px-4 py-3 transition-all cursor-pointer ${selected
-                        ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5"
-                        : slot.cls === "filling-fast"
+                      className={`min-w-[120px] text-center rounded-lg border-2 px-4 py-3 transition-all cursor-pointer ${
+                        selected
+                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5"
+                          : slot.cls === "filling-fast"
                           ? "border-orange-400"
                           : "border-gray-300 bg-white hover:-translate-y-0.5"
-                        }`}
+                      }`}
                     >
                       <div className="font-bold">{slot.label}</div>
                       <div className="text-xs opacity-80">
@@ -454,10 +458,11 @@ const TuftingActivityPage = () => {
                     Total Amount: ₹{total.toLocaleString()}
                   </div>
                   <button
-                    className={`mt-3 w-full rounded-full font-bold py-3 transition-all ${canProceedToBook
-                      ? 'bg-yellow-400 text-slate-800 hover:-translate-y-0.5'
-                      : 'bg-gray-400 text-gray-700 cursor-not-allowed'
-                      }`}
+                    className={`mt-3 w-full rounded-full font-bold py-3 transition-all ${
+                        canProceedToBook
+                        ? 'bg-yellow-400 text-slate-800 hover:-translate-y-0.5'
+                        : 'bg-gray-400 text-gray-700 cursor-not-allowed'
+                    }`}
                     onClick={() => {
                       if (canProceedToBook) {
                         alert("🧶 Tufting session booked successfully! We will contact you within 2 hours to confirm your creative adventure.");

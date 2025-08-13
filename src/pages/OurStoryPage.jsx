@@ -147,9 +147,10 @@ const OurStoryPage = () => {
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
             }`}>
               <div>
-                <h1 className="text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-rose-200 bg-clip-text text-transparent mb-4">
-                  Our Story
-                </h1>
+                <h1 className="text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-rose-200 bg-clip-text text-transparent mb-6 leading-tight md:leading-snug pb-2 overflow-visible">
+  Our Story
+</h1>
+
                 <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-rose-400 rounded-full mb-6" />
                 <h2 className="text-3xl font-semibold text-white/90 leading-relaxed">
                   From a Spark of Passion to a Creative Community
@@ -183,9 +184,11 @@ const OurStoryPage = () => {
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-rose-600 bg-clip-text text-transparent mb-4">
-              Our Journey Through the Years
-            </h2>
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-rose-600 bg-clip-text text-transparent mb-6 leading-tight md:leading-snug pb-2">
+  Our Journey Through the Years
+</h2>
+
+
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
               Every milestone tells a story of passion, growth, and the
               beautiful community we've built together
@@ -312,37 +315,27 @@ const OurStoryPage = () => {
       <section className="py-16 bg-gradient-to-br from-gray-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-6">
           {/* Featured In */}
-          <div className="mb-16">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Featured In
-              </h2>
-              <p className="text-lg md:text-xl text-gray-600">
-                Recognized by leading media outlets
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+  {featuredLogos.map((logo, index) => (
+    <div
+      key={logo.name}
+      className="group transition-all duration-300 hover:scale-110 flex items-center justify-center"
+      style={{ animationDelay: `${index * 0.2}s` }}
+    >
+      <img
+        src={logo.url}
+        alt={logo.name}
+        className="w-auto h-auto max-h-72 max-w-lg object-contain transition-all duration-300 drop-shadow-lg"
+        style={{
+          background: "transparent",
+          borderRadius: "0",
+          padding: "0",
+        }}
+      />
+    </div>
+  ))}
+</div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-              {featuredLogos.map((logo, index) => (
-                <div
-                  key={logo.name}
-                  className="group transition-all duration-300 hover:scale-110 flex items-center justify-center"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <img
-                    src={logo.url}
-                    alt={logo.name}
-                    className="w-auto h-auto max-h-72 max-w-lg object-contain transition-all duration-300 drop-shadow-lg"
-                    style={{
-                      background: "transparent",
-                      borderRadius: "0",
-                      padding: "0",
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* Collaborations */}
           <div className="mb-16">

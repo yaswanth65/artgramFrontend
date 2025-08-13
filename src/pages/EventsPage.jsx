@@ -387,7 +387,7 @@ const EventsPage = () => {
               </svg>
             </button>
 
-            <div className="overflow-y-auto max-h-[90vh]">
+            <div className="overflow-y-auto max-h-[60vh]">
               {/* Header */}
               <div className="bg-gradient-to-r from-rose-500 to-purple-600 px-8 py-12 text-white">
                 <div className="flex items-center gap-4">

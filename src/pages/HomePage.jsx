@@ -198,17 +198,31 @@ const HomePage = () => {
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="flex justify-center lg:justify-start">
-              <video
-                className="w-full max-w-lg h-72 rounded-2xl object-cover shadow-2xl border-4 border-gradient-to-r from-pink-200 to-purple-200"
-                src="https://res.cloudinary.com/df2mieky2/video/upload/v1754938174/TEAM_BUILDING_ACTIVITIES_x4vfij.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-              >
-                Your browser does not support the video tag.
-              </video>
-            </div>
+  <a
+    href="https://youtube.com/shorts/3Ho2S0v2PF0?si=jqswBjCvh31Vbd4u"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block w-full max-w-lg h-72 rounded-2xl shadow-2xl border-4 border-gradient-to-r from-pink-200 to-purple-200 overflow-hidden relative"
+  >
+    <img
+      src="https://img.youtube.com/vi/3Ho2S0v2PF0/maxresdefault.jpg"
+      alt="YouTube Video Thumbnail"
+      className="w-full h-full object-cover"
+    />
+    {/* Play button overlay */}
+    <div className="absolute inset-0 flex items-center justify-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-16 w-16 text-white drop-shadow-lg"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </div>
+  </a>
+</div>
+
             <div className="text-center lg:text-left">
               <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
                 Events at Artgram
@@ -244,6 +258,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
 
       {/* Instagram Feed Placeholder */}
         <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">

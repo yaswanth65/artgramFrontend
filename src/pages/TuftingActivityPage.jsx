@@ -218,7 +218,7 @@ const TuftingActivityPage = () => {
       </section>
 
       {/* Booking Section */}
-      <section
+     <section
         id="tufting-booking"
         className="py-16"
         style={{ backgroundImage: "linear-gradient(135deg, #f9699c, #3f51b5)" }}
@@ -229,47 +229,12 @@ const TuftingActivityPage = () => {
               🎯 BOOK YOUR TUFTING EXPERIENCE NOW!
             </h2>
 
-            {/* Step 1: Location Selection (moved to be first) */}
-            <TuftStep
-              title="📍 Select Location"
-              color="#9b59b6"
-              isVisible={step === "location"}
-              onBack={null} // No back button on the first step
-              onNext={() => setStep("date")} // Next step is now date
-              canNext={Boolean(booking.location)}
-            >
-              <div className="flex flex-wrap gap-3">
-                {[
-                  { id: "hyderabad", name: "🏛️ Hyderabad", detail: "HITEC City Studio" },
-                  { id: "bangalore", name: "🌟 Bangalore", detail: "Brigade Gateway" },
-                  { id: "vijayawada", name: "🏞️ Vijayawada", detail: "PVP Square Mall" },
-                ].map((l) => {
-                  const selected = booking.location === l.id;
-                  return (
-                    <button
-                      key={l.id}
-                      onClick={() => setBooking((b) => ({ ...b, location: l.id }))}
-                      className={`min-w-[200px] text-center rounded-xl border-2 px-6 py-5 transition-all ${
-                        selected
-                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5 shadow"
-                          : "border-gray-300 bg-white hover:-translate-y-0.5"
-                      }`}
-                    >
-                      <div className="font-bold">{l.name}</div>
-                      <div className="text-sm opacity-80">{l.detail}</div>
-                    </button>
-                  );
-                })}
-              </div>
-            </TuftStep>
-
-            {/* Step 2: Date Selection (moved to be second) */}
+            {/* Step 1: Date Selection */}
             <TuftStep
               title="📅 Select Date"
               color="#9b59b6"
               isVisible={step === "date"}
-              onBack={() => setStep("location")} // Back button goes to location
-              onNext={() => setStep("session")} // Next step is now session
+              onNext={() => setStep("location")}
               canNext={Boolean(booking.date)}
             >
               <div className="flex flex-wrap gap-2">
@@ -298,12 +263,46 @@ const TuftingActivityPage = () => {
               </div>
             </TuftStep>
 
+            {/* Step 2: Location Selection */}
+            <TuftStep
+              title="📍 Select Location"
+              color="#9b59b6"
+              isVisible={step === "location"}
+              onBack={() => setStep("date")}
+              onNext={() => setStep("session")}
+              canNext={Boolean(booking.location)}
+            >
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { id: "hyderabad", name: "🏛️ Hyderabad", detail: "HITEC City Studio" },
+                  { id: "bangalore", name: "🌟 Bangalore", detail: "Brigade Gateway" },
+                 
+                ].map((l) => {
+                  const selected = booking.location === l.id;
+                  return (
+                    <button
+                      key={l.id}
+                      onClick={() => setBooking((b) => ({ ...b, location: l.id }))}
+                      className={`min-w-[200px] text-center rounded-xl border-2 px-6 py-5 transition-all ${
+                        selected
+                          ? "border-purple-600 bg-purple-600 text-white -translate-y-0.5 shadow"
+                          : "border-gray-300 bg-white hover:-translate-y-0.5"
+                      }`}
+                    >
+                      <div className="font-bold">{l.name}</div>
+                      <div className="text-sm opacity-80">{l.detail}</div>
+                    </button>
+                  );
+                })}
+              </div>
+            </TuftStep>
+
             {/* Step 3: Session Selection */}
             <TuftStep
               title="🧶 Select Tufting Session (Per 2 Persons) ONLY 15+ YEARS"
               color="#9b59b6"
               isVisible={step === "session"}
-              onBack={() => setStep("date")}
+              onBack={() => setStep("location")}
               onNext={() => setStep("time")}
               canNext={Boolean(booking.session)}
             >
@@ -465,12 +464,9 @@ const TuftingActivityPage = () => {
                     }`}
                     onClick={() => {
                       if (canProceedToBook) {
-                        // Use a custom message box instead of alert()
-                        // This is a placeholder for a custom UI component
-                        console.log("Booking successful!");
+                        alert("🧶 Tufting session booked successfully! We will contact you within 2 hours to confirm your creative adventure.");
                       } else {
-                        // Use a custom message box instead of alert()
-                        console.log("Please fill in all required fields.");
+                        alert("Please fill in all required fields.");
                       }
                     }}
                     disabled={!canProceedToBook}

@@ -370,44 +370,25 @@ export default function SlimePlayPage() {
       </section>
 
       {/* Booking Section */}
-      <section id="booking" className="py-20 bg-gray-50">
+     <section id="booking" className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-5">
           <div className="bg-white rounded-3xl p-8 shadow-2xl">
-            <h2 className="text-4xl font-bold text-center text-red-600 mb-8">
-              Book Your Slime Experience
-            </h2>
-
+            <h2 className="text-4xl font-bold text-center text-red-600 mb-8">Book Your Slime Experience</h2>
+            
             {/* Step 1: Select Location */}
             {currentStep === 1 && (
               <div>
-                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">
-                  Step 1: Choose Location
-                </h3>
+                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 1: Choose Location</h3>
                 <div className="flex gap-5 flex-wrap justify-center mb-5">
-                  {["downtown", "mall", "park"].map((id) => (
-                    <div
-                      key={id}
-                      onClick={() => selectLocation(id)}
-                      className={`border-2 rounded-xl p-6 text-center cursor-pointer transition-all min-w-48 ${
-                        bookingData.location === id
-                          ? "border-green-400 bg-green-100 -translate-y-1 shadow-lg"
-                          : "border-gray-200 hover:border-green-400 hover:bg-green-50"
-                      }`}
-                    >
-                      <div className="font-bold text-lg mb-1">
-                        {getLocationName(id)}
-                      </div>
+                  {['downtown', 'mall', 'park'].map(id => (
+                    <div key={id} onClick={() => selectLocation(id)} className={`border-2 rounded-xl p-6 text-center cursor-pointer transition-all min-w-48 ${bookingData.location === id ? 'border-green-400 bg-green-100 -translate-y-1 shadow-lg' : 'border-gray-200 hover:border-green-400 hover:bg-green-50'}`}>
+                      <div className="font-bold text-lg mb-1">{getLocationName(id)}</div>
+                      {id === 'mall' && <div className="text-xs text-red-500">Closed on Mondays</div>}
                     </div>
                   ))}
                 </div>
                 <div className="flex justify-end mt-6">
-                  <button
-                    disabled={!bookingData.location}
-                    onClick={() => nextStep(2)}
-                    className="bg-green-400 text-black px-8 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition-colors disabled:bg-gray-300"
-                  >
-                    Next
-                  </button>
+                  <button disabled={!bookingData.location} onClick={() => nextStep(2)} className="bg-green-400 text-black px-8 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition-colors disabled:bg-gray-300">Next</button>
                 </div>
               </div>
             )}
@@ -415,199 +396,94 @@ export default function SlimePlayPage() {
             {/* Step 2: Select Date */}
             {currentStep === 2 && (
               <div>
-                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">
-                  Step 2: Select Your Date
-                </h3>
+                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 2: Select Your Date</h3>
                 <div className="flex gap-4 flex-wrap justify-center mb-5">
                   {[...Array(7)].map((_, i) => {
                     const date = new Date();
                     date.setDate(date.getDate() + i);
-                    const value = date.toISOString().split("T")[0];
+                    const value = date.toISOString().split('T')[0];
+                    const isMonday = date.getDay() === 1; // 1 is Monday
+                    const isHyderabad = bookingData.location === 'mall';
+                    const isDisabled = isMonday && isHyderabad;
+                    
                     return (
-                      <div
-                        key={value}
-                        onClick={() => selectDate(value)}
+                      <div 
+                        key={value} 
+                        onClick={() => !isDisabled && selectDate(value)} 
                         className={`border-2 rounded-lg p-4 text-center cursor-pointer transition-all min-w-24 ${
-                          bookingData.date === value
-                            ? "border-green-400 bg-green-100 -translate-y-1 shadow-lg"
-                            : "border-gray-200 hover:border-green-400 hover:bg-green-50"
+                          isDisabled ? 'bg-gray-100 cursor-not-allowed opacity-50' :
+                          bookingData.date === value ? 'border-green-400 bg-green-100 -translate-y-1 shadow-lg' : 
+                          'border-gray-200 hover:border-green-400 hover:bg-green-50'
                         }`}
                       >
-                        <div className="text-sm font-semibold">
-                          {date.toLocaleDateString("en-US", {
-                            weekday: "short",
-                          })}
-                        </div>
-                        <div className="text-xl font-bold my-1">
-                          {date.getDate()}
-                        </div>
-                        <div className="text-xs">
-                          {date.toLocaleDateString("en-US", { month: "short" })}
-                        </div>
+                        <div className="text-sm font-semibold">{date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
+                        <div className="text-xl font-bold my-1">{date.getDate()}</div>
+                        <div className="text-xs">{date.toLocaleDateString('en-US', { month: 'short' })}</div>
+                        {isDisabled && <div className="text-xs text-red-500 mt-1">No Sessions</div>}
                       </div>
                     );
                   })}
                 </div>
                 <div className="flex justify-between mt-6">
-                  <button
-                    onClick={() => prevStep(1)}
-                    className="border-2 border-gray-500 text-gray-500 px-8 py-2 rounded-full font-semibold"
-                  >
-                    Back
-                  </button>
-                  <button
-                    disabled={!bookingData.date}
-                    onClick={() => nextStep(3)}
-                    className="bg-green-400 text-black px-8 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white disabled:bg-gray-300"
-                  >
-                    Next
-                  </button>
+                  <button onClick={() => prevStep(1)} className="border-2 border-gray-500 text-gray-500 px-8 py-2 rounded-full font-semibold">Back</button>
+                  <button disabled={!bookingData.date} onClick={() => nextStep(3)} className="bg-green-400 text-black px-8 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white disabled:bg-gray-300">Next</button>
                 </div>
               </div>
             )}
-
+            
             {/* Step 3: Select Quantity */}
             {currentStep === 3 && (
-              <div>
-                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">
-                  Step 3: How many tickets?
-                </h3>
-                <div className="flex justify-center items-center gap-4 mb-5">
-                  <button
-                    onClick={() =>
-                      setQuantity(Math.max(1, bookingData.quantity - 1))
-                    }
-                    className="w-12 h-12 rounded-full bg-gray-200 text-2xl font-bold"
-                  >
-                    -
-                  </button>
-                  <span className="text-4xl font-bold w-20 text-center">
-                    {bookingData.quantity}
-                  </span>
-                  <button
-                    onClick={() => setQuantity(bookingData.quantity + 1)}
-                    className="w-12 h-12 rounded-full bg-gray-200 text-2xl font-bold"
-                  >
-                    +
-                  </button>
+                <div>
+                    <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 3: How many tickets?</h3>
+                    <div className="flex justify-center items-center gap-4 mb-5">
+                        <button onClick={() => setQuantity(Math.max(1, bookingData.quantity - 1))} className="w-12 h-12 rounded-full bg-gray-200 text-2xl font-bold">-</button>
+                        <span className="text-4xl font-bold w-20 text-center">{bookingData.quantity}</span>
+                        <button onClick={() => setQuantity(bookingData.quantity + 1)} className="w-12 h-12 rounded-full bg-gray-200 text-2xl font-bold">+</button>
+                    </div>
+                     <div className="flex justify-between mt-6">
+                        <button onClick={() => prevStep(2)} className="border-2 border-gray-500 text-gray-500 px-8 py-2 rounded-full font-semibold">Back</button>
+                        <button onClick={() => nextStep(4)} className="bg-green-400 text-black px-8 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white">Next</button>
+                    </div>
                 </div>
-                <div className="flex justify-between mt-6">
-                  <button
-                    onClick={() => prevStep(2)}
-                    className="border-2 border-gray-500 text-gray-500 px-8 py-2 rounded-full font-semibold"
-                  >
-                    Back
-                  </button>
-                  <button
-                    onClick={() => nextStep(4)}
-                    className="bg-green-400 text-black px-8 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white"
-                  >
-                    Next
-                  </button>
-                </div>
-              </div>
             )}
+
 
             {/* Step 4: Select Session & Time */}
             {currentStep === 4 && (
               <div>
                 {/* Session Selection Updated */}
-                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">
-                  Step 4: Choose Session
-                </h3>
-                <div className="flex gap-5 flex-wrap justify-center mb-10">
-                  <div
-                    onClick={() => selectSession("complete", "850")}
-                    className={`border-2 rounded-2xl p-6 text-center cursor-pointer min-w-48 ${
-                      bookingData.session === "complete"
-                        ? "border-purple-400 bg-purple-100"
-                        : "hover:border-purple-400"
-                    }`}
-                  >
-                    <div className="font-bold text-lg mb-1">
-                      Premium Experience
+                 <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 4: Choose Session</h3>
+                 <div className="flex gap-5 flex-wrap justify-center mb-10">
+                    <div onClick={() => selectSession('complete', '850')} className={`border-2 rounded-2xl p-6 text-center cursor-pointer min-w-48 ${bookingData.session === 'complete' ? 'border-purple-400 bg-purple-100' : 'hover:border-purple-400'}`}>
+                        <div className="font-bold text-lg mb-1">Premium Experience</div>
+                        <div className="text-sm opacity-80 mb-2">Play + Demo + Glow (1 Hr 15 min)</div>
+                        <div className="text-2xl font-bold text-red-500">Rs 850/-</div>
                     </div>
-                    <div className="text-sm opacity-80 mb-2">
-                      Play + Demo + Glow (1 Hr 15 min)
+                    <div onClick={() => selectSession('basic', '750')} className={`border-2 rounded-2xl p-6 text-center cursor-pointer min-w-48 ${bookingData.session === 'basic' ? 'border-green-400 bg-green-100' : 'hover:border-green-400'}`}>
+                        <div className="font-bold text-lg mb-1">Base Package</div>
+                        <div className="text-sm opacity-80 mb-2">Play + Demo (1 Hour)</div>
+                        <div className="text-2xl font-bold text-red-500">Rs 750/-</div>
                     </div>
-                    <div className="text-2xl font-bold text-red-500">
-                      Rs 850/-
-                    </div>
-                  </div>
-                  <div
-                    onClick={() => selectSession("basic", "750")}
-                    className={`border-2 rounded-2xl p-6 text-center cursor-pointer min-w-48 ${
-                      bookingData.session === "basic"
-                        ? "border-green-400 bg-green-100"
-                        : "hover:border-green-400"
-                    }`}
-                  >
-                    <div className="font-bold text-lg mb-1">Base Package</div>
-                    <div className="text-sm opacity-80 mb-2">
-                      Play + Demo (1 Hour)
-                    </div>
-                    <div className="text-2xl font-bold text-red-500">
-                      Rs 750/-
-                    </div>
-                  </div>
-                </div>
+                 </div>
 
-                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">
-                  Step 5: Select Time Slot
-                </h3>
+                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 5: Select Time Slot</h3>
                 {/* Time Slot selection updated */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-5">
                   {timeSlots.map((slot) => (
-                    <div
-                      key={slot.time}
-                      onClick={() =>
-                        slot.status !== "sold-out" && selectTime(slot.time)
-                      }
-                      className={`border-2 rounded-xl p-4 text-center cursor-pointer transition-all ${
-                        slot.status === "sold-out"
-                          ? "bg-gray-100 cursor-not-allowed opacity-60"
-                          : bookingData.time === slot.time
-                          ? "border-green-400 bg-green-100 -translate-y-1 shadow-lg"
-                          : "hover:border-green-400"
-                      }`}
-                    >
+                    <div key={slot.time} onClick={() => slot.status !== 'sold-out' && selectTime(slot.time)} 
+                    className={`border-2 rounded-xl p-4 text-center cursor-pointer transition-all ${ slot.status === 'sold-out' ? 'bg-gray-100 cursor-not-allowed opacity-60' : bookingData.time === slot.time ? 'border-green-400 bg-green-100 -translate-y-1 shadow-lg' : 'hover:border-green-400'}`}>
                       <div className="font-bold mb-1 text-lg">{slot.label}</div>
-                      <div className="text-xs font-semibold text-blue-600">
-                        {slot.type}
-                      </div>
-                      <div className="text-xs font-semibold text-purple-600 mb-2">
-                        ({slot.age})
-                      </div>
-                      <div
-                        className={`text-xs font-bold ${
-                          slot.status === "sold-out"
-                            ? "text-red-500"
-                            : slot.status === "filling-fast"
-                            ? "text-orange-500"
-                            : "text-green-600"
-                        }`}
-                      >
-                        {slot.status === "sold-out"
-                          ? "Sold Out"
-                          : `${slot.available}/${slot.total} available`}
+                      <div className="text-xs font-semibold text-blue-600">{slot.type}</div>
+                       <div className="text-xs font-semibold text-purple-600 mb-2">({slot.age})</div>
+                      <div className={`text-xs font-bold ${slot.status === 'sold-out' ? 'text-red-500' : slot.status === 'filling-fast' ? 'text-orange-500' : 'text-green-600'}`}>
+                        {slot.status === 'sold-out' ? 'Sold Out' : `${slot.available}/${slot.total} available`}
                       </div>
                     </div>
                   ))}
                 </div>
                 <div className="flex justify-between mt-8">
-                  <button
-                    onClick={() => prevStep(3)}
-                    className="border-2 border-gray-500 text-gray-500 px-8 py-2 rounded-full font-semibold"
-                  >
-                    Back
-                  </button>
-                  <button
-                    disabled={!bookingData.time}
-                    onClick={() => nextStep(5)}
-                    className="bg-green-400 text-black px-8 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white disabled:bg-gray-300"
-                  >
-                    Next
-                  </button>
+                  <button onClick={() => prevStep(3)} className="border-2 border-gray-500 text-gray-500 px-8 py-2 rounded-full font-semibold">Back</button>
+                  <button disabled={!bookingData.time} onClick={() => nextStep(5)} className="bg-green-400 text-black px-8 py-2 rounded-full font-semibold hover:bg-blue-500 hover:text-white disabled:bg-gray-300">Next</button>
                 </div>
               </div>
             )}
@@ -615,87 +491,42 @@ export default function SlimePlayPage() {
             {/* Step 6: Contact Details & Summary */}
             {currentStep === 5 && (
               <div>
-                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">
-                  Step 6: Contact & Summary
-                </h3>
+                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 6: Contact & Summary</h3>
                 <div className="grid lg:grid-cols-2 gap-8">
                   {/* Contact Form fields updated */}
                   <div>
-                    <h4 className="text-xl font-semibold mb-4">
-                      Contact Information
-                    </h4>
+                    <h4 className="text-xl font-semibold mb-4">Contact Information</h4>
                     <div className="space-y-4">
-                      <div>
-                        <label className="block font-semibold text-gray-700 mb-1">
-                          Parent/Guardian Name *
-                        </label>
-                        <input
-                          type="text"
-                          className="w-full border-2 border-gray-200 rounded-lg p-3"
-                          placeholder="Enter your name"
-                        />
+                       <div>
+                        <label className="block font-semibold text-gray-700 mb-1">Parent/Guardian Name *</label>
+                        <input type="text" className="w-full border-2 border-gray-200 rounded-lg p-3" placeholder="Enter your name" />
                       </div>
                       <div>
-                        <label className="block font-semibold text-gray-700 mb-1">
-                          Phone Number *
-                        </label>
-                        <input
-                          type="tel"
-                          className="w-full border-2 border-gray-200 rounded-lg p-3"
-                          placeholder="+91 XXXXX XXXXX"
-                        />
+                        <label className="block font-semibold text-gray-700 mb-1">Phone Number *</label>
+                        <input type="tel" className="w-full border-2 border-gray-200 rounded-lg p-3" placeholder="+91 XXXXX XXXXX" />
                       </div>
                       <div>
-                        <label className="block font-semibold text-gray-700 mb-1">
-                          Email Address
-                        </label>
-                        <input
-                          type="email"
-                          className="w-full border-2 border-gray-200 rounded-lg p-3"
-                          placeholder="your.email@example.com"
-                        />
+                        <label className="block font-semibold text-gray-700 mb-1">Email Address</label>
+                        <input type="email" className="w-full border-2 border-gray-200 rounded-lg p-3" placeholder="your.email@example.com" />
                       </div>
                     </div>
                   </div>
 
                   {/* Booking Summary */}
                   <div>
-                    <h4 className="text-xl font-semibold mb-4">
-                      Booking Summary
-                    </h4>
+                    <h4 className="text-xl font-semibold mb-4">Booking Summary</h4>
                     <div className="bg-gray-50 rounded-xl p-6">
                       <div className="space-y-2 text-sm">
-                        <div>
-                          <strong>Location:</strong>{" "}
-                          <span>{getLocationName(bookingData.location)}</span>
-                        </div>
-                        <div>
-                          <strong>Date:</strong>{" "}
-                          <span>{formatDate(bookingData.date)}</span>
-                        </div>
-                        <div>
-                          <strong>Time:</strong>{" "}
-                          <span>{bookingData.time || "Not selected"}</span>
-                        </div>
-                        <div>
-                          <strong>Tickets:</strong>{" "}
-                          <span>{bookingData.quantity}</span>
-                        </div>
+                        <div><strong>Location:</strong> <span>{getLocationName(bookingData.location)}</span></div>
+                        <div><strong>Date:</strong> <span>{formatDate(bookingData.date)}</span></div>
+                        <div><strong>Time:</strong> <span>{bookingData.time || 'Not selected'}</span></div>
+                        <div><strong>Tickets:</strong> <span>{bookingData.quantity}</span></div>
                         {/* "Glow in Dark" logic corrected in summary */}
-                        <div>
-                          <strong>Session:</strong>{" "}
-                          <span>
-                            {bookingData.session === "complete"
-                              ? "Premium Experience"
-                              : "Base Package"}
-                          </span>
-                        </div>
+                        <div><strong>Session:</strong> <span>{bookingData.session === 'complete' ? 'Premium Experience' : 'Base Package'}</span></div>
                         <ul className="list-disc list-inside ml-4 pt-1">
                           <li>Slime Play (45 min)</li>
                           <li>Slime Demo/Making (15 min)</li>
-                          {bookingData.session === "complete" && (
-                            <li>Glow in Dark Experience (15 min)</li>
-                          )}
+                          {bookingData.session === 'complete' && <li>Glow in Dark Experience (15 min)</li>}
                         </ul>
                       </div>
                       <div className="text-3xl font-bold text-green-500 mt-4 pt-4 border-t border-gray-200">
@@ -706,17 +537,9 @@ export default function SlimePlayPage() {
                 </div>
 
                 <div className="flex justify-between items-center mt-8">
-                  <button
-                    onClick={() => prevStep(4)}
-                    className="border-2 border-gray-500 text-gray-500 px-8 py-2 rounded-full font-semibold"
-                  >
-                    Back
-                  </button>
-                  <button
-                    onClick={confirmBooking}
-                    className="w-full max-w-xs bg-gradient-to-r from-green-400 to-blue-500 text-white py-3 rounded-xl font-bold text-lg"
-                  >
-                    Confirm Booking
+                  <button onClick={() => prevStep(4)} className="border-2 border-gray-500 text-gray-500 px-8 py-2 rounded-full font-semibold">Back</button>
+                  <button onClick={confirmBooking} className="w-full max-w-xs bg-gradient-to-r from-green-400 to-blue-500 text-white py-3 rounded-xl font-bold text-lg">
+                      Confirm Booking
                   </button>
                 </div>
               </div>

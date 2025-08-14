@@ -36,9 +36,8 @@ const ActivitiesPage = () => {
               icon="🧶"
               title="Tufting Experience"
               desc="Create beautiful rugs and wall hangings using tufting guns."
-              cta="Learn More →"
+              cta="Book Now"
               href="tufting-activity.html"
-              accent
             />
           </div>
         </div>

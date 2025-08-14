@@ -12,22 +12,22 @@ const Footer = () => {
             <h6 className="text-lg font-semibold mb-4">Quick Links</h6>
             <ul className="space-y-2">
               <li>
-                <Link to="/about" className="hover:underline">
+                <Link to="/ourstory.html" className="hover:underline">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/shop" className="hover:underline">
+                <Link to="/shop.html" className="hover:underline">
                   Shop DIY Kits
                 </Link>
               </li>
               <li>
-                <Link to="/events" className="hover:underline">
+                <Link to="/events.html" className="hover:underline">
                   Events
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:underline">
+                <Link to="/contactus.html" className="hover:underline">
                   Contact Us
                 </Link>
               </li>

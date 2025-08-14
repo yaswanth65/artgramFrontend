@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 
-
 const ContactUsPage = () => {
     const [isVisible, setIsVisible] = useState(false)
     useEffect(() => {
         setIsVisible(true)
       }, [])
+  
   // Helper functions to open email and WhatsApp
   function openGmail(email) {
     window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`, "_blank");
@@ -93,7 +93,9 @@ const ContactUsPage = () => {
             <h3 className="text-2xl font-semibold mb-6">Reach Us Directly</h3>
             <div className="space-y-4 text-slate-900">
               <div className="flex items-start gap-3">
-                <strong className="mt-1">📧</strong>
+                <svg className="w-6 h-6 mt-1 text-purple-600" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
                 <div>
                   <strong>Email:</strong><br />
                   <button onClick={() => openGmail("artgram.yourhobbylobby@gmail.com")} className="text-purple-600 hover:underline">
@@ -102,30 +104,37 @@ const ContactUsPage = () => {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <strong className="mt-1">📞</strong>
+                <svg className="w-6 h-6 mt-1 text-purple-600" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                </svg>
                 <div>
                   <strong>Phone:</strong><br />
                   <a href="tel:+919686846100" className="hover:text-purple-600">+91 9686846100</a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                 <strong className="mt-1">📸</strong>
-                 <div>
-                    <strong>Instagram:</strong><br />
-                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en" className="text-purple-600 hover:underline">
+                <svg className="w-6 h-6 mt-1 text-purple-600" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+                <div>
+                  <strong>Instagram:</strong><br />
+                  <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/artgram_yourhobbylobby/?hl=en" className="text-purple-600 hover:underline">
                     @artgram_yourhobbylobby
-                    </a>
-                 </div>
+                  </a>
+                </div>
               </div>
               <div className="flex items-start gap-3">
-                 <strong className="mt-1">🕒</strong>
-                 <div>
-                    <strong>Business Hours:</strong>
-                    <ul className="list-disc list-inside mt-1 text-gray-700">
-                        <li>Mon - Sat: 10:00 AM - 8:00 PM</li>
-                        <li>Sun: 10:00 AM - 6:00 PM</li>
-                    </ul>
-                 </div>
+                <svg className="w-6 h-6 mt-1 text-purple-600" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                  <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                </svg>
+                <div>
+                  <strong>Business Hours:</strong>
+                  <ul className="list-disc list-inside mt-1 text-gray-700">
+                    <li>Mon - Sat: 10:00 AM - 8:00 PM</li>
+                    <li>Sun: 10:00 AM - 6:00 PM</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -133,29 +142,29 @@ const ContactUsPage = () => {
         </div>
       </section>
 
-      {/* Branches Section (Updated with compact cards) */}
+      {/* Branches Section */}
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-4">
           <h2 className="text-center text-3xl font-bold mb-12 text-gray-800">Our Branches</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <BranchCard
-              img="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637272/wp6539521_vvafqv.jpg"
               name="Hyderabad"
-              address="123 Art Street, Old City, Hyderabad, Telangana 500002"
-              phone="+919686846100"
-              onWhatsApp={() => openWhatsApp("919686846100", "Hi, I am interested in ArtGram activities in Hyderabad!")}
+              address="#NO.8-2-686/K/1 AND 8-2686/K/2, 5TH FLOOR, KIMTEE SQUARE, ROAD NO-12, BANJARA HILLS, CIRCLE 37, HYDERABAD 500034"
+              phone="+917766012299"
+              onWhatsApp={() => openWhatsApp("917766012299", "Hi, I am interested in ArtGram activities in Hyderabad!")}
             />
             <BranchCard
-              img="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637352/jayanth-muppaneni-y96JVdGu7XU-unsplash_1_kooajm.jpg"
               name="Bangalore"
-              address="456 Creative Hub, Palace Road, Bangalore, Karnataka 560052"
-              phone="+919686846100"
-              onWhatsApp={() => openWhatsApp("919686846100", "Hi, I am interested in ArtGram activities in Bangalore!")}
+              address="#418, 4TH FLOOR, JB ARCADE, 27TH MAIN ROAD, HSR LAYOUT, SECTOR 1, BENGALURU 560102"
+              phone="+919216345672"
+              onWhatsApp={() => openWhatsApp("919216345672", "Hi, I am interested in ArtGram activities in Bangalore!")}
             />
             <BranchCard
-              img="https://res.cloudinary.com/dwb3vztcv/image/upload/v1755161824/prakasam-barrage_oiyvps.jpg"
+              img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637135/durgamma_temple_vj_6472215382_l3h6wj.jpg"
               name="Vijayawada"
-              address="789 River View Complex, Vijayawada, Andhra Pradesh 520001"
+              address="#40-6-11, 2ND FLOOR, MEENAKSHI TOWERS HOTEL, MURALI FORTUNE ROAD, MOGALRAJPURAM, OPP. SUBWAY 520010"
               phone="+919686846100"
               onWhatsApp={() => openWhatsApp("919686846100", "Hi, I am interested in ArtGram activities in Vijayawada!")}
             />
@@ -163,183 +172,183 @@ const ContactUsPage = () => {
         </div>
       </section>
 
-      {/* "Our Studios" Section has been REMOVED as per request */}
-
       {/* Map Section */}
       <section className="py-16 bg-gradient-to-br from-purple-50 to-rose-50">
-  <div className="max-w-7xl mx-auto px-6">
-    <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Studio Locations</h2>
-      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-        Visit us at any of our vibrant studios across South India
-      </p>
-    </div>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Studio Locations</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Visit us at any of our vibrant studios across South India
+            </p>
+          </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {/* Hyderabad Location */}
-      <a 
-        href="https://www.google.com/maps/place/Artgram/@17.4114992,78.4323407,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb970038d64857:0x406d7a28320f2e9b!8m2!3d17.4114992!4d78.4349156!16s%2Fg%2F11ryf2z9v5?entry=ttu" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-2"
-      >
-        <div className="h-64 relative overflow-hidden">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.0060108339585!2d78.43234067524435!3d17.411499183479815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb970038d64857%3A0x406d7a28320f2e9b!2sArtgram!5e0!3m2!1sen!2sin!4v1755189886825!5m2!1sen!2sin"
-            title="Artgram Hyderabad Location"
-            className="w-full h-full absolute inset-0 pointer-events-none"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-4">
-            <h3 className="text-white font-bold text-xl">Hyderabad</h3>
-          </div>
-          <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all duration-300"></div>
-        </div>
-        <div className="p-6">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
-              📍
-            </div>
-            <p className="text-gray-700 font-medium">Banjara Hills, Road No. 12</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600">
-              🕒
-            </div>
-            <p className="text-gray-700">Mon-Sun: 9AM - 9PM</p>
-          </div>
-          <div className="mt-4 text-purple-600 font-medium flex items-center gap-2">
-            <span>View on Maps</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
-        </div>
-      </a>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Hyderabad Location */}
+            <a 
+              href="https://www.google.com/maps/place/Artgram/@17.4114992,78.4323407,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb970038d64857:0x406d7a28320f2e9b!8m2!3d17.4114992!4d78.4349156!16s%2Fg%2F11ryf2z9v5?entry=ttu" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-2"
+            >
+              <div className="h-64 relative overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.0060108339585!2d78.43234067524435!3d17.411499183479815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb970038d64857%3A0x406d7a28320f2e9b!2sArtgram!5e0!3m2!1sen!2sin!4v1755189886825!5m2!1sen!2sin"
+                  title="Artgram Hyderabad Location"
+                  className="w-full h-full absolute inset-0 pointer-events-none"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-4">
+                  <h3 className="text-white font-bold text-xl">Hyderabad</h3>
+                </div>
+                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all duration-300"></div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                    📍
+                  </div>
+                  <p className="text-gray-700 font-medium">Banjara Hills, Road No. 12</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600">
+                    🕒
+                  </div>
+                  <p className="text-gray-700">Mon-Sun: 9AM - 9PM</p>
+                </div>
+                <div className="mt-4 text-purple-600 font-medium flex items-center gap-2">
+                  <span>View on Maps</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </div>
+            </a>
 
-      {/* Vijayawada Location */}
-      <a 
-        href="https://www.google.com/maps/place/ARTGRAM/@16.5041061,80.6443325,17z/data=!3m1!4b1!4m6!3m5!1s0x3a35fbf061f36a01:0x57d79131087c8de4!8m2!3d16.5041061!4d80.6469074!16s%2Fg%2F11v0v3c8w4?entry=ttu" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-2"
-      >
-        <div className="h-64 relative overflow-hidden">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.4353260109456!2d80.64433247522446!3d16.504106084240263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fbf061f36a01%3A0x57d79131087c8de4!2sARTGRAM!5e0!3m2!1sen!2sin!4v1755189043469!5m2!1sen!2sin"
-            title="Artgram Vijayawada Location"
-            className="w-full h-full absolute inset-0 pointer-events-none"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-4">
-            <h3 className="text-white font-bold text-xl">Vijayawada</h3>
-          </div>
-          <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all duration-300"></div>
-        </div>
-        <div className="p-6">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
-              📍
-            </div>
-            <p className="text-gray-700 font-medium">MG Road, Near Prakasam Barrage</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600">
-              🕒
-            </div>
-            <p className="text-gray-700">Mon-Sun: 10AM - 8PM</p>
-          </div>
-          <div className="mt-4 text-purple-600 font-medium flex items-center gap-2">
-            <span>View on Maps</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
-        </div>
-      </a>
+            {/* Vijayawada Location */}
+            <a 
+              href="https://www.google.com/maps/place/ARTGRAM/@16.5041061,80.6443325,17z/data=!3m1!4b1!4m6!3m5!1s0x3a35fbf061f36a01:0x57d79131087c8de4!8m2!3d16.5041061!4d80.6469074!16s%2Fg%2F11v0v3c8w4?entry=ttu" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-2"
+            >
+              <div className="h-64 relative overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.4353260109456!2d80.64433247522446!3d16.504106084240263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fbf061f36a01%3A0x57d79131087c8de4!2sARTGRAM!5e0!3m2!1sen!2sin!4v1755189043469!5m2!1sen!2sin"
+                  title="Artgram Vijayawada Location"
+                  className="w-full h-full absolute inset-0 pointer-events-none"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-4">
+                  <h3 className="text-white font-bold text-xl">Vijayawada</h3>
+                </div>
+                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all duration-300"></div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                    📍
+                  </div>
+                  <p className="text-gray-700 font-medium">MG Road, Near Prakasam Barrage</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600">
+                    🕒
+                  </div>
+                  <p className="text-gray-700">Mon-Sun: 10AM - 8PM</p>
+                </div>
+                <div className="mt-4 text-purple-600 font-medium flex items-center gap-2">
+                  <span>View on Maps</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </div>
+            </a>
 
-      {/* Bengaluru Location */}
-      <a 
-        href="https://www.google.com/maps/place/Artgram/@12.9187316,77.6491285,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae15ae8353d0dd:0x395df1674441651f!8m2!3d12.9187316!4d77.6517034!16s%2Fg%2F11s7j9wq5_?entry=ttu" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-2"
-      >
-        <div className="h-64 relative overflow-hidden">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.8286590945104!2d77.64912847515608!3d12.918731587391807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15ae8353d0dd%3A0x395df1674441651f!2sArtgram!5e0!3m2!1sen!2sin!4v1755189902986!5m2!1sen!2sin"
-            title="Artgram Bengaluru Location"
-            className="w-full h-full absolute inset-0 pointer-events-none"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-4">
-            <h3 className="text-white font-bold text-xl">Bengaluru</h3>
+            {/* Bengaluru Location */}
+            <a 
+              href="https://www.google.com/maps/place/Artgram/@12.9187316,77.6491285,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae15ae8353d0dd:0x395df1674441651f!8m2!3d12.9187316!4d77.6517034!16s%2Fg%2F11s7j9wq5_?entry=ttu" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-2"
+            >
+              <div className="h-64 relative overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.8286590945104!2d77.64912847515608!3d12.918731587391807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15ae8353d0dd%3A0x395df1674441651f!2sArtgram!5e0!3m2!1sen!2sin!4v1755189902986!5m2!1sen!2sin"
+                  title="Artgram Bengaluru Location"
+                  className="w-full h-full absolute inset-0 pointer-events-none"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-4">
+                  <h3 className="text-white font-bold text-xl">Bengaluru</h3>
+                </div>
+                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all duration-300"></div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                    📍
+                  </div>
+                  <p className="text-gray-700 font-medium">HSR Layout, Sector 2</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600">
+                    🕒
+                  </div>
+                  <p className="text-gray-700">Mon-Sun: 9:30AM - 9:30PM</p>
+                </div>
+                <div className="mt-4 text-purple-600 font-medium flex items-center gap-2">
+                  <span>View on Maps</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </div>
+            </a>
           </div>
-          <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all duration-300"></div>
         </div>
-        <div className="p-6">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
-              📍
-            </div>
-            <p className="text-gray-700 font-medium">HSR Layout, Sector 2</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600">
-              🕒
-            </div>
-            <p className="text-gray-700">Mon-Sun: 9:30AM - 9:30PM</p>
-          </div>
-          <div className="mt-4 text-purple-600 font-medium flex items-center gap-2">
-            <span>View on Maps</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
-        </div>
-      </a>
-    </div>
-
-  </div>
-</section>
+      </section>
     </div>
   );
 };
 
-
 /**
- * Branch Card Component
- * Updated to be more compact and use icons for buttons
+ * Branch Card Component with official logos
  */
 const BranchCard = ({ img, name, address, phone, onWhatsApp }) => {
-    return (
-      <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 cursor-pointer transform hover:scale-105">
-        <div className="relative h-52 overflow-hidden">
+  return (
+    <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 cursor-pointer transform hover:scale-105">
+      <div className="relative h-52 overflow-hidden">
         <img src={img || "/placeholder.svg"} alt={name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
-        </div>
-        <div className="p-6 flex flex-col flex-grow">
-          <h4 className="text-xl font-bold mb-2 text-gray-800 group-hover:text-purple-600">{name}</h4>
-          <p className="text-slate-600 text-sm mb-4 flex-grow">{address}</p>
-          <div className="flex gap-3 mt-auto">
-            <a href={`tel:${phone}`} className="flex-1 flex items-center justify-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-semibold hover:bg-purple-200 transition-colors no-underline">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              <span>Call</span>
-            </a>
-            <button onClick={onWhatsApp} className="flex-1 flex items-center justify-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-lg font-semibold hover:bg-green-200 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.433-9.89-9.889-9.89-5.452 0-9.887 4.434-9.889 9.891.001 2.23.855 4.34 2.379 5.965l-1.546 5.578 5.762-1.511z"></path></svg>
-              <span>WhatsApp</span>
-            </button>
-          </div>
+      </div>
+      <div className="p-6 flex flex-col flex-grow">
+        <h4 className="text-xl font-bold mb-2 text-gray-800 group-hover:text-purple-600">{name}</h4>
+        <p className="text-slate-600 text-sm mb-4 flex-grow">{address}</p>
+        <div className="flex gap-3 mt-auto">
+          <a href={`tel:${phone}`} className="flex-1 flex items-center justify-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-semibold hover:bg-purple-200 transition-colors no-underline">
+            {/* Official Phone Icon */}
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+            </svg>
+            <span>Call</span>
+          </a>
+          <button onClick={onWhatsApp} className="flex-1 flex items-center justify-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-lg font-semibold hover:bg-green-200 transition-colors">
+            {/* Official WhatsApp Logo */}
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </button>
         </div>
       </div>
-    );
-  };
-
+    </div>
+  );
+};
 
 export default ContactUsPage;

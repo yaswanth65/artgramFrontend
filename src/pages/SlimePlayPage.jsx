@@ -187,7 +187,7 @@ export default function SlimePlayPage() {
                   />
                   <div>
                     <h4 className="text-lg font-bold text-red-600">
-                      Slime Play{" "}
+                      Slime Making{" "}
                       <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">
                         45 min
                       </span>
@@ -214,8 +214,9 @@ export default function SlimePlayPage() {
                       </span>
                     </h4>
                     <p className="text-sm text-gray-600 leading-tight mt-1">
-                      Watch live slime making by our staff. 200ml fresh slime to
-                      take home with choice of scent & charms.
+                      Hands - on experience for 8+ years, In some sessions, 
+                      8+ kits/ adults can make their own slime. 
+                      Not available in all the and please pay attention while booking.
                     </p>
                   </div>
                 </div>

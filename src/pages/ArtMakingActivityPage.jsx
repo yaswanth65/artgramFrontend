@@ -106,7 +106,7 @@ export default function ArtMakingActivityPage() {
           <h1
             className="text-5xl md:text-7xl font-extrabold pt-2 pb-5
                 bg-gradient-to-r from-purple-300 via-pink-200 to-rose-300 
-                bg-clip-text text-transparent"
+                bg-clip-text text-transparent pt-5" 
           >
             Art Making Studio
           </h1>
@@ -133,7 +133,7 @@ export default function ArtMakingActivityPage() {
           {/* Experience Section */}
           <div className="mb-20">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 to-rose-600 bg-clip-text text-transparent mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 to-rose-600 bg-clip-text text-transparent mb-6 pb-5">
                 Your Artistic Journey
               </h2>
               <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -178,7 +178,7 @@ export default function ArtMakingActivityPage() {
                 {/* Pricing Info */}
                 
                 <div className="lg:col-span-2 space-y-4 md:space-y-2">
-  <h3 className="text-5xl p-8 font-bold bg-gradient-to-r from-purple-600 to-rose-600 bg-clip-text text-transparent mb-4 md:mb-6">
+  <h3 className="text-5xl p-8 font-bold bg-gradient-to-r from-purple-600 to-rose-600 bg-clip-text text-transparent mb-4 md:mb-6 ">
     Art Making Experience
   </h3>
 

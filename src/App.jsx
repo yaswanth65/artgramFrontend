@@ -12,6 +12,8 @@ import ContactUsPage from "./pages/ContactUsPage"
 import ShopPage from "./pages/ShopPage"
 import EventsPage from "./pages/EventsPage"
 import BookSessionPage from "./pages/BookSessionPage"
+import LoginPage from "./pages/LoginPage"
+import RegisterPage from "./pages/RegisterPage"
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
             <Route path="/shop.html" element={<ShopPage />} />
             <Route path="/events.html" element={<EventsPage />} />
             <Route path="/book-session.html" element={<BookSessionPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
 
             {/* Fallback to home */}
             <Route path="*" element={<Navigate to="/index.html" replace />} />

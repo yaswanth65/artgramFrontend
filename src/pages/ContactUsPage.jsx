@@ -166,21 +166,148 @@ const ContactUsPage = () => {
       {/* "Our Studios" Section has been REMOVED as per request */}
 
       {/* Map Section */}
-      <section className="pb-16">
-        <div className="mx-auto max-w-5xl px-4 text-center">
-          <h4 className="text-2xl font-semibold mb-6 text-gray-800">Find Our Hyderabad Studio</h4>
-          <div className="w-full aspect-video rounded-2xl shadow-lg overflow-hidden border-4 border-white">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.339232296122!2d78.47329271539249!3d17.39992398807083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daea360b37%3A0x36f29e4438f72a6b!2sCharminar!5e0!3m2!1sen!2sin!4v1678886 Charminar"
-              title="Hyderabad Location"
-              className="w-full h-full"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+      <section className="py-16 bg-gradient-to-br from-purple-50 to-rose-50">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Studio Locations</h2>
+      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+        Visit us at any of our vibrant studios across South India
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Hyderabad Location */}
+      <a 
+        href="https://www.google.com/maps/place/Artgram/@17.4114992,78.4323407,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb970038d64857:0x406d7a28320f2e9b!8m2!3d17.4114992!4d78.4349156!16s%2Fg%2F11ryf2z9v5?entry=ttu" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-2"
+      >
+        <div className="h-64 relative overflow-hidden">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.0060108339585!2d78.43234067524435!3d17.411499183479815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb970038d64857%3A0x406d7a28320f2e9b!2sArtgram!5e0!3m2!1sen!2sin!4v1755189886825!5m2!1sen!2sin"
+            title="Artgram Hyderabad Location"
+            className="w-full h-full absolute inset-0 pointer-events-none"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-4">
+            <h3 className="text-white font-bold text-xl">Hyderabad</h3>
+          </div>
+          <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all duration-300"></div>
+        </div>
+        <div className="p-6">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+              📍
+            </div>
+            <p className="text-gray-700 font-medium">Banjara Hills, Road No. 12</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600">
+              🕒
+            </div>
+            <p className="text-gray-700">Mon-Sun: 9AM - 9PM</p>
+          </div>
+          <div className="mt-4 text-purple-600 font-medium flex items-center gap-2">
+            <span>View on Maps</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </div>
         </div>
-      </section>
+      </a>
+
+      {/* Vijayawada Location */}
+      <a 
+        href="https://www.google.com/maps/place/ARTGRAM/@16.5041061,80.6443325,17z/data=!3m1!4b1!4m6!3m5!1s0x3a35fbf061f36a01:0x57d79131087c8de4!8m2!3d16.5041061!4d80.6469074!16s%2Fg%2F11v0v3c8w4?entry=ttu" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-2"
+      >
+        <div className="h-64 relative overflow-hidden">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.4353260109456!2d80.64433247522446!3d16.504106084240263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fbf061f36a01%3A0x57d79131087c8de4!2sARTGRAM!5e0!3m2!1sen!2sin!4v1755189043469!5m2!1sen!2sin"
+            title="Artgram Vijayawada Location"
+            className="w-full h-full absolute inset-0 pointer-events-none"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-4">
+            <h3 className="text-white font-bold text-xl">Vijayawada</h3>
+          </div>
+          <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all duration-300"></div>
+        </div>
+        <div className="p-6">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+              📍
+            </div>
+            <p className="text-gray-700 font-medium">MG Road, Near Prakasam Barrage</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600">
+              🕒
+            </div>
+            <p className="text-gray-700">Mon-Sun: 10AM - 8PM</p>
+          </div>
+          <div className="mt-4 text-purple-600 font-medium flex items-center gap-2">
+            <span>View on Maps</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      {/* Bengaluru Location */}
+      <a 
+        href="https://www.google.com/maps/place/Artgram/@12.9187316,77.6491285,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae15ae8353d0dd:0x395df1674441651f!8m2!3d12.9187316!4d77.6517034!16s%2Fg%2F11s7j9wq5_?entry=ttu" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-2"
+      >
+        <div className="h-64 relative overflow-hidden">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.8286590945104!2d77.64912847515608!3d12.918731587391807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15ae8353d0dd%3A0x395df1674441651f!2sArtgram!5e0!3m2!1sen!2sin!4v1755189902986!5m2!1sen!2sin"
+            title="Artgram Bengaluru Location"
+            className="w-full h-full absolute inset-0 pointer-events-none"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-4">
+            <h3 className="text-white font-bold text-xl">Bengaluru</h3>
+          </div>
+          <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all duration-300"></div>
+        </div>
+        <div className="p-6">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+              📍
+            </div>
+            <p className="text-gray-700 font-medium">HSR Layout, Sector 2</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600">
+              🕒
+            </div>
+            <p className="text-gray-700">Mon-Sun: 9:30AM - 9:30PM</p>
+          </div>
+          <div className="mt-4 text-purple-600 font-medium flex items-center gap-2">
+            <span>View on Maps</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
     </div>
   );
 };

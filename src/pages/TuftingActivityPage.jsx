@@ -80,7 +80,7 @@ const TuftingActivityPage = () => {
   return (
     <div>
       {/* Hero Section with Video Background */}
-      <header className="relative text-white text-center py-28 overflow-hidden h-screen flex items-center justify-center">
+      <header className="relative text-white text-center py-28 overflow-hidden h-[400px] flex items-center justify-center">
         <video
           src="https://res.cloudinary.com/df2mieky2/video/upload/v1754651184/IMG_0327_djuhsr.mov"
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
@@ -118,28 +118,7 @@ const TuftingActivityPage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Mini Carousel Component */}
-            <div className="relative w-full h-auto aspect-[4/3] bg-gray-200 rounded-2xl shadow-xl overflow-hidden">
-              <img
-                key={currentImageIndex} // Key helps React trigger the animation
-                src={galleryImages[currentImageIndex]}
-                alt="A student's tufting creation"
-                className="w-full h-full object-cover animate-fade-in"
-              />
-               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                {galleryImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all ${
-                      currentImageIndex === index ? 'bg-white scale-125' : 'bg-white/50'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
 
-            {/* Feature Cards */}
             <div className="flex flex-col justify-center space-y-6">
               <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="text-4xl mb-3">🎨</div>
@@ -172,6 +151,33 @@ const TuftingActivityPage = () => {
                 </p>
               </div>
             </div>
+
+
+
+
+            {/* Mini Carousel Component */}
+            <div className="relative w-full h-auto aspect-[4/3] bg-gray-200 rounded-2xl shadow-xl overflow-hidden">
+              <img
+                key={currentImageIndex} // Key helps React trigger the animation
+                src={galleryImages[currentImageIndex]}
+                alt="A student's tufting creation"
+                className="w-full h-full object-cover animate-fade-in"
+              />
+               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {galleryImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-all ${
+                      currentImageIndex === index ? 'bg-white scale-125' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Feature Cards */}
+            
           </div>
 
           {/* Stats Section */}

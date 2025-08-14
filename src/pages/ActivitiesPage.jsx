@@ -22,22 +22,22 @@ const ActivitiesPage = () => {
               title="Slime Play"
               desc="Create colorful, stretchy, and sparkly slime in various textures."
               cta="Book Now"
-              href="slime-play.html"
+              href="/slime-play.html"
             />
             <FeatureCard
               icon="🎨"
               title="Art Making"
               desc="Express creativity through painting, drawing, and mixed media art."
               cta="Learn More →"
-              href="art-making-activity.html"
-              accent
+              href="/art-making-activity.html"
+      
             />
             <FeatureCard
               icon="🧶"
               title="Tufting Experience"
               desc="Create beautiful rugs and wall hangings using tufting guns."
               cta="Book Now"
-              href="tufting-activity.html"
+              href="/tufting-activity.html"
             />
           </div>
         </div>

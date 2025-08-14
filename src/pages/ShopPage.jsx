@@ -115,31 +115,18 @@ const ShopPage = () => {
           <div className={`text-center transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="mb-6">
-              <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-rose-200 bg-clip-text text-transparent mb-4">
+            <div className="mb-4">
+              <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-rose-200 bg-clip-text text-transparent mb-1">
                 Art & Slime Kits
               </h1>
               <div className="w-32 h-1 bg-gradient-to-r from-purple-400 to-rose-400 mx-auto rounded-full mb-6" />
             </div>
             
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
               Curated premium kits and materials to bring your creativity to life at home!
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
-                <span className="text-2xl">🚚</span>
-                <span className="text-white font-semibold">Free Shipping</span>
-              </div>
-              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
-                <span className="text-2xl">✨</span>
-                <span className="text-white font-semibold">Premium Quality</span>
-              </div>
-              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
-                <span className="text-2xl">🎁</span>
-                <span className="text-white font-semibold">Perfect Gifts</span>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>

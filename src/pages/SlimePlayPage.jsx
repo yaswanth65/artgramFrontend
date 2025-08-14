@@ -177,6 +177,7 @@ export default function SlimePlayPage() {
               <h3 className="text-3xl font-black text-center text-red-600 mb-4">
                 Rs 750/- Base Package
               </h3>
+              <p  className="text-gray-600 text-lg font-medium text-center mb-4">Play + Demo </p>
               <div className="space-y-4 mb-6">
                 {/* Slime Play */}
                 <div className="bg-white rounded-2xl p-5 flex items-start gap-4">
@@ -222,7 +223,7 @@ export default function SlimePlayPage() {
                 </div>
               </div>
               <div className="text-center border-t-2 border-gray-100 pt-5">
-                <div className="text-lg font-semibold text-green-400 mb-4">
+                <div className="text-lg font-semibold text-green-400 mb-4 ">
                   ⏱️ Total: 1 Hour
                 </div>
                 <a

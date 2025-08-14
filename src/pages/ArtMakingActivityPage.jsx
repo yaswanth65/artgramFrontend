@@ -353,17 +353,17 @@ export default function ArtMakingActivityPage() {
 
     {/* Branch 2 */}
     <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-6 shadow-xl border border-gray-100">
-      <h4 className="text-xl font-semibold text-gray-700 mb-4">Hyderabad Branch</h4>
+      <h4 className="text-xl font-semibold text-gray-700 mb-4">Vijayawada Branch</h4>
       <div style={{ position: 'relative', width: '100%', paddingTop: '141.4286%', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(63,69,81,0.16)' }}>
         <iframe
           loading="lazy"
           style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, border: 'none' }}
-          src="CANVA_EMBED_LINK_HERE"
+          src="https://www.canva.com/design/DAFzM-Gz7Kg/92ExSAFWSxaxXJownvur4A/view?embed"
           allowFullScreen
         ></iframe>
       </div>
       <a
-        href="CANVA_SHARE_LINK_HERE"
+        href="https://www.canva.com/design/DAFzM-Gz7Kg/92ExSAFWSxaxXJownvur4A/view"
         target="_blank"
         rel="noopener noreferrer"
         className="mt-4 inline-block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-full shadow-md hover:scale-105 transition-transform"
@@ -374,17 +374,17 @@ export default function ArtMakingActivityPage() {
 
     {/* Branch 3 */}
     <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-6 shadow-xl border border-gray-100">
-      <h4 className="text-xl font-semibold text-gray-700 mb-4">Vijayawada Branch</h4>
+      <h4 className="text-xl font-semibold text-gray-700 mb-4">Hyderabad Branch</h4>
       <div style={{ position: 'relative', width: '100%', paddingTop: '141.4286%', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(63,69,81,0.16)' }}>
         <iframe
           loading="lazy"
           style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, border: 'none' }}
-          src="CANVA_EMBED_LINK_HERE"
+          src="https://www.canva.com/design/DAFzMTK_uQY/B3-KsNjAyUb0Jx3YCDwmtg/view?embed"
           allowFullScreen
         ></iframe>
       </div>
       <a
-        href="CANVA_SHARE_LINK_HERE"
+        href="https://www.canva.com/design/DAFzMTK_uQY/B3-KsNjAyUb0Jx3YCDwmtg/view"
         target="_blank"
         rel="noopener noreferrer"
         className="mt-4 inline-block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-full shadow-md hover:scale-105 transition-transform"

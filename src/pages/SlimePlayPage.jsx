@@ -149,17 +149,11 @@ export default function SlimePlayPage() {
           playsInline
           className="absolute z-0 w-auto min-w-full min-h-full max-w-none opacity-50"
         ></video>
-        <div className="relative z-20 max-w-4xl px-5">
-          <h1 className="text-6xl font-black mb-5 text-white drop-shadow-lg animate-bounce">
-            EXPERIENCE SLIME!!
-          </h1>
-          <p className="text-2xl mb-8 drop-shadow-md">
-            1 Hr & 1 Hr 15 min sessions
-          </p>
+        <div className="relative z-20 max-w-4xl px-5 mt-60">
+          
           <a
             href="#booking"
-            className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse"
-          >
+            className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse " >
             Book Your Slime Experience
           </a>
         </div>
@@ -199,6 +193,8 @@ export default function SlimePlayPage() {
                     </p>
                   </div>
                 </div>
+
+                <h3 className="text-center">Or</h3>
 
                 {/* Slime Demo */}
                 <div className="bg-white rounded-2xl p-5 flex items-start gap-4">

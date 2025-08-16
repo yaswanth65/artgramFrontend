@@ -126,8 +126,10 @@ export default function ArtMakingActivityPage() {
 
       {/* Main Content */}
       <section className="py-20 relative">
+
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          {/* Experience Section */}
+          {/* Experience Section 
           <div className="mb-20">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 to-rose-600 bg-clip-text text-transparent mb-6 pb-5">
@@ -167,7 +169,7 @@ export default function ArtMakingActivityPage() {
               ))}
             </div>
           </div>
-
+*/}
           {/* Pricing Section with Artistic Design */}
           <div className="mb-20">
             <div className="bg-gradient-to-br from-white via-purple-50 to-rose-50 rounded-3xl p-8 md:p-12 shadow-2xl border border-purple-100">
@@ -204,6 +206,10 @@ export default function ArtMakingActivityPage() {
       "No booking required",
       "Walk-in anytime",
       "Take your creation home",
+      "30+ Art Varieties",
+      "Collaborative Creation",
+      "Cherish Forever",
+      "Timeless Experience"
     ].map((item, i) => (
       <div key={i} className="flex items-center gap-3 group">
         <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-rose-400 rounded-full group-hover:scale-150 transition-transform duration-300" />
@@ -225,7 +231,7 @@ export default function ArtMakingActivityPage() {
                     <h4 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Special Combo</h4>
                     <div className="text-3xl md:text-4xl font-bold mb-2">10% OFF</div>
                     <p className="text-purple-100 text-sm md:text-base mb-4 md:mb-6">
-                      Art + Slime making on the same day
+                      Only on Art 10%
                     </p>
                     <button className="bg-white text-purple-600 px-4 py-2 md:px-6 md:py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors duration-300 text-sm md:text-base">
                       Learn More

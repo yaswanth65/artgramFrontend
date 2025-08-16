@@ -128,8 +128,8 @@ export default function SlimePlayPage() {
 
   const getLocationName = (location) => {
     const locationNames = {
-      downtown: "Vijayawada",
-      mall: "Hyderabad",
+      downtown: "Hyderabad",
+      mall: "Vijayawada",
       park: "Bangalore",
     };
     return locationNames[location] || "Not selected";
@@ -381,7 +381,7 @@ export default function SlimePlayPage() {
                   {['downtown', 'mall', 'park'].map(id => (
                     <div key={id} onClick={() => selectLocation(id)} className={`border-2 rounded-xl p-6 text-center cursor-pointer transition-all min-w-48 ${bookingData.location === id ? 'border-green-400 bg-green-100 -translate-y-1 shadow-lg' : 'border-gray-200 hover:border-green-400 hover:bg-green-50'}`}>
                       <div className="font-bold text-lg mb-1">{getLocationName(id)}</div>
-                      {id === 'mall' && <div className="text-xs text-red-500">Closed on Mondays</div>}
+                      {id === 'mall' && <div className="text-xs text-red-500">No Session on Mondays</div>}
                     </div>
                   ))}
                 </div>

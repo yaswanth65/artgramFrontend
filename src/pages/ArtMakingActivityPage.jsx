@@ -10,6 +10,8 @@ export default function ArtMakingActivityPage() {
     setIsVisible(true);
   }, []);
 
+
+  
   const artFormsKids = [
     "Mosaic art",
     "Piggy banks",

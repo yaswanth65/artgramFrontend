@@ -261,12 +261,12 @@ const HomePage = () => {
 
 
       {/* Instagram Feed Placeholder */}
-        <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+       <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
   <div className="container mx-auto px-6 text-center">
-    <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+    <h2 className="text-3xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
       From Our Instagram
     </h2>
-    <p className="text-gray-600 mb-8">
+    <p className="text-gray-600 mb-6">
       Follow us{" "}
       <a
         href="https://www.instagram.com/artgram_yourhobbylobby/"
@@ -278,26 +278,36 @@ const HomePage = () => {
       </a>
     </p>
 
-    <div class="flex justify-center gap-6 flex-wrap">
-  
-    <iframe 
+    <div class="flex justify-center gap-12 flex-wrap">
+      <iframe 
         src="https://www.instagram.com/reel/DGS5MUppMc4/embed" 
-        width="400" 
-        height="480" 
+        width="280" 
+        height="360" 
         frameborder="0" 
         scrolling="no" 
         allowtransparency="true">
-    </iframe>
+      </iframe>
+      
+      <iframe 
+        src="https://www.instagram.com/reel/DNC-sJuR0A4/embed?utm_source=ig_embed&hidecaption=true" 
+        width="280" 
+        height="360" 
+        frameborder="0" 
+        scrolling="no" 
+        allowtransparency="true">
+      </iframe>
+      
+      <iframe 
+        src="https://www.instagram.com/reel/DM91tFgvQrS/embed?utm_source=ig_embed&hidecaption=false" 
+        width="280" 
+        height="360" 
+        frameborder="0" 
+        scrolling="no" 
+        allowtransparency="true">
+      </iframe>
 
-  
-    <iframe src="https://www.instagram.com/reel/DNC-sJuR0A4/embed?utm_source=ig_embed&hidecaption=true" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-
-
-  
-    <iframe src="https://www.instagram.com/reel/DM91tFgvQrS/embed?utm_source=ig_embed&hidecaption=false" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-
-</div>
-
+      
+    </div>
   </div>
 </section>
 

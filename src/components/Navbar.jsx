@@ -60,7 +60,7 @@ const Navbar = () => {
       src="https://res.cloudinary.com/dwb3vztcv/image/upload/v1755159745/ARTGRAM_LOGO_zdhftc.png"
       alt="ArtGram Logo"
       className="h-20 w-auto pt-3"
-    /><span className="text-4xl font-bold text-rose-600 pt-2 pl-3">ArtGram</span>
+    /><span className="text-4xl font-bold text-rose-600 pt-2 pl-3">Artgram</span>
   </Link>
 </div>
 

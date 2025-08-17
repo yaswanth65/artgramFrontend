@@ -164,16 +164,7 @@ const OurStoryPage = () => {
                 
               </div>
 
-              <div className="flex flex-wrap gap-4">
-                <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
-                  <span className="text-2xl">🎨</span>
-                  <span className="text-white font-semibold">500+ Happy Artists</span>
-                </div>
-                <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
-                  <span className="text-2xl">🏢</span>
-                  <span className="text-white font-semibold">5+ Branches</span>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -411,16 +402,16 @@ const OurStoryPage = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="group bg-white text-purple-600 font-bold px-8 py-4 rounded-full hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-xl">
-                    <span className="flex items-center justify-center gap-3">
-                      📞 Enquire About Franchise
-                      <div className="w-0 group-hover:w-4 h-0.5 bg-purple-600 rounded transition-all duration-300" />
-                    </span>
-                  </button>
-                  <button className="bg-white/10 backdrop-blur-sm text-white font-bold px-8 py-4 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300">
-                    Learn More
-                  </button>
-                </div>
+  <a href="tel:+91 9686846100" className="group bg-white text-purple-600 font-bold px-8 py-4 rounded-full hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-xl">
+    <span className="flex items-center justify-center gap-3">
+      📞 Enquire About Franchise
+      <div className="w-0 group-hover:w-4 h-0.5 bg-purple-600 rounded transition-all duration-300" />
+    </span>
+  </a>
+  <button className="bg-white/10 backdrop-blur-sm text-white font-bold px-8 py-4 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300">
+    Learn More
+  </button>
+</div>
               </div>
             </div>
           </div>

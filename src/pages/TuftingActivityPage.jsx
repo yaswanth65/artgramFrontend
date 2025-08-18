@@ -1,6 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+
 
 // Define gallery images to be used in the carousel and the gallery section
 const galleryImages = [
@@ -30,6 +33,44 @@ const TuftingActivityPage = () => {
   });
   // State for the image carousel
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const location = useLocation();
+  const videoRef = useRef(null);
+  const [muted, setMuted] = useState(true);
+  const [userInteracted, setUserInteracted] = useState(false);
+
+  const handleUserInteraction = () => {
+    if (!userInteracted) {
+      setUserInteracted(true);
+      if (videoRef.current) {
+        videoRef.current.muted = false;
+        setMuted(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    let scrollTimer;
+    const handleScroll = () => {
+      if (videoRef.current && userInteracted) {
+        videoRef.current.muted = true;
+        setMuted(true);
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {}, 1000);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => { window.removeEventListener('scroll', handleScroll); clearTimeout(scrollTimer); };
+  }, [userInteracted]);
+
+  useEffect(() => {
+    if (location.hash) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById(location.hash.replace('#', ''));
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
+      return () => clearTimeout(timer);
+    }
+  }, [location.hash, location.pathname]);
 
   // Effect to generate the next 7 days for date selection
   useEffect(() => {
@@ -80,127 +121,160 @@ const TuftingActivityPage = () => {
   return (
     <div>
       {/* Hero Section with Video Background */}
-      <header className="relative text-white text-center py-28 overflow-hidden h-[400px] flex items-center justify-center">
-        <video
-          src="https://res.cloudinary.com/df2mieky2/video/upload/v1754651184/IMG_0327_djuhsr.mov"
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
-        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-1"></div>
-        <div className="relative z-10 max-w-3xl mx-auto px-6">
-          <h1 className="text-4xl md:text-6xl font-black mb-6 drop-shadow-lg">
-            🎨 India's Premiere Art Studio 🎨
-          </h1>
-          <a
-            href="#tufting-booking"
-            className="inline-block rounded-full bg-gradient-to-tr from-yellow-400 to-orange-400 text-slate-800 font-bold px-6 py-3 shadow-lg hover:-translate-y-0.5 transition-all no-underline"
-          >
-            🎯 BOOK YOUR TUFTING ADVENTURE NOW!
-          </a>
-        </div>
-      </header>
+       <section className="relative h-[70vh] bg-black flex items-center justify-center text-center text-white overflow-hidden">
+  <div className="absolute inset-0 z-10">
+    <video
+      ref={videoRef}
+      src="https://res.cloudinary.com/dwb3vztcv/video/upload/v1755546792/TUFTING_LANSCAPE_pm5v9h.mp4"
+      autoPlay
+      loop
+      playsInline
+      muted={!userInteracted || muted}
+      className="absolute w-auto min-w-full min-h-full max-w-none opacity-70"
+    />
+
+    {/* 🔊 Mute/Unmute button */}
+    <button 
+      onClick={() => {
+        if (videoRef.current) {
+          videoRef.current.muted = !videoRef.current.muted;
+          setMuted(videoRef.current.muted);
+        }
+      }}
+      className="absolute bottom-6 right-6 z-20 bg-black/50 hover:bg-black/70 rounded-full p-3 backdrop-blur-sm transition-all duration-300"
+      aria-label={muted ? "Unmute video" : "Mute video"}
+    >
+      {muted ? (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+        </svg>
+      ) : (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+        </svg>
+      )}
+    </button>
+  </div>
+
+  {/* 🔲 Gradient overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-0" />
+
+  {/* Center content (if you want text here later) */}
+  <div className="relative z-20 max-w-4xl text-center">
+    {/* You can add a heading/intro text here if needed */}
+  </div>
+
+  {/* 🔘 Button pinned to bottom center */}
+  <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+    
+  </div>
+    <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+    <a
+      href="#tufting-booking"
+      className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse"
+    >
+      Book Your  TUFTING ADVENTURE NOW!
+    </a>
+  </div>
+</section>
+
+      
 
       {/* What is Tufting Section with Mini Carousel */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-rose-600 mb-2">
-              🤔 What is Tufting?
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              A modern take on the traditional craft of rug making. Using a special tufting gun,
-              you'll punch yarn into a stretched fabric canvas to create your own vibrant,
-              textured masterpiece.
-            </p>
-          </div>
+     <section className="py-16 bg-gray-50">
+  <div className="container mx-auto px-4">
+    
+    {/* Title */}
+    <div className="text-center mb-10">
+      <h2 className="text-3xl md:text-4xl font-black text-rose-600 mb-2">
+        🤔 What is Tufting?
+      </h2>
+      <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+        A modern twist on rug making — use a tufting gun to punch yarn into fabric
+        and create your own textured art.
+      </p>
+    </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+    <div className="grid md:grid-cols-2 gap-8 items-center">
 
-            <div className="flex flex-col justify-center space-y-6">
-              <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-4xl mb-3">🎨</div>
-                <h3 className="text-xl font-bold mb-2 text-gray-800">
-                  Tufting Fun & Creativity
-                </h3>
-                <p className="text-gray-600">
-                  Tufting is an exciting and creative process where you can craft beautiful wall hangings,
-                  rugs, coasters, or even charms for your bags and jackets using woolen yarn and a tufting gun.
-                </p>
-              </div>
-              <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-4xl mb-3">🧵</div>
-                <h3 className="text-xl font-bold mb-2 text-gray-800">
-                  Guided by Experts
-                </h3>
-                <p className="text-gray-600">
-                  With a wide range of vibrant color options and step-by-step guidance from our expert
-                  instructors, you'll enjoy a unique, hands-on experience tailored for adults exploring new skills.
-                </p>
-              </div>
-              <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-4xl mb-3">🏠</div>
-                <h3 className="text-xl font-bold mb-2 text-gray-800">
-                  Take Your Art Home
-                </h3>
-                <p className="text-gray-600">
-                  Whether it's a bold rug, a cozy coaster, or a charming wall piece, you'll leave with a
-                  functional work of art that reflects your personality and creativity.
-                </p>
-              </div>
-            </div>
+      {/* Feature Cards */}
+      <div className="flex flex-col space-y-5">
+        <div className="p-5 bg-white rounded-xl shadow-md hover:shadow-lg transition">
+          <div className="text-3xl mb-2">🎨</div>
+          <h3 className="text-lg font-bold mb-1 text-gray-800">
+            Tufting Fun & Creativity
+          </h3>
+          <div className="flex items-center gap-3 group">
+  {/* Bullet */}
+  <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-rose-400 rounded-full group-hover:scale-150 transition-transform duration-300" />
+  
+  {/* Text */}
+  <p className="text-gray-600 text-sm md:text-base group-hover:text-gray-900 transition-colors duration-300">
+    Make rugs, coasters, charms or wall art with colorful yarn and a tufting gun.
+  </p>
+</div>
 
-
-
-
-            {/* Mini Carousel Component */}
-            <div className="relative w-full h-auto aspect-[4/3] bg-gray-200 rounded-2xl shadow-xl overflow-hidden">
-              <img
-                key={currentImageIndex} // Key helps React trigger the animation
-                src={galleryImages[currentImageIndex]}
-                alt="A student's tufting creation"
-                className="w-full h-full object-cover animate-fade-in"
-              />
-               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                {galleryImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all ${
-                      currentImageIndex === index ? 'bg-white scale-125' : 'bg-white/50'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Feature Cards */}
-            
-          </div>
-
-          {/* Stats Section */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center">
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">25,000+</p>
-              <p className="text-gray-600 font-medium">Happy Tufters</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">500+</p>
-              <p className="text-gray-600 font-medium">Unique Designs</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">100%</p>
-              <p className="text-gray-600 font-medium">Premium Materials</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">3</p>
-              <p className="text-gray-600 font-medium">Studio Locations</p>
-            </div>
-          </div>
         </div>
-      </section>
+
+        <div className="p-5 bg-white rounded-xl shadow-md hover:shadow-lg transition">
+          <div className="text-3xl mb-2">🧵</div>
+          <h3 className="text-lg font-bold mb-1 text-gray-800">
+            Guided by Experts
+          </h3>
+          <div className="flex items-center gap-3 group">
+  {/* Bullet */}
+  <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-rose-400 rounded-full group-hover:scale-150 transition-transform duration-300" />
+  
+  {/* Text */}
+  <p className="text-gray-600 text-sm md:text-base group-hover:text-gray-900 transition-colors duration-300">
+    Step-by-step help with plenty of colors to choose from.
+  </p>
+</div>
+        </div>
+
+        <div className="p-5 bg-white rounded-xl shadow-md hover:shadow-lg transition">
+          <div className="text-3xl mb-2">🏠</div>
+          <h3 className="text-lg font-bold mb-1 text-gray-800">
+            Take Home Your Art 
+          </h3>
+           <div className="flex items-center gap-3 group">
+  {/* Bullet */}
+  <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-rose-400 rounded-full group-hover:scale-150 transition-transform duration-300" />
+  
+  {/* Text */}
+  <p className="text-gray-600 text-sm md:text-base group-hover:text-gray-900 transition-colors duration-300">
+    Leave with a unique piece that reflects your style.
+  </p>
+</div>
+        </div>
+      </div>
+
+      {/* Carousel */}
+      <div className="relative w-full aspect-[4/3] bg-gray-200 rounded-xl shadow-lg overflow-hidden">
+        <img
+          key={currentImageIndex}
+          src={galleryImages[currentImageIndex]}
+          alt="Tufting creation"
+          className="w-full h-full object-cover animate-fade-in"
+        />
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+          {galleryImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={`w-2.5 h-2.5 rounded-full transition-all ${
+                currentImageIndex === index ? 'bg-white scale-110' : 'bg-white/50'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Gallery Section */}
       <section className="py-16 bg-pink-50">
@@ -527,3 +601,4 @@ const TuftStep = ({ title, color, isVisible, onBack, onNext, canNext, children }
 };
 
 export default TuftingActivityPage;
+

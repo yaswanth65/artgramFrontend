@@ -176,24 +176,9 @@ const Navbar = () => {
     </div>
   </Link>
 
-  <div className="my-2 h-px bg-gray-200" />
+  
 
-  <Link
-    to="/activities.html"
-    className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-rose-600 hover:text-white transition-colors no-underline"
-  >
-    <div className="w-9 h-9 rounded-full bg-rose-600 text-white flex items-center justify-center text-lg">
-      📋
-    </div>
-    <div className="min-w-0">
-      <h6 className="font-semibold text-lg">
-        View All Activities
-      </h6>
-      <p className="text-sm opacity-80">
-        See our complete range
-      </p>
-    </div>
-  </Link>
+  
 </div>
 
               )}
@@ -308,12 +293,7 @@ const Navbar = () => {
                   >
                     🧶 Tufting Experience
                   </Link>
-                  <Link
-                    to="/activities.html"
-                    className="block px-3 py-2 rounded-md hover:bg-gray-50 no-underline"
-                  >
-                    📋 View All Activities
-                  </Link>
+                  
                 </div>
               )}
             </div>

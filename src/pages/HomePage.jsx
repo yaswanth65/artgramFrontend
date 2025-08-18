@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 // Carousel images for hero section
 const carouselImages = [
@@ -14,6 +15,7 @@ const carouselImages = [
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   function openWhatsApp(phoneNumber, message) {
     // Only proceed if window is available (client-side)
@@ -63,10 +65,8 @@ const HomePage = () => {
   };
 
   const handleBookNow = () => {
-    if (typeof window !== 'undefined') {
-      // Matches route in App.jsx
-      window.location.href = "/slime-play.html"; // Updated to match the correct route
-    }
+  // Use client-side navigation to avoid reloads and ensure React Router handles the route
+  navigate('/slime-play.html');
   };
 
   return (

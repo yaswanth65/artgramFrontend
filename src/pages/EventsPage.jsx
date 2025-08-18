@@ -267,7 +267,7 @@ const EventsPage = () => {
         {
           title: "Baby Shower Celebration",
           thumbnail:
-            "https://images.unsplash.com/photo-1616047006789-b7af710a8089?w=300&h=200&fit=crop",
+            "https://res.cloudinary.com/dwb3vztcv/video/upload/v1755549136/BABY_SHOWER_AT_ARTGARM_jjzl9x.mp4",
         },
         {
           title: "Keepsake Creation",
@@ -365,8 +365,8 @@ const EventsPage = () => {
 
       {/* Event Detail Modal */}
       {selectedEvent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-          <div className="relative max-h-[90vh] w-full max-w-6xl overflow-hidden rounded-3xl bg-white shadow-2xl">
+        <div className="fixed left-0 right-0 bottom-0 top-24 z-50 bg-black/60 backdrop-blur-sm">
+          <div className="relative h-[calc(100vh-6rem)] w-screen overflow-hidden bg-white">
             {/* Close Button */}
             <button
               onClick={() => setSelectedEvent(null)}
@@ -387,7 +387,7 @@ const EventsPage = () => {
               </svg>
             </button>
 
-            <div className="overflow-y-auto max-h-[60vh]">
+            <div className="overflow-y-auto h-full">
               {/* Header */}
               <div className="bg-gradient-to-r from-rose-500 to-purple-600 px-8 py-12 text-white">
                 <div className="flex items-center gap-4">
@@ -564,16 +564,33 @@ const EventsPage = () => {
                           className="group cursor-pointer overflow-hidden rounded-2xl bg-gray-100 shadow-lg hover:shadow-xl transition-all"
                         >
                           <div className="relative">
-                            <img
-                              src={video.thumbnail}
-                              alt={video.title}
-                              className="h-48 w-full object-cover transition-transform group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">
-                              <div className="rounded-full bg-white/20 p-4 backdrop-blur-sm">
-                                <Play className="h-8 w-8 text-white" />
-                              </div>
-                            </div>
+                            {(
+                              video.src ||
+                              (video.thumbnail &&
+                                (video.thumbnail.endsWith(".mp4") ||
+                                  video.thumbnail.endsWith(".webm") ||
+                                  video.thumbnail.endsWith(".ogg")))
+                            ) ? (
+                              <video
+                                controls
+                                src={video.src ? video.src : video.thumbnail}
+                                className="h-[520px] w-full rounded-2xl object-cover bg-black"
+                                playsInline
+                              />
+                            ) : (
+                              <>
+                                <img
+                                  src={video.thumbnail}
+                                  alt={video.title}
+                                  className="h-[520px] w-full object-cover transition-transform group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">
+                                  <div className="rounded-full bg-white/20 p-4 backdrop-blur-sm">
+                                    <Play className="h-8 w-8 text-white" />
+                                  </div>
+                                </div>
+                              </>
+                            )}
                           </div>
                           <div className="p-4">
                             <h5 className="font-semibold text-gray-800">

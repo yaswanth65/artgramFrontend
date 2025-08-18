@@ -1,10 +1,49 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function ArtMakingActivityPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
+  const location = useLocation();
+  const videoRef = useRef(null);
+  const [muted, setMuted] = useState(true);
+  const [userInteracted, setUserInteracted] = useState(false);
+
+  const handleUserInteraction = () => {
+    if (!userInteracted) {
+      setUserInteracted(true);
+      if (videoRef.current) {
+        videoRef.current.muted = false;
+        setMuted(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    let scrollTimer;
+    const handleScroll = () => {
+      if (videoRef.current && userInteracted) {
+        videoRef.current.muted = true;
+        setMuted(true);
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {}, 1000);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => { window.removeEventListener('scroll', handleScroll); clearTimeout(scrollTimer); };
+  }, [userInteracted]);
+
+  useEffect(() => {
+    if (location.hash) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById(location.hash.replace('#', ''));
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
+      return () => clearTimeout(timer);
+    }
+  }, [location.hash, location.pathname]);
 
   useEffect(() => {
     setIsVisible(true);
@@ -68,61 +107,63 @@ export default function ArtMakingActivityPage() {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-slate-50 via-purple-50 to-rose-50 pt-[10px] pb-[10px]">
-      {/* Artistic Hero Section */}
-      <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-rose-900 overflow-hidden pb-6">
-        {/* Background Video */}
-        <video
-          src="https://res.cloudinary.com/df2mieky2/video/upload/v1754831677/vecteezy_mixing-paint-in-palette_21422891_xS2W3sA_G_vcrrvy.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
-        />
+     <div 
+      className="min-h-screen bg-gradient-to-br from-green-100 to-purple-100"
+      onClick={handleUserInteraction}
+    >
+      {/* Hero Section */}
+      <section className="relative h-[70vh] bg-black flex items-center justify-center text-center text-white overflow-hidden">
+  <div className="absolute inset-0 z-10">
+    <video
+      ref={videoRef}
+      src="https://res.cloudinary.com/dwb3vztcv/video/upload/v1755544541/My_First_Project_sx8bvy.mp4"
+      autoPlay
+      loop
+      playsInline
+      muted={!userInteracted || muted}
+      className="absolute w-auto min-w-full min-h-full max-w-none opacity-70"
+    />
 
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-24 h-24 rounded-full bg-white/5 backdrop-blur-sm animate-pulse"
-              style={{
-                left: `${15 + i * 15}%`,
-                top: `${20 + (i % 2) * 40}%`,
-                animationDelay: `${i * 0.5}s`,
-                animationDuration: `${3 + i}s`,
-              }}
-            />
-          ))}
-        </div>
+    {/* 🔊 Mute/Unmute button */}
+    <button 
+      onClick={() => {
+        if (videoRef.current) {
+          videoRef.current.muted = !videoRef.current.muted;
+          setMuted(videoRef.current.muted);
+        }
+      }}
+      className="absolute bottom-6 right-6 z-20 bg-black/50 hover:bg-black/70 rounded-full p-3 backdrop-blur-sm transition-all duration-300"
+      aria-label={muted ? "Unmute video" : "Mute video"}
+    >
+      {muted ? (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+        </svg>
+      ) : (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+        </svg>
+      )}
+    </button>
+  </div>
 
-        {/* Hero Content */}
-        <div
-          className={`relative z-10 text-center max-w-5xl mx-auto px-6 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <h1
-            className="text-5xl md:text-7xl font-extrabold pt-2 pb-5
+  {/* 🔲 Gradient overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-0" />
+
+  {/* Center content (if you want text here later) */}
+  <div className="relative z-20 max-w-4xl text-center">
+    {/* You can add a heading/intro text here if needed */}
+  </div>
+
+  {/* 🔘 Button pinned to bottom center */}
+  <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+    <h3 className="text-5xl md:text-7xl font-extrabold pt-2 pb-5
                 bg-gradient-to-r from-purple-300 via-pink-200 to-rose-300 
-                bg-clip-text text-transparent pt-5" 
-          >
-            Art Making Studio
-          </h1>
-          <div className="w-36 h-1 bg-gradient-to-r from-purple-400 to-rose-400 mx-auto rounded-full mb-6" />
-
-          <p className="text-lg md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-light">
-            Where imagination meets creation. Design your own masterpieces with
-            premium materials and bring your artistic vision to life in our
-            serene creative sanctuary.
-          </p>
-
-          <div className="mt-12 flex flex-wrap justify-center gap-6">
-          
-          </div>
-        </div>
-      </section>
+                bg-clip-text text-transparent pt-5" >Art Making Studio</h3>
+  </div>
+</section>
 
       {/* Main Content */}
       <section className="py-20 relative">
@@ -231,7 +272,7 @@ export default function ArtMakingActivityPage() {
                     <h4 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Special Combo</h4>
                     <div className="text-3xl md:text-4xl font-bold mb-2">10% OFF</div>
                     <p className="text-purple-100 text-sm md:text-base mb-4 md:mb-6">
-                      Only on Art 10%
+                      10% off only on art bill if you do slime ans arts on the same day.
                     </p>
                     <button className="bg-white text-purple-600 px-4 py-2 md:px-6 md:py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors duration-300 text-sm md:text-base">
                       Learn More
@@ -407,3 +448,4 @@ export default function ArtMakingActivityPage() {
     </div>
   );
 }
+

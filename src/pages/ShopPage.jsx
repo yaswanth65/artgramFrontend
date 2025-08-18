@@ -117,7 +117,7 @@ const ShopPage = () => {
           }`}>
             <div className="mb-4">
               <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-rose-200 bg-clip-text text-transparent mb-1">
-                Art & Slime Kits
+                Art & Slime
               </h1>
               <div className="w-32 h-1 bg-gradient-to-r from-purple-400 to-rose-400 mx-auto rounded-full mb-6" />
             </div>
@@ -295,89 +295,45 @@ const ShopPage = () => {
   )
 }
 
-const ProductCard = ({ product, index, isHovered, onHover, onLeave, getBadgeColor }) => {
+const ProductCard = ({ product, index, onHover, onLeave }) => {
   return (
-    <div 
-      className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 cursor-pointer transform hover:scale-105"
+    <div
+      className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer transform hover:scale-105"
       style={{ animationDelay: `${index * 0.1}s` }}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >
       {/* Product Image */}
-      <div className="relative h-64 overflow-hidden">
-        <div 
-          className="h-full w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-110" 
-          style={{ backgroundImage: `url('${product.bg}')` }}
-        />
-        
-        {/* Badge */}
-        <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-bold ${getBadgeColor(product.badge)} shadow-lg`}>
-          {product.badge}
-        </div>
+      <div
+        className="h-80 w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-110"
+        style={{ backgroundImage: `url('${product.bg}')` }}
+      />
 
-        {/* Discount Badge */}
-        {product.originalPrice && (
-          <div className="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
-            -{Math.round((1 - product.price / product.originalPrice) * 100)}%
-          </div>
-        )}
-
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
-
-      {/* Product Info */}
-      <div className="p-6">
-        <div className="mb-4">
-          <h4 className="text-xl font-bold text-gray-800 group-hover:text-purple-600 transition-colors duration-300 mb-2">
-            {product.title}
-          </h4>
-          <p className="text-gray-600 text-sm leading-relaxed mb-3">
-            {product.desc}
-          </p>
-          
-          {/* Features */}
-          <div className="flex flex-wrap gap-1 mb-4">
-            {product.features.slice(0, 2).map((feature, i) => (
-              <span key={i} className="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full">
-                {feature}
-              </span>
-            ))}
-          </div>
-
-          {/* Rating */}
-          <div className="flex items-center gap-2 mb-4">
-            <div className="flex text-yellow-400 text-sm">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className={i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'}>⭐</span>
-              ))}
-            </div>
-            <span className="text-sm text-gray-600">
-              {product.rating} ({product.reviews} reviews)
-            </span>
-          </div>
-        </div>
-
-        {/* Price */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-purple-600">₹{product.price}</span>
-            {product.originalPrice && (
-              <span className="text-sm text-gray-400 line-through">₹{product.originalPrice}</span>
-            )}
-          </div>
-        </div>
-
-        {/* Action Button */}
-        <button className="w-full bg-gradient-to-r from-gray-800 to-gray-900 group-hover:from-purple-600 group-hover:to-rose-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform group-hover:shadow-lg">
-          <span className="flex items-center justify-center gap-2">
-            View Details
-            <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-          </span>
+      {/* Hover Overlay */}
+      <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-rose-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105">
+          View Details
         </button>
       </div>
+
+      {/* Optional Badge (Top Left) */}
+      {product.badge && (
+        <div
+          className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-bold shadow-lg`}
+        >
+          {product.badge}
+        </div>
+      )}
+
+      {/* Optional Discount Badge (Top Right) */}
+      {product.originalPrice && (
+        <div className="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
+          -{Math.round((1 - product.price / product.originalPrice) * 100)}%
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
+
 
 export default ShopPage;

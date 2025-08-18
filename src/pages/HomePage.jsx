@@ -138,15 +138,7 @@ const HomePage = () => {
           ))}
         </div>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-[1]" />
-
-        {/* Text Content - Simplified and at bottom */}
-        <div className="relative z-[2] mb-17 pb-2 px-6 w-full">
-          <h1 className="text-4xl md:text-6xl font-black mb-2 text-amber-300 drop-shadow-2xl">
-            Creative Art Experiences
-          </h1>
-        </div>
+        
       </header>
 
       {/* About Section */}
@@ -187,18 +179,18 @@ const HomePage = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center">
             <div className="p-6 bg-white rounded-2xl shadow-lg">
               <p className="text-4xl font-bold text-rose-600">25,000+</p>
-              <p className="text-gray-600 font-medium">Happy Tufters</p>
+              <p className="text-gray-600 font-medium">Customers</p>
             </div>
             <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">500+</p>
+              <p className="text-4xl font-bold text-rose-600">40+</p>
               <p className="text-gray-600 font-medium">Unique Designs</p>
             </div>
             <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">100%</p>
-              <p className="text-gray-600 font-medium">Premium Materials</p>
+              <p className="text-4xl font-bold text-rose-600">100+</p>
+              <p className="text-gray-600 font-medium">Birthday Parties</p>
             </div>
             <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">3</p>
+              <p className="text-4xl font-bold text-rose-600">5</p>
               <p className="text-gray-600 font-medium">Studio Locations</p>
             </div>
           </div>
@@ -220,7 +212,7 @@ const HomePage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             <ActivityCard
-              img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754632272/COUROSEL_IMAGE_hkof14.png"
+              img="https://res.cloudinary.com/dwb3vztcv/image/upload/v1755538130/HAR05881_knyc5j.jpg"
               title="🎨 Art Making"
               text="Enjoy 30+ hands on activities for all age groups"
               bgColor="bg-gradient-to-br from-pink-100 to-purple-100"
@@ -288,7 +280,7 @@ const HomePage = () => {
             </div>
           </div>
           {/* Event Cards */}
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 pt-4">
 
             <EventCard
               icon="🎂"
@@ -500,15 +492,16 @@ const TestimonialCard = ({ stars, text, name, bgColor }) => {
 };
 
 // Event Card Component
+// Updated Event Card Component with smaller icons
 const EventCard = ({ icon, title, bgColor }) => {
   return (
     <div
-      className={`text-center p-8 ${bgColor} rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/50`}
+      className={`text-center p-6 ${bgColor} rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/50`}
     >
-      <div className="text-6xl mb-4 transform hover:scale-110 transition-transform duration-300">
+      <div className="text-4xl mb-4 transform hover:scale-110 transition-transform duration-300">
         {icon}
       </div>
-      <h3 className="text-xl font-bold text-gray-800">{title}</h3>
+      <h3 className="text-lg font-bold text-gray-800">{title}</h3>
     </div>
   );
 };

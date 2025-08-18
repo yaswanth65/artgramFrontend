@@ -404,7 +404,7 @@ const TuftingActivityPage = () => {
                       </div>
                       <div className="font-bold">{s.label}</div>
                       <div className="text-sm opacity-80">
-                        02 - 04 Hr (Depending on Size)
+                        02 - 04 Hr 
                       </div>
                       <div className={`mt-2 font-bold ${selected ? "text-white" : "text-red-600"}`}>
                         ₹ {s.price}
@@ -601,4 +601,3 @@ const TuftStep = ({ title, color, isVisible, onBack, onNext, canNext, children }
 };
 
 export default TuftingActivityPage;
-

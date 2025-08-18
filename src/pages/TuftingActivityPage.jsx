@@ -280,7 +280,7 @@ const TuftingActivityPage = () => {
       <section className="py-16 bg-pink-50">
         <div className="mx-auto max-w-6xl px-4">
           <h2 className="text-3xl font-bold text-center mb-10 text-rose-600">
-            🖼️ Tufting Gallery - Student Creations
+            🖼️ Tufting Gallery - Customer Creations
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
             {galleryImages.map((src) => (
@@ -601,3 +601,4 @@ const TuftStep = ({ title, color, isVisible, onBack, onNext, canNext, children }
 };
 
 export default TuftingActivityPage;
+

@@ -1,40 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function SlimePlayPage() {
   const location = useLocation();
-
-  useEffect(() => {
-    // Check if a hash exists in the URL
-    if (location.hash) {
-      // Use a timeout to ensure the DOM has fully updated before scrolling
-      const timer = setTimeout(() => {
-        const el = document.getElementById(location.hash.replace("#", ""));
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 200); // Increased delay to ensure DOM is fully rendered
-
-      // Clean up the timer to prevent memory leaks
-      return () => clearTimeout(timer);
-    }
-  }, [location.hash, location.pathname]); // Also trigger on pathname change to handle direct navigation
-
-  // Reordering booking flow. Step 1 is now Location.
+  const videoRef = useRef(null);
+  const [muted, setMuted] = useState(true);
+  const [userInteracted, setUserInteracted] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [bookingData, setBookingData] = useState({
     location: null,
     date: null,
-    session: "complete", // Default to premium
+    session: "complete",
     price: 850,
     time: null,
-    quantity: 1, // Added quantity state
+    quantity: 1,
   });
 
-  // State for available slots data - could be fetched from an API
-  // Added total and available slots
   const [timeSlots, setTimeSlots] = useState([
     {
       time: "10:00",
@@ -92,33 +75,61 @@ export default function SlimePlayPage() {
     },
   ]);
 
-  const nextStep = (step) => {
-    setCurrentStep(step);
-  };
-  const prevStep = (step) => {
-    setCurrentStep(step);
+  // Handle initial user interaction to enable audio
+  const handleUserInteraction = () => {
+    if (!userInteracted) {
+      setUserInteracted(true);
+      if (videoRef.current) {
+        videoRef.current.muted = false;
+        setMuted(false);
+      }
+    }
   };
 
-  const selectLocation = (location) => {
-    setBookingData((prev) => ({ ...prev, location }));
-  };
-  const selectDate = (date) => {
-    setBookingData((prev) => ({ ...prev, date }));
-  };
-  const selectSession = (session, price) => {
-    setBookingData((prev) => ({ ...prev, session, price: parseInt(price) }));
-  };
-  const selectTime = (time) => {
-    setBookingData((prev) => ({ ...prev, time }));
-  };
-  const setQuantity = (qty) => {
-    setBookingData((prev) => ({ ...prev, quantity: parseInt(qty) }));
-  };
+  // Handle scroll to mute
+  useEffect(() => {
+    let scrollTimer;
+    const handleScroll = () => {
+      if (videoRef.current && userInteracted) {
+        videoRef.current.muted = true;
+        setMuted(true);
+        
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          // Don't auto-unmute after scrolling
+        }, 1000);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimer);
+    };
+  }, [userInteracted]);
+
+  // Handle hash navigation
+  useEffect(() => {
+    if (location.hash) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById(location.hash.replace("#", ""));
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 200);
+      return () => clearTimeout(timer);
+    }
+  }, [location.hash, location.pathname]);
+
+  // Booking flow functions
+  const nextStep = (step) => setCurrentStep(step);
+  const prevStep = (step) => setCurrentStep(step);
+  const selectLocation = (location) => setBookingData(prev => ({ ...prev, location }));
+  const selectDate = (date) => setBookingData(prev => ({ ...prev, date }));
+  const selectSession = (session, price) => setBookingData(prev => ({ ...prev, session, price: parseInt(price) }));
+  const selectTime = (time) => setBookingData(prev => ({ ...prev, time }));
+  const setQuantity = (qty) => setBookingData(prev => ({ ...prev, quantity: parseInt(qty) }));
 
   const confirmBooking = () => {
-    alert(
-      `Booking confirmed for ${bookingData.quantity} ticket(s)! You will receive a confirmation call within 2 hours.`
-    );
+    alert(`Booking confirmed for ${bookingData.quantity} ticket(s)! You will receive a confirmation call within 2 hours.`);
   };
 
   const formatDate = (dateStr) => {
@@ -134,64 +145,65 @@ export default function SlimePlayPage() {
     };
     return locationNames[location] || "Not selected";
   };
-  const [muted, setMuted] = useState(true); // Start with muted video
 
   const getTotalPrice = () => bookingData.price * bookingData.quantity;
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-green-100 to-purple-100">
-      {/* Hero Section - Video Updated */}
-      <section className="relative h-[70vh] bg-black flex items-center justify-center text-center text-white overflow-hidden">
-      {/* Video background */}
-      <div className="absolute inset-0 z-10">
-        <video
-          src="https://res.cloudinary.com/df2mieky2/video/upload/v1755029444/HYDERABAD_Slime_xa1l3x.mp4"
-          autoPlay
-          loop
-          playsInline
-          muted={muted}
-          className="absolute w-auto min-w-full min-h-full max-w-none opacity-70"
-          id="heroVideo"
-        ></video>
-        
-        {/* Audio control button */}
-        <button 
-          onClick={() => {
-            const video = document.getElementById('heroVideo');
-            video.muted = !video.muted;
-            setMuted(video.muted);
-          }}
-          className="absolute bottom-6 right-6 z-20 bg-black/50 hover:bg-black/70 rounded-full p-3 backdrop-blur-sm transition-all duration-300"
-          aria-label={muted ? "Unmute video" : "Mute video"}
-        >
-          {muted ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-            </svg>
-          ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-            </svg>
-          )}
-        </button>
-      </div>
 
-      {/* Rest of your section content... */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-0"></div>
-      <div className="relative z-20 max-w-4xl px-5">
-        <h1 className="text-4xl md:text-6xl font-black mb-6 text-white drop-shadow-2xl">
-          Get Messy with Slime!
-        </h1>
-        <a
-          href="#booking"
-          className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse"
-        >
-          Book Your Slime Experience
-        </a>
-      </div>
-    </section>
-  
+  return (
+    <div 
+      className="min-h-screen bg-gradient-to-br from-green-100 to-purple-100"
+      onClick={handleUserInteraction}
+    >
+      {/* Hero Section */}
+      <section className="relative h-[70vh] bg-black flex items-center justify-center text-center text-white overflow-hidden">
+        <div className="absolute inset-0 z-10">
+          <video
+            ref={videoRef}
+            src="https://res.cloudinary.com/df2mieky2/video/upload/v1755029444/HYDERABAD_Slime_xa1l3x.mp4"
+            autoPlay
+            loop
+            playsInline
+            muted={!userInteracted || muted}
+            className="absolute w-auto min-w-full min-h-full max-w-none opacity-70"
+          />
+          
+          <button 
+            onClick={() => {
+              if (videoRef.current) {
+                videoRef.current.muted = !videoRef.current.muted;
+                setMuted(videoRef.current.muted);
+              }
+            }}
+            className="absolute bottom-6 right-6 z-20 bg-black/50 hover:bg-black/70 rounded-full p-3 backdrop-blur-sm transition-all duration-300"
+            aria-label={muted ? "Unmute video" : "Mute video"}
+          >
+            {muted ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+              </svg>
+            )}
+          </button>
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-0" />
+        <div className="relative z-20 max-w-4xl px-5">
+          <h1 className="text-4xl md:text-6xl font-black mb-6 text-white drop-shadow-2xl">
+            Get Messy with Slime!
+          </h1>
+          <a
+            href="#booking"
+            className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse"
+          >
+            Book Your Slime Experience
+          </a>
+        </div>
+      </section>
+
       {/* Package Overview Section */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-5">
@@ -204,9 +216,8 @@ export default function SlimePlayPage() {
               <h3 className="text-3xl font-black text-center text-red-600 mb-4">
                 Rs 750/- Base Package
               </h3>
-              <p  className="text-gray-600 text-lg font-medium text-center mb-4">Play + Demo </p>
+              <p className="text-gray-600 text-lg font-medium text-center mb-4">Play + Demo </p>
               <div className="space-y-4 mb-6">
-                {/* Slime Play */}
                 <div className="bg-white rounded-2xl p-5 flex items-start gap-4">
                   <img
                     src="https://res.cloudinary.com/df2mieky2/image/upload/v1754831671/HAR05994_de7kjp.jpg"
@@ -215,21 +226,16 @@ export default function SlimePlayPage() {
                   />
                   <div>
                     <h4 className="text-lg font-bold text-red-600">
-                      Slime Making{" "}
-                      <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                        45 min
-                      </span>
+                      Slime Making <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">45 min</span>
                     </h4>
                     <p className="text-sm text-gray-600 leading-tight mt-1">
-                      Touch different colours and textures, slime throwing,
-                      jumping, magnetic slime and much more!
+                      Touch different colours and textures, slime throwing, jumping, magnetic slime and much more!
                     </p>
                   </div>
                 </div>
 
                 <h3 className="text-center">Or</h3>
 
-                {/* Slime Demo */}
                 <div className="bg-white rounded-2xl p-5 flex items-start gap-4">
                   <img
                     src="https://res.cloudinary.com/df2mieky2/image/upload/v1754831672/DSC07792_xxy5w1.jpg"
@@ -238,23 +244,18 @@ export default function SlimePlayPage() {
                   />
                   <div>
                     <h4 className="text-lg font-bold text-red-600">
-                      Slime Demo{" "}
-                      <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                        15 min
-                      </span>
+                      Slime Demo <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">15 min</span>
                     </h4>
                     <p className="text-sm text-gray-600 leading-tight mt-1">
-                      Hands - on experience for 8+ years, In some sessions, 
-                      8+ kits/ adults can make their own slime. 
+                      Hands-on experience for 8+ years, In some sessions, 
+                      8+ kits/adults can make their own slime. 
                       Not available in all the and please pay attention while booking.
                     </p>
                   </div>
                 </div>
               </div>
               <div className="text-center border-t-2 border-gray-100 pt-5">
-                <div className="text-lg font-semibold text-green-400 mb-4 ">
-                  ⏱️ Total: 1 Hour
-                </div>
+                <div className="text-lg font-semibold text-green-400 mb-4">⏱️ Total: 1 Hour</div>
                 <a
                   href="#booking"
                   onClick={() => selectSession("basic", "750")}
@@ -285,14 +286,10 @@ export default function SlimePlayPage() {
                   />
                   <div>
                     <h4 className="text-lg font-bold text-red-600">
-                      ✨ Glow in Dark Experience{" "}
-                      <span className="bg-gradient-to-r from-pink-400 to-purple-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                        +15 min
-                      </span>
+                      ✨ Glow in Dark Experience <span className="bg-gradient-to-r from-pink-400 to-purple-500 text-white px-2 py-1 rounded-full text-xs font-semibold">+15 min</span>
                     </h4>
                     <p className="text-sm text-gray-600 leading-tight mt-1">
-                      15 minutes of magical glowing slime in our special dark
-                      room. Watch your slime transform!
+                      15 minutes of magical glowing slime in our special dark room. Watch your slime transform!
                     </p>
                   </div>
                 </div>
@@ -314,14 +311,12 @@ export default function SlimePlayPage() {
         </div>
       </section>
 
-      {/* Additional Information Section -*/}
+      {/* Additional Information Section */}
       <section className="py-20 bg-gradient-to-br from-green-50 to-purple-50">
         <div className="max-w-6xl mx-auto px-5">
-          {/* Title Changed */}
           <h2 className="text-4xl font-bold text-center text-red-600 mb-12">
             Additional Information
           </h2>
-          {/* Order changed and content updated */}
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white rounded-2xl p-8 border-l-4 border-green-400">
               <h4 className="text-xl font-bold text-red-600 mb-3">
@@ -341,7 +336,6 @@ export default function SlimePlayPage() {
                 and supervised environment for all activities.
               </p>
             </div>
-            {/* Age Requirement section updated and "For Kids 8+" removed */}
             <div className="bg-white rounded-2xl p-8 border-l-4 border-green-400">
               <h4 className="text-xl font-bold text-red-600 mb-3">
                 Age Requirement
@@ -357,7 +351,6 @@ export default function SlimePlayPage() {
                 </li>
               </ul>
             </div>
-            {/* Group Session point added */}
             <div className="bg-white rounded-2xl p-8 border-l-4 border-green-400">
               <h4 className="text-xl font-bold text-red-600 mb-3">
                 Group & Private Sessions
@@ -370,6 +363,8 @@ export default function SlimePlayPage() {
           </div>
         </div>
       </section>
+
+      {/* Gallery Section */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-5">
           <h2 className="text-4xl font-bold text-center text-red-600 mb-12">
@@ -401,7 +396,7 @@ export default function SlimePlayPage() {
       </section>
 
       {/* Booking Section */}
-     <section id="booking" className="py-20 bg-gray-50">
+      <section id="booking" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-5">
           <div className="bg-white rounded-3xl p-8 shadow-2xl">
             <h2 className="text-4xl font-bold text-center text-red-600 mb-8">Book Your Slime Experience</h2>
@@ -428,12 +423,12 @@ export default function SlimePlayPage() {
             {currentStep === 2 && (
               <div>
                 <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 2: Select Your Date</h3>
-                <div className="flex gap-2 flex-wrap justify-center mb-5">
+                <div className="flex gap-4 flex-wrap justify-center mb-5">
                   {[...Array(9)].map((_, i) => {
                     const date = new Date();
                     date.setDate(date.getDate() + i);
                     const value = date.toISOString().split('T')[0];
-                    const isMonday = date.getDay() === 1; // 1 is Monday
+                    const isMonday = date.getDay() === 1;
                     const isHyderabad = bookingData.location === 'mall';
                     const isDisabled = isMonday && isHyderabad;
                     
@@ -478,12 +473,10 @@ export default function SlimePlayPage() {
                 </div>
             )}
 
-
             {/* Step 4: Select Session & Time */}
             {currentStep === 4 && (
               <div>
-                {/* Session Selection Updated */}
-                 <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 4: Choose Session</h3>
+                <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 4: Choose Session</h3>
                  <div className="flex gap-5 flex-wrap justify-center mb-10">
                     <div onClick={() => selectSession('complete', '850')} className={`border-2 rounded-2xl p-6 text-center cursor-pointer min-w-48 ${bookingData.session === 'complete' ? 'border-purple-400 bg-purple-100' : 'hover:border-purple-400'}`}>
                         <div className="font-bold text-lg mb-1">Premium Experience</div>
@@ -498,7 +491,6 @@ export default function SlimePlayPage() {
                  </div>
 
                 <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 5: Select Time Slot</h3>
-                {/* Time Slot selection updated */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-5">
                   {timeSlots.map((slot) => (
                     <div key={slot.time} onClick={() => slot.status !== 'sold-out' && selectTime(slot.time)} 
@@ -524,7 +516,6 @@ export default function SlimePlayPage() {
               <div>
                 <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 6: Contact & Summary</h3>
                 <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Contact Form fields updated */}
                   <div>
                     <h4 className="text-xl font-semibold mb-4">Contact Information</h4>
                     <div className="space-y-4">
@@ -543,7 +534,6 @@ export default function SlimePlayPage() {
                     </div>
                   </div>
 
-                  {/* Booking Summary */}
                   <div>
                     <h4 className="text-xl font-semibold mb-4">Booking Summary</h4>
                     <div className="bg-gray-50 rounded-xl p-6">
@@ -552,7 +542,6 @@ export default function SlimePlayPage() {
                         <div><strong>Date:</strong> <span>{formatDate(bookingData.date)}</span></div>
                         <div><strong>Time:</strong> <span>{bookingData.time || 'Not selected'}</span></div>
                         <div><strong>Tickets:</strong> <span>{bookingData.quantity}</span></div>
-                        {/* "Glow in Dark" logic corrected in summary */}
                         <div><strong>Session:</strong> <span>{bookingData.session === 'complete' ? 'Premium Experience' : 'Base Package'}</span></div>
                         <ul className="list-disc list-inside ml-4 pt-1">
                           <li>Slime Play (45 min)</li>

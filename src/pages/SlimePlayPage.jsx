@@ -155,54 +155,62 @@ export default function SlimePlayPage() {
     >
       {/* Hero Section */}
       <section className="relative h-[70vh] bg-black flex items-center justify-center text-center text-white overflow-hidden">
-        <div className="absolute inset-0 z-10">
-          <video
-            ref={videoRef}
-            src="https://res.cloudinary.com/df2mieky2/video/upload/v1755029444/HYDERABAD_Slime_xa1l3x.mp4"
-            autoPlay
-            loop
-            playsInline
-            muted={!userInteracted || muted}
-            className="absolute w-auto min-w-full min-h-full max-w-none opacity-70"
-          />
-          
-          <button 
-            onClick={() => {
-              if (videoRef.current) {
-                videoRef.current.muted = !videoRef.current.muted;
-                setMuted(videoRef.current.muted);
-              }
-            }}
-            className="absolute bottom-6 right-6 z-20 bg-black/50 hover:bg-black/70 rounded-full p-3 backdrop-blur-sm transition-all duration-300"
-            aria-label={muted ? "Unmute video" : "Mute video"}
-          >
-            {muted ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-              </svg>
-            )}
-          </button>
-        </div>
+  <div className="absolute inset-0 z-10">
+    <video
+      ref={videoRef}
+      src="https://res.cloudinary.com/df2mieky2/video/upload/v1755029444/HYDERABAD_Slime_xa1l3x.mp4"
+      autoPlay
+      loop
+      playsInline
+      muted={!userInteracted || muted}
+      className="absolute w-auto min-w-full min-h-full max-w-none opacity-70"
+    />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-0" />
-        <div className="relative z-20 max-w-4xl px-5">
-          <h1 className="text-4xl md:text-6xl font-black mb-6 text-white drop-shadow-2xl">
-            Get Messy with Slime!
-          </h1>
-          <a
-            href="#booking"
-            className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse"
-          >
-            Book Your Slime Experience
-          </a>
-        </div>
-      </section>
+    {/* 🔊 Mute/Unmute button */}
+    <button 
+      onClick={() => {
+        if (videoRef.current) {
+          videoRef.current.muted = !videoRef.current.muted;
+          setMuted(videoRef.current.muted);
+        }
+      }}
+      className="absolute bottom-6 right-6 z-20 bg-black/50 hover:bg-black/70 rounded-full p-3 backdrop-blur-sm transition-all duration-300"
+      aria-label={muted ? "Unmute video" : "Mute video"}
+    >
+      {muted ? (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+        </svg>
+      ) : (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+        </svg>
+      )}
+    </button>
+  </div>
+
+  {/* 🔲 Gradient overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-0" />
+
+  {/* Center content (if you want text here later) */}
+  <div className="relative z-20 max-w-4xl text-center">
+    {/* You can add a heading/intro text here if needed */}
+  </div>
+
+  {/* 🔘 Button pinned to bottom center */}
+  <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+    <a
+      href="#booking"
+      className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse"
+    >
+      Book Your Slime Experience
+    </a>
+  </div>
+</section>
+
+
 
       {/* Package Overview Section */}
       <section className="py-20">

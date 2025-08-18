@@ -134,31 +134,64 @@ export default function SlimePlayPage() {
     };
     return locationNames[location] || "Not selected";
   };
+  const [muted, setMuted] = useState(true); // Start with muted video
 
   const getTotalPrice = () => bookingData.price * bookingData.quantity;
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-100 to-purple-100">
       {/* Hero Section - Video Updated */}
       <section className="relative h-[70vh] bg-black flex items-center justify-center text-center text-white overflow-hidden">
-        {/* Video background updated */}
+      {/* Video background */}
+      <div className="absolute inset-0 z-10">
         <video
           src="https://res.cloudinary.com/df2mieky2/video/upload/v1755029444/HYDERABAD_Slime_xa1l3x.mp4"
           autoPlay
           loop
-          muted
           playsInline
-          className="absolute z-0 w-auto min-w-full min-h-full max-w-none opacity-50"
+          muted={muted}
+          className="absolute w-auto min-w-full min-h-full max-w-none opacity-70"
+          id="heroVideo"
         ></video>
-        <div className="relative z-20 max-w-4xl px-5 mt-60">
-          
-          <a
-            href="#booking"
-            className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse " >
-            Book Your Slime Experience
-          </a>
-        </div>
-      </section>
+        
+        {/* Audio control button */}
+        <button 
+          onClick={() => {
+            const video = document.getElementById('heroVideo');
+            video.muted = !video.muted;
+            setMuted(video.muted);
+          }}
+          className="absolute bottom-6 right-6 z-20 bg-black/50 hover:bg-black/70 rounded-full p-3 backdrop-blur-sm transition-all duration-300"
+          aria-label={muted ? "Unmute video" : "Mute video"}
+        >
+          {muted ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+          )}
+        </button>
+      </div>
 
+      {/* Rest of your section content... */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-0"></div>
+      <div className="relative z-20 max-w-4xl px-5">
+        <h1 className="text-4xl md:text-6xl font-black mb-6 text-white drop-shadow-2xl">
+          Get Messy with Slime!
+        </h1>
+        <a
+          href="#booking"
+          className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse"
+        >
+          Book Your Slime Experience
+        </a>
+      </div>
+    </section>
+  
       {/* Package Overview Section */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-5">
@@ -369,7 +402,7 @@ export default function SlimePlayPage() {
 
       {/* Booking Section */}
      <section id="booking" className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-5">
+        <div className="max-w-6xl mx-auto px-5">
           <div className="bg-white rounded-3xl p-8 shadow-2xl">
             <h2 className="text-4xl font-bold text-center text-red-600 mb-8">Book Your Slime Experience</h2>
             
@@ -395,8 +428,8 @@ export default function SlimePlayPage() {
             {currentStep === 2 && (
               <div>
                 <h3 className="text-2xl font-bold text-red-600 text-center mb-6">Step 2: Select Your Date</h3>
-                <div className="flex gap-4 flex-wrap justify-center mb-5">
-                  {[...Array(7)].map((_, i) => {
+                <div className="flex gap-2 flex-wrap justify-center mb-5">
+                  {[...Array(9)].map((_, i) => {
                     const date = new Date();
                     date.setDate(date.getDate() + i);
                     const value = date.toISOString().split('T')[0];

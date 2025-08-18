@@ -65,7 +65,7 @@ const HomePage = () => {
   const handleBookNow = () => {
     if (typeof window !== 'undefined') {
       // Matches route in App.jsx
-      window.location.href = "/slime-play.html";
+      window.location.href = "/slime-play.html"; // Updated to match the correct route
     }
   };
 

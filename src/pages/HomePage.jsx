@@ -184,6 +184,24 @@ const HomePage = () => {
             </p>
           </div>
         </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center">
+            <div className="p-6 bg-white rounded-2xl shadow-lg">
+              <p className="text-4xl font-bold text-rose-600">25,000+</p>
+              <p className="text-gray-600 font-medium">Happy Tufters</p>
+            </div>
+            <div className="p-6 bg-white rounded-2xl shadow-lg">
+              <p className="text-4xl font-bold text-rose-600">500+</p>
+              <p className="text-gray-600 font-medium">Unique Designs</p>
+            </div>
+            <div className="p-6 bg-white rounded-2xl shadow-lg">
+              <p className="text-4xl font-bold text-rose-600">100%</p>
+              <p className="text-gray-600 font-medium">Premium Materials</p>
+            </div>
+            <div className="p-6 bg-white rounded-2xl shadow-lg">
+              <p className="text-4xl font-bold text-rose-600">3</p>
+              <p className="text-gray-600 font-medium">Studio Locations</p>
+            </div>
+          </div>
       </section>
 
       {/* Map Section (from ContactUsPage) */}

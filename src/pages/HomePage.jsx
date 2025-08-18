@@ -15,6 +15,18 @@ const carouselImages = [
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  function openWhatsApp(phoneNumber, message) {
+    // Only proceed if window is available (client-side)
+    if (typeof window !== 'undefined') {
+      const encodedMessage = encodeURIComponent(message);
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const url = isMobile 
+        ? `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+        : `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+  }
+
   // Auto-advance carousel
   useEffect(() => {
     const timer = setInterval(() => {
@@ -33,10 +45,34 @@ const HomePage = () => {
     );
   };
 
+  // Floating button visibility state and handlers
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (typeof window !== 'undefined') setShowTop(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handleBookNow = () => {
+    if (typeof window !== 'undefined') {
+      // Matches route in App.jsx
+      window.location.href = "/slime-play.html";
+    }
+  };
+
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif" }}>
       {/* Hero Section with Carousel */}
-      <header className="relative h-[80vh] text-white flex items-center justify-center text-center overflow-hidden">
+      <header className="relative h-[80vh] text-white flex items-end justify-center text-center overflow-hidden">
         {/* Carousel Container */}
         <div className="absolute inset-0">
           {carouselImages.map((image, index) => (
@@ -90,7 +126,7 @@ const HomePage = () => {
         </button>
 
         {/* Carousel Indicators */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10 flex gap-2">
           {carouselImages.map((_, index) => (
             <button
               key={index}
@@ -103,22 +139,13 @@ const HomePage = () => {
         </div>
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-[1]" />
 
-        {/* Text Content */}
-        <div className="relative z-[2] mt-auto mb-16 px-6">
-          <h1 className="text-5xl md:text-7xl font-black mb-4 text-amber-300 tracking-wide drop-shadow-2xl">
+        {/* Text Content - Simplified and at bottom */}
+        <div className="relative z-[2] mb-17 pb-2 px-6 w-full">
+          <h1 className="text-4xl md:text-6xl font-black mb-2 text-amber-300 drop-shadow-2xl">
             Creative Art Experiences
           </h1>
-          <p className="text-xl md:text-2xl max-w-4xl mx-auto mb-6 font-medium drop-shadow-lg">
-            Unleash your creativity through our guided sessions and fun events!
-          </p>
-          <a
-            href="#activities"
-            className="inline-block rounded-full text-white px-8 py-4 text-lg font-bold no-underline bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 transition-all hover:scale-105 shadow-xl"
-          >
-            Start Your Journey
-          </a>
         </div>
       </header>
 
@@ -159,6 +186,9 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Map Section (from ContactUsPage) */}
+     
+
       {/* Activities Section */}
       <section
         id="activities"
@@ -198,30 +228,30 @@ const HomePage = () => {
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="flex justify-center lg:justify-start">
-  <a
-    href="https://youtube.com/shorts/3Ho2S0v2PF0?si=jqswBjCvh31Vbd4u"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block w-full max-w-lg h-72 rounded-2xl shadow-2xl border-4 border-gradient-to-r from-pink-200 to-purple-200 overflow-hidden relative"
-  >
-    <img
-      src="https://img.youtube.com/vi/3Ho2S0v2PF0/maxresdefault.jpg"
-      alt="YouTube Video Thumbnail"
-      className="w-full h-full object-cover"
-    />
-    {/* Play button overlay */}
-    <div className="absolute inset-0 flex items-center justify-center">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-16 w-16 text-white drop-shadow-lg"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path d="M8 5v14l11-7z" />
-      </svg>
-    </div>
-  </a>
-</div>
+              <a
+                href="https://youtube.com/shorts/3Ho2S0v2PF0?si=jqswBjCvh31Vbd4u"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full max-w-lg h-72 rounded-2xl shadow-2xl border-4 border-gradient-to-r from-pink-200 to-purple-200 overflow-hidden relative"
+              >
+                <img
+                  src="https://img.youtube.com/vi/3Ho2S0v2PF0/maxresdefault.jpg"
+                  alt="YouTube Video Thumbnail"
+                  className="w-full h-full object-cover"
+                />
+                {/* Play button overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-16 w-16 text-white drop-shadow-lg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </a>
+            </div>
 
             <div className="text-center lg:text-left">
               <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
@@ -239,146 +269,178 @@ const HomePage = () => {
               </p>
             </div>
           </div>
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+          {/* Event Cards */}
+          <div className="flex flex-wrap justify-center gap-4">
+
             <EventCard
               icon="🎂"
-              title="Birthday Parties"
-              bgColor="bg-gradient-to-br from-pink-100 to-rose-100"
+              title="Birthdays"
+              bgColor="bg-gradient-to-br from-purple-100 to-violet-100"
             />
+
             <EventCard
-              icon="🎪"
-              title="Bridal Showers"
-              bgColor="bg-gradient-to-br from-purple-100 to-pink-100"
+              icon="👶"
+              title="Baby Shower"
+              bgColor="bg-gradient-to-br from-blue-100 to-cyan-100"
             />
+            
             <EventCard
               icon="🏢"
-              title="Corporate Events"
-              bgColor="bg-gradient-to-br from-blue-100 to-indigo-100"
+              title="Corporate"
+              bgColor="bg-gradient-to-br from-indigo-100 to-blue-100"
+            />
+            
+            <EventCard
+              icon="🎨"
+              title="Workshops"
+              bgColor="bg-gradient-to-br from-green-100 to-teal-100"
             />
           </div>
         </div>
       </section>
 
-
       {/* Instagram Feed Placeholder */}
-       <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
-  <div className="container mx-auto px-6 text-center">
-    <h2 className="text-3xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-      From Our Instagram
-    </h2>
-    <p className="text-gray-600 mb-6">
-      Follow us{" "}
-      <a
-        href="https://www.instagram.com/artgram_yourhobbylobby/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-bold text-pink-600 hover:text-purple-600 hover:underline transition-colors"
-      >
-        @artgram_yourhobbylobby
-      </a>
-    </p>
+      <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+            From Our Instagram
+          </h2>
+          <p className="text-gray-600 mb-6">
+            Follow us{" "}
+            <a
+              href="https://www.instagram.com/artgram_yourhobbylobby/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-pink-600 hover:text-purple-600 hover:underline transition-colors"
+            >
+              @artgram_yourhobbylobby
+            </a>
+          </p>
 
-    <div class="flex justify-center gap-12 flex-wrap">
-      <iframe 
-        src="https://www.instagram.com/reel/DGS5MUppMc4/embed" 
-        width="280" 
-        height="360" 
-        frameborder="0" 
-        scrolling="no" 
-        allowtransparency="true">
-      </iframe>
-      
-      <iframe 
-        src="https://www.instagram.com/reel/DNC-sJuR0A4/embed?utm_source=ig_embed&hidecaption=true" 
-        width="280" 
-        height="360" 
-        frameborder="0" 
-        scrolling="no" 
-        allowtransparency="true">
-      </iframe>
-      
-      <iframe 
-        src="https://www.instagram.com/reel/DM91tFgvQrS/embed?utm_source=ig_embed&hidecaption=false" 
-        width="280" 
-        height="360" 
-        frameborder="0" 
-        scrolling="no" 
-        allowtransparency="true">
-      </iframe>
-
-      
-    </div>
-  </div>
-</section>
-
+          <div className="flex justify-center gap-12 flex-wrap">
+            <iframe 
+              src="https://www.instagram.com/reel/DGS5MUppMc4/embed" 
+              width="280" 
+              height="360" 
+              frameBorder="0" 
+              scrolling="no" 
+              allowTransparency="true"
+              title="Instagram Reel 1"
+            ></iframe>
+            
+            <iframe 
+              src="https://www.instagram.com/reel/DNC-sJuR0A4/embed?utm_source=ig_embed&hidecaption=true" 
+              width="280" 
+              height="360" 
+              frameBorder="0" 
+              scrolling="no" 
+              allowTransparency="true"
+              title="Instagram Reel 2"
+            ></iframe>
+            
+            <iframe 
+              src="https://www.instagram.com/reel/DM91tFgvQrS/embed?utm_source=ig_embed&hidecaption=false" 
+              width="280" 
+              height="360" 
+              frameBorder="0" 
+              scrolling="no" 
+              allowTransparency="true"
+              title="Instagram Reel 3"
+            ></iframe>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials Section */}
-       <section className="py-24 bg-white ">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-16 text-center">
             In their own words: Artgram experiences
           </h2>
 
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto text-white">
-  <TestimonialCard
-    stars="⭐⭐⭐⭐⭐"
-    text="Had a wonderful time doing the slime activity! Everything was well-organized, and the staff were so kind, patient, and engaging. It was a lot of fun for both kids and adults!"
-    name="Tejaswi Kalisetty"
-    bgColor="bg-gradient-to-br from-gray-600 to-blue-900 text-white"
-  />
-  <TestimonialCard
-    stars="⭐⭐⭐⭐⭐"
-    text="We hosted a onesie-themed baby shower at Artgram, and it was the best decision! Their team was attentive and turned a simple idea into a beautiful, memorable event."
-    name="Mohana Swetha Nune"
-    bgColor="bg-gradient-to-br from-gray-600 to-blue-900 text-white"
-  />
-  <TestimonialCard
-    stars="⭐⭐⭐⭐⭐"
-    text="I celebrated my daughter's birthday party here and everyone had a fantastic time! The venue was spacious, bright, and easy to reach, and the team was very responsive."
-    name="Bhaswati Bhar"
-    bgColor="bg-gradient-to-br from-gray-600 to-blue-900 text-white"
-  />
-</div>
-
+            <TestimonialCard
+              stars="⭐⭐⭐⭐⭐"
+              text="Had a wonderful time doing the slime activity! Everything was well-organized, and the staff were so kind, patient, and engaging. It was a lot of fun for both kids and adults!"
+              name="Tejaswi Kalisetty"
+              bgColor="bg-gradient-to-br from-gray-600 to-blue-900 text-white"
+            />
+            <TestimonialCard
+              stars="⭐⭐⭐⭐⭐"
+              text="We hosted a onesie-themed baby shower at Artgram, and it was the best decision! Their team was attentive and turned a simple idea into a beautiful, memorable event."
+              name="Mohana Swetha Nune"
+              bgColor="bg-gradient-to-br from-gray-600 to-blue-900 text-white"
+            />
+            <TestimonialCard
+              stars="⭐⭐⭐⭐⭐"
+              text="I celebrated my daughter's birthday party here and everyone had a fantastic time! The venue was spacious, bright, and easy to reach, and the team was very responsive."
+              name="Bhaswati Bhar"
+              bgColor="bg-gradient-to-br from-gray-600 to-blue-900 text-white"
+            />
+          </div>
         </div>
       </section>
-      {/* Enhanced Branches Section */}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 max-w-7xl mx-auto">
-        <EnhancedBranchCard
-          name="Hyderabad"
-          address="#NO.8-2-686/K/1 AND 8-2686/K/2, 5TH FLOOR, KIMTEE SQUARE, ROAD NO-12, BANJARA HILLS, CIRCLE 37, HYDERABAD 500034"
-          phone="+917766012299"
-          bgColor="from-orange-400 via-red-400 to-pink-400"
-          textColor="text-white"
-          imageUrl="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637272/wp6539521_vvafqv.jpg"
-          cityTag="Pearl City"
-        />
-        <EnhancedBranchCard
-          name="Bangalore"
-          address="#418, 4TH FLOOR, JB ARCADE, 27TH MAIN ROAD, HSR LAYOUT, SECTOR 1, BENGALURU 560102"
-          phone="+919216345672"
-          bgColor="from-purple-500 via-indigo-500 to-blue-500"
-          textColor="text-white"
-          imageUrl="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637352/jayanth-muppaneni-y96JVdGu7XU-unsplash_1_kooajm.jpg"
-          cityTag="Garden City"
-        />
-        <EnhancedBranchCard
-          name="Vijayawada"
-          address="#40-6-11, 2ND FLOOR, MEENAKSHI TOWERS HOTEL, MURALI FORTUNE ROAD, MOGALRAJPURAM, OPP. SUBWAY 520010"
-          phone="+919686846100"
-          bgColor="from-pink-500 via-rose-500 to-red-500"
-          textColor="text-white"
-          imageUrl="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637135/durgamma_temple_vj_6472215382_l3h6wj.jpg"
-          cityTag="Business Capital"
-        />
+      {/* Branches Section */}
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="text-center text-3xl font-bold mb-12 text-gray-800">Our Branches</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <BranchCard
+              img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637272/wp6539521_vvafqv.jpg"
+              name="Hyderabad"
+              address="#NO.8-2-686/K/1 AND 8-2686/K/2, 5TH FLOOR, KIMTEE SQUARE, ROAD NO-12, BANJARA HILLS, CIRCLE 37, HYDERABAD 500034"
+              phone="+917766012299"
+              onWhatsApp={() => openWhatsApp("917766012299", "Hi, I am interested in ArtGram activities in Hyderabad!")}
+            />
+            <BranchCard
+              img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637352/jayanth-muppaneni-y96JVdGu7XU-unsplash_1_kooajm.jpg"
+              name="Bangalore"
+              address="#418, 4TH FLOOR, JB ARCADE, 27TH MAIN ROAD, HSR LAYOUT, SECTOR 1, BENGALURU 560102"
+              phone="+919216345672"
+              onWhatsApp={() => openWhatsApp("919216345672", "Hi, I am interested in ArtGram activities in Bangalore!")}
+            />
+            <BranchCard
+              img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754637135/durgamma_temple_vj_6472215382_l3h6wj.jpg"
+              name="Vijayawada"
+              address="#40-6-11, 2ND FLOOR, MEENAKSHI TOWERS HOTEL, MURALI FORTUNE ROAD, MOGALRAJPURAM, OPP. SUBWAY 520010"
+              phone="+919686846100"
+              onWhatsApp={() => openWhatsApp("919686846100", "Hi, I am interested in ArtGram activities in Vijayawada!")}
+            />
+          </div>
+        </div>
+      </section>
+      {/* Floating action buttons: Book Now and Scroll to Top */}
+      <div aria-hidden={false} className="fixed right-6 bottom-6 z-50 flex flex-col items-end gap-3">
+        <button
+          onClick={handleBookNow}
+          className="inline-flex items-center gap-2 bg-amber-500 text-white px-4 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-200"
+          aria-label="Book Slime Session"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2a2 2 0 00-2 2v1H7a2 2 0 00-2 2v1H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2v-6a2 2 0 00-2-2h-1V7a2 2 0 00-2-2h-3V4a2 2 0 00-2-2zM9 7V5h6v2H9z"/>
+          </svg>
+          <span className="font-semibold">Book Slime Session</span>
+        </button>
+
+        {showTop && (
+          <button
+            onClick={scrollToTop}
+            className="inline-flex items-center justify-center bg-white text-gray-800 w-12 h-12 rounded-full shadow-lg hover:scale-105 transition-transform duration-200"
+            aria-label="Scroll to top"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+            </svg>
+          </button>
+        )}
       </div>
+
     </div>
   );
 };
 
-// Enhanced Activity Card Component
+// Activity Card Component
 const ActivityCard = ({ img, title, text, bgColor }) => {
   return (
     <div
@@ -402,7 +464,7 @@ const ActivityCard = ({ img, title, text, bgColor }) => {
   );
 };
 
-// Enhanced Testimonial Card Component
+// Testimonial Card Component
 const TestimonialCard = ({ stars, text, name, bgColor }) => {
   return (
     <div
@@ -419,7 +481,7 @@ const TestimonialCard = ({ stars, text, name, bgColor }) => {
   );
 };
 
-// Enhanced Event Card Component
+// Event Card Component
 const EventCard = ({ icon, title, bgColor }) => {
   return (
     <div
@@ -433,103 +495,33 @@ const EventCard = ({ icon, title, bgColor }) => {
   );
 };
 
-// Enhanced Branch Card Component
-const EnhancedBranchCard = ({
-  name,
-  address,
-  phone,
-  bgColor,
-  textColor,
-  imageUrl,
-  cityTag,
-}) => {
+// Branch Card Component with official logos (from ContactUsPage.jsx)
+const BranchCard = ({ img, name, address, phone, onWhatsApp }) => {
   return (
-    <div className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:rotate-1">
-      {/* Background Gradient Overlay - more transparent */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${bgColor} opacity-60 z-10`}
-      ></div>
-
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src={imageUrl}
-          alt={`${name} branch`}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
+    <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 cursor-pointer transform hover:scale-105">
+      <div className="relative h-52 overflow-hidden">
+        <img src={img || "/placeholder.svg"} alt={name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
       </div>
-
-      {/* Content Container */}
-      <div className="relative z-20 h-96 flex flex-col justify-between p-8">
-        {/* Top Section - City Tag */}
-        <div className="flex justify-between items-start">
-          <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-white border border-white/30">
-            {cityTag}
-          </span>
-          <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
-        </div>
-
-        {/* Middle Section - City Name */}
-        <div className="text-center py-4">
-          <h3
-            className={`text-4xl font-black ${textColor} tracking-tight leading-none`}
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
-            {name}
-          </h3>
-          <div className="w-20 h-1 bg-white/50 mx-auto mt-3 rounded-full"></div>
-        </div>
-
-        {/* Bottom Section - Address & Actions */}
-        <div className="space-y-4">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
-            <p
-              className={`text-sm ${textColor} leading-relaxed opacity-90`}
-              style={{ fontFamily: "'Inter', sans-serif" }}
-            >
-              {address}
-            </p>
-          </div>
-
-          {/* Action Buttons */}
-          {/* Action Buttons */}
-<div className="flex gap-3">
-  <a
-    href={`tel:${phone}`}
-    className="flex-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-xl px-4 py-3 flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300 hover:scale-105"
-    style={{ fontFamily: "'Inter', sans-serif" }}
-  >
-    {/* Original Phone Icon */}
-    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-    </svg>
-    Call Now
-  </a>
-  <a
-    href={`https://wa.me/${phone}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex-1 bg-green-500/80 hover:bg-green-500 backdrop-blur-sm border border-green-400/50 rounded-xl px-4 py-3 flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300 hover:scale-105"
-    style={{ fontFamily: "'Inter', sans-serif" }}
-  >
-    {/* Official WhatsApp Logo */}
-    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-    WhatsApp
-  </a>
-</div>
+      <div className="p-6 flex flex-col flex-grow">
+        <h4 className="text-xl font-bold mb-2 text-gray-800 group-hover:text-purple-600">{name}</h4>
+        <p className="text-slate-600 text-sm mb-4 flex-grow">{address}</p>
+        <div className="flex gap-3 mt-auto">
+          <a href={`tel:${phone}`} className="flex-1 flex items-center justify-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-semibold hover:bg-purple-200 transition-colors no-underline">
+            {/* Official Phone Icon */}
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+            </svg>
+            <span>Call</span>
+          </a>
+          <button onClick={onWhatsApp} className="flex-1 flex items-center justify-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-lg font-semibold hover:bg-green-200 transition-colors">
+            {/* Official WhatsApp Logo */}
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </button>
         </div>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute top-6 right-6 z-30">
-        <div className="w-3 h-3 bg-white/30 rounded-full"></div>
-        <div className="w-2 h-2 bg-white/50 rounded-full mt-2 ml-1"></div>
-      </div>
-
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/20 to-transparent z-15"></div>
     </div>
   );
 };

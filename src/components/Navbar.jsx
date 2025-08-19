@@ -332,12 +332,7 @@ const Navbar = () => {
                   >
                     🧶 Tufting Experience
                   </Link>
-                  <Link
-                    to="/activities.html"
-                    className="block px-3 py-2 rounded-md hover:bg-gray-50 no-underline"
-                  >
-                    📋 View All Activities
-                  </Link>
+                  
                 </div>
               )}
             </div>

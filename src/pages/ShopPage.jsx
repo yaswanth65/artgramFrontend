@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const ShopPage = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -10,64 +11,44 @@ const ShopPage = () => {
     setIsVisible(true)
   }, [])
 
-  const products = [
-    {
-      id: 1,
-      title: "DIY Slime Kit",
-      desc: "Create colorful, glittery slime at home! Includes glue, activator, glitter & tools.",
-      price: 499,
-      originalPrice: 699,
-      category: "slime",
-      rating: 4.8,
-      reviews: 124,
-      badge: "Best Seller",
-      bg: "https://res.cloudinary.com/df2mieky2/image/upload/v1754831666/IMG_3413_iqs2bq.jpg",
-      href: "/shop/diy-slime-kit",
-      features: ["Easy to follow guide", "Safe ingredients", "Multiple colors"]
-    },
-    {
-      id: 2,
-      title: "Beginner Art Set",
-      desc: "Includes sketchbook, paints, brushes & pencils for young aspiring artists.",
-      price: 799,
-      originalPrice: 999,
-      category: "art",
-      rating: 4.9,
-      reviews: 89,
-      badge: "New",
-      bg: "https://res.cloudinary.com/df2mieky2/image/upload/v1754831666/IMG_3400_oazvl5.jpg",
-      href: "/shop/beginner-art-set",
-      features: ["Professional quality", "Complete starter set", "Instruction booklet"]
-    },
-    {
-      id: 3,
-      title: "Mini Tufting Gun Kit",
-      desc: "Perfect for beginners wanting to try rug tufting at home.",
-      price: 2499,
-      originalPrice: 2999,
-      category: "tufting",
-      rating: 4.7,
-      reviews: 45,
-      badge: "Premium",
-      bg: "https://res.cloudinary.com/df2mieky2/image/upload/v1754831660/IMG_3352_nsdiar.jpg",
-      href: "/shop/mini-tufting-kit",
-      features: ["Professional tool", "Beginner friendly", "Video tutorials included"]
-    },
-    {
-      id: 4,
-      title: "Advanced Slime Kit",
-      desc: "Glow-in-the-dark and color-changing slime ingredients for the slime expert.",
-      price: 899,
-      originalPrice: 1199,
-      category: "slime",
-      rating: 4.8,
-      reviews: 67,
-      badge: "Popular",
-      bg: "https://res.cloudinary.com/df2mieky2/image/upload/v1754831818/Screenshot_2025-08-10_184600_dugdpm.png",
-      href: "/shop/advanced-slime-kit",
-      features: ["Glow-in-the-dark", "Color changing", "Advanced techniques"]
-    }
-  ]
+  const [productsFromStore, setProductsFromStore] = useState([]);
+  useEffect(() => {
+    const load = () => {
+      try {
+        const raw = localStorage.getItem('admin_products');
+        setProductsFromStore(raw ? JSON.parse(raw) : []);
+      } catch {
+        setProductsFromStore([]);
+      }
+    };
+    load();
+    const onStorage = (e) => {
+      if (e.key === 'admin_products' || !e.key) load();
+    };
+    const onProductsUpdated = () => load();
+    window.addEventListener('storage', onStorage);
+    window.addEventListener('products_updated', onProductsUpdated);
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      window.removeEventListener('products_updated', onProductsUpdated);
+    };
+  }, []);
+
+  const products = productsFromStore.map(p => ({
+    id: p.id,
+    title: p.title,
+    desc: p.description,
+    price: p.price,
+    originalPrice: p.originalPrice,
+  stock: p.stock || 0,
+    category: p.category || 'other',
+    rating: p.rating || 4.5,
+    reviews: p.reviews || 0,
+    badge: p.badge || '',
+    bg: p.image || '',
+    href: `/shop/${(p.title||'product').toLowerCase().replace(/[^a-z0-9]+/g,'-')}`,
+    features: (p.features && p.features.length) ? p.features : [],
+  }));
 
   const categories = [
     { id: 'all', name: 'All Products', icon: '🎨', count: products.length },
@@ -295,7 +276,39 @@ const ShopPage = () => {
   )
 }
 
-const ProductCard = ({ product, index, onHover, onLeave }) => {
+const ProductCard = ({ product, index, onHover, onLeave, onAddToCart, getBadgeColor }) => {
+  const slug = `${(product.title||'').toLowerCase().replace(/[^a-z0-9]+/g,'-')}`;
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    try {
+      const raw = localStorage.getItem('cart_items');
+      const cart = raw ? JSON.parse(raw) : [];
+      const existing = cart.find(c => c.id === product.id);
+      // check stock if available
+      const stock = product.stock || Infinity;
+      if (existing) {
+        if ((existing.qty || 1) + 1 > stock) return alert('Not enough stock');
+        existing.qty = (existing.qty || 1) + 1;
+      } else {
+        if (stock < 1) return alert('Out of stock');
+        cart.push({ 
+          id: product.id, 
+          title: product.title, 
+          price: product.price, 
+          image: product.bg, 
+          qty: 1 
+        });
+      }
+      localStorage.setItem('cart_items', JSON.stringify(cart));
+      window.dispatchEvent(new Event('cart_updated'));
+      alert('Added to cart');
+      if (onAddToCart) onAddToCart(product);
+    } catch {
+      alert('Could not add to cart');
+    }
+  };
+
   return (
     <div
       className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer transform hover:scale-105"
@@ -304,36 +317,62 @@ const ProductCard = ({ product, index, onHover, onLeave }) => {
       onMouseLeave={onLeave}
     >
       {/* Product Image */}
-      <div
-        className="h-80 w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-110"
-        style={{ backgroundImage: `url('${product.bg}')` }}
-      />
+      <div className="relative h-80 w-full overflow-hidden">
+        <div
+          className="h-full w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-110"
+          style={{ backgroundImage: `url('${product.bg}')` }}
+        />
+        
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <Link 
+            to={`/shop/${slug}`}
+            className="px-6 py-3 bg-gradient-to-r from-purple-600 to-rose-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105"
+          >
+            View Details
+          </Link>
+        </div>
 
-      {/* Hover Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-rose-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105">
-          View Details
-        </button>
+        {/* Optional Badge (Top Left) */}
+        {product.badge && (
+          <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-bold shadow-lg ${getBadgeColor ? getBadgeColor(product.badge) : 'bg-purple-600'}`}>
+            {product.badge}
+          </div>
+        )}
+
+        {/* Optional Discount Badge (Top Right) */}
+        {product.originalPrice && (
+          <div className="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
+            -{Math.round((1 - product.price / product.originalPrice) * 100)}%
+          </div>
+        )}
+
+        {/* Shop Icon (Bottom Right) */}
+        <div 
+          className="absolute bottom-4 right-4 bg-white/90 p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white cursor-pointer"
+          onClick={handleAddToCart}
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-6 w-6 text-gray-800" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" 
+            />
+          </svg>
+        </div>
       </div>
 
-      {/* Optional Badge (Top Left) */}
-      {product.badge && (
-        <div
-          className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-bold shadow-lg`}
-        >
-          {product.badge}
-        </div>
-      )}
-
-      {/* Optional Discount Badge (Top Right) */}
-      {product.originalPrice && (
-        <div className="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
-          -{Math.round((1 - product.price / product.originalPrice) * 100)}%
-        </div>
-      )}
+      {/* Product Info */}
+      
     </div>
   );
 };
-
 
 export default ShopPage;

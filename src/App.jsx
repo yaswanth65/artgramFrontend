@@ -12,6 +12,9 @@ import ContactUsPage from "./pages/ContactUsPage"
 import ShopPage from "./pages/ShopPage"
 import EventsPage from "./pages/EventsPage"
 import BookSessionPage from "./pages/BookSessionPage"
+import AdminDashboard from "./pages/AdminDashboard"
+import CartPage from "./pages/CartPage"
+import ProductDetail from "./pages/ProductDetail"
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
             <Route path="/shop.html" element={<ShopPage />} />
             <Route path="/events.html" element={<EventsPage />} />
             <Route path="/book-session.html" element={<BookSessionPage />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/shop/:slug" element={<ProductDetail />} />
 
             {/* Fallback to home */}
             <Route path="*" element={<Navigate to="/index.html" replace />} />

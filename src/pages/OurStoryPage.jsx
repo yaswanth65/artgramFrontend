@@ -68,27 +68,27 @@ const OurStoryPage = () => {
   const collaborationLogos = [
     {
       name: "Lala Land",
-      url: "https://res.cloudinary.com/df2mieky2/image/upload/v1755031868/IMG_5618-removebg-preview_o4fgpz.png",
+      url: "https://res.cloudinary.com/dwb3vztcv/image/upload/v1755589424/1_d02g4n.png",
     },
     {
       name: "Cocobakes",
-      url: "https://res.cloudinary.com/df2mieky2/image/upload/v1755031868/IMG_5620-removebg-preview_d2lovs.png",
+      url: "https://res.cloudinary.com/dwb3vztcv/image/upload/v1755589425/2_tnqlc0.png",
     },
     {
       name: "The Culture Garage",
-      url: "https://res.cloudinary.com/df2mieky2/image/upload/v1755031868/IMG_5625-removebg-preview_ezcn4i.png",
+      url: "https://res.cloudinary.com/dwb3vztcv/image/upload/v1755589427/3_aic0ye.png",
     },
     {
       name: "Pop up",
-      url: "https://res.cloudinary.com/df2mieky2/image/upload/v1755031868/IMG_5619-removebg-preview_yt7wbq.png",
+      url: "https://res.cloudinary.com/dwb3vztcv/image/upload/v1755589429/4_gkcesc.png",
     },
     {
       name: "Lim",
-      url: "https://res.cloudinary.com/df2mieky2/image/upload/v1755031868/IMG_5624-removebg-preview_e86uyl.png",
+      url: "https://res.cloudinary.com/dwb3vztcv/image/upload/v1755589433/6_t40s4k.png",
     },
     {
       name: "Kali",
-      url: "https://res.cloudinary.com/df2mieky2/image/upload/v1755031868/IMG_5621-removebg-preview_qsz3d0.png",
+      url: "https://res.cloudinary.com/dwb3vztcv/image/upload/v1755589431/5_wwhme1.png",
     },
   ];
 
@@ -342,7 +342,7 @@ const OurStoryPage = () => {
               <p className="text-lg md:text-xl text-gray-600">
                 Working together to spread creativity
               </p>
-            </div>
+            </div>    
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
               {collaborationLogos.map((logo, index) => (
@@ -422,3 +422,4 @@ const OurStoryPage = () => {
 };
 
 export default OurStoryPage;
+

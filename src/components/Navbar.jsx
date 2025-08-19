@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+// localStorage cart key
+const CART_KEY = 'cart_items';
+
 const Navbar = () => {
   // State for the main mobile menu
   const [open, setOpen] = useState(false);
@@ -18,6 +21,8 @@ const Navbar = () => {
     setOpen(false);
     setDesktopDropdownOpen(false);
     setMobileDropdownOpen(false);
+  // refresh cart count on navigation
+  updateCartCount();
   }, [location.pathname]);
 
   // Effect to close the desktop dropdown when clicking outside of it
@@ -41,6 +46,35 @@ const Navbar = () => {
     }
   }, [open]);
 
+  // Cart count state
+  const [cartCount, setCartCount] = useState(0);
+
+  const updateCartCount = () => {
+    try {
+      const raw = localStorage.getItem(CART_KEY);
+      const items = raw ? JSON.parse(raw) : [];
+      const count = items.reduce((s, i) => s + (i.qty || 1), 0);
+      setCartCount(count);
+    } catch {
+      setCartCount(0);
+    }
+  };
+
+  // keep count in sync across tabs
+  useEffect(() => {
+    updateCartCount();
+    const handler = (e) => {
+      if (e.key === CART_KEY) updateCartCount();
+    };
+    const custom = () => updateCartCount();
+    window.addEventListener('storage', handler);
+    window.addEventListener('cart_updated', custom);
+    return () => {
+      window.removeEventListener('storage', handler);
+      window.removeEventListener('cart_updated', custom);
+    };
+  }, []);
+
   const linkBase =
    "text-slate-900 hover:text-rose-600 transition-colors px-3 py-2 rounded-md text-lg font-medium";
   const activeLink = "text-rose-600 font-semibold";
@@ -60,7 +94,7 @@ const Navbar = () => {
       src="https://res.cloudinary.com/dwb3vztcv/image/upload/v1755159745/ARTGRAM_LOGO_zdhftc.png"
       alt="ArtGram Logo"
       className="h-20 w-auto pt-3"
-    /><span className="text-4xl font-bold text-rose-600 pt-2 pl-3">Artgram</span>
+    /><span className="text-4xl font-bold text-rose-600 pt-2 pl-3">ArtGram</span>
   </Link>
 </div>
 
@@ -176,9 +210,6 @@ const Navbar = () => {
     </div>
   </Link>
 
-  
-
-  
 </div>
 
               )}
@@ -217,12 +248,20 @@ const Navbar = () => {
               Contact
             </Link>
 
+            {/* Cart link */}
+            <Link to="/cart" className="ml-4 inline-flex items-center gap-2 px-3 py-2 rounded-md text-slate-900 hover:text-rose-600 no-underline">
+             <svg height="20px" version="1.1" viewBox="0 0 20 20" width="20px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><defs/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#000000" id="Core" transform="translate(-212.000000, -422.000000)"><g id="shopping-cart" transform="translate(212.000000, 422.000000)"><path d="M6,16 C4.9,16 4,16.9 4,18 C4,19.1 4.9,20 6,20 C7.1,20 8,19.1 8,18 C8,16.9 7.1,16 6,16 L6,16 Z M0,0 L0,2 L2,2 L5.6,9.6 L4.2,12 C4.1,12.3 4,12.7 4,13 C4,14.1 4.9,15 6,15 L18,15 L18,13 L6.4,13 C6.3,13 6.2,12.9 6.2,12.8 L6.2,12.7 L7.1,11 L14.5,11 C15.3,11 15.9,10.6 16.2,10 L19.8,3.5 C20,3.3 20,3.2 20,3 C20,2.4 19.6,2 19,2 L4.2,2 L3.3,0 L0,0 L0,0 Z M16,16 C14.9,16 14,16.9 14,18 C14,19.1 14.9,20 16,20 C17.1,20 18,19.1 18,18 C18,16.9 17.1,16 16,16 L16,16 Z" id="Shape"/></g></g></g></svg>
+              <span className="text-sm">Cart</span>
+              {cartCount > 0 && <span className="ml-2 inline-flex items-center justify-center bg-rose-600 text-white text-xs px-2 py-1 rounded-full">{cartCount}</span>}
+            </Link>
+
             <Link
               to="/slime-play.html#booking"
               className="ml-2 inline-block rounded-full bg-rose-600 text-white px-5 py-2 font-semibold hover:bg-rose-700 hover:-translate-y-0.5 hover:shadow-lg transition-all no-underline"
             >
               Book a Slime Session
             </Link>
+            
           </div>
         </div>
       </div>
@@ -293,7 +332,12 @@ const Navbar = () => {
                   >
                     🧶 Tufting Experience
                   </Link>
-                  
+                  <Link
+                    to="/activities.html"
+                    className="block px-3 py-2 rounded-md hover:bg-gray-50 no-underline"
+                  >
+                    📋 View All Activities
+                  </Link>
                 </div>
               )}
             </div>
@@ -337,6 +381,16 @@ const Navbar = () => {
             >
               Book a Slime Session
             </Link>
+            <div className="mt-3">
+              <Link to="/cart" className="flex items-center justify-center gap-2 px-3 py-2 rounded-md text-slate-900 hover:text-rose-600 no-underline">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 21a1 1 0 100-2 1 1 0 000 2zm-8 0a1 1 0 100-2 1 1 0 000 2z" />
+                </svg>
+                <span className="text-sm">Cart</span>
+                {cartCount > 0 && <span className="ml-2 inline-flex items-center justify-center bg-rose-600 text-white text-xs px-2 py-1 rounded-full">{cartCount}</span>}
+              </Link>
+            </div>
           </div>
         </div>
       )}

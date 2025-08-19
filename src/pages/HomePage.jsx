@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 // Carousel images for hero section
 const carouselImages = [
@@ -65,8 +65,7 @@ const HomePage = () => {
   };
 
   const handleBookNow = () => {
-  // Use client-side navigation to avoid reloads and ensure React Router handles the route
-  navigate('/slime-play.html');
+    navigate('/slime-play.html');
   };
 
   return (
@@ -137,8 +136,6 @@ const HomePage = () => {
             />
           ))}
         </div>
-
-        
       </header>
 
       {/* About Section */}
@@ -164,7 +161,7 @@ const HomePage = () => {
               From Inspiration to Impact
             </h3>
             <p className="mb-4 text-lg leading-relaxed text-gray-700">
-              ArtGram began with a dream — to make art accessible, joyful, and
+              Artgram began with a dream — to make art accessible, joyful, and
               part of everyday life. What started as a small initiative has
               grown into a vibrant community, nurturing creativity across all
               ages.
@@ -177,27 +174,24 @@ const HomePage = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center">
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">25,000+</p>
-              <p className="text-gray-600 font-medium">Customers</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">40+</p>
-              <p className="text-gray-600 font-medium">Unique Designs</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">100+</p>
-              <p className="text-gray-600 font-medium">Birthday Parties</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">5</p>
-              <p className="text-gray-600 font-medium">Studio Locations</p>
-            </div>
+          <div className="p-6 bg-white rounded-2xl shadow-lg">
+            <p className="text-4xl font-bold text-rose-600">25,000+</p>
+            <p className="text-gray-600 font-medium">Customers</p>
           </div>
+          <div className="p-6 bg-white rounded-2xl shadow-lg">
+            <p className="text-4xl font-bold text-rose-600">40+</p>
+            <p className="text-gray-600 font-medium">Unique Designs</p>
+          </div>
+          <div className="p-6 bg-white rounded-2xl shadow-lg">
+            <p className="text-4xl font-bold text-rose-600">100+</p>
+            <p className="text-gray-600 font-medium">Birthday Parties</p>
+          </div>
+          <div className="p-6 bg-white rounded-2xl shadow-lg">
+            <p className="text-4xl font-bold text-rose-600">5</p>
+            <p className="text-gray-600 font-medium">Studio Locations</p>
+          </div>
+        </div>
       </section>
-
-      {/* Map Section (from ContactUsPage) */}
-     
 
       {/* Activities Section */}
       <section
@@ -216,18 +210,21 @@ const HomePage = () => {
               title="🎨 Art Making"
               text="Enjoy 30+ hands on activities for all age groups"
               bgColor="bg-gradient-to-br from-pink-100 to-purple-100"
+              link="/art-making-activity.html"
             />
             <ActivityCard
               img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754630801/HAR05956_c7944n.jpg"
               title="🌈 Slime Play"
               text="Get messy and creative with colorful, stretchy slime! Perfect for kids and adults who love sensory fun."
               bgColor="bg-gradient-to-br from-blue-100 to-cyan-100"
+              link="/slime-play.html"
             />
             <ActivityCard
               img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651197/HAR05826_iefkzg.jpg"
               title="🧶 Tufting"
               text="Explore a new art form: make your own rugs and coasters to decorate your home."
               bgColor="bg-gradient-to-br from-green-100 to-emerald-100"
+              link="/tufting-activity.html"
             />
           </div>
         </div>
@@ -281,29 +278,29 @@ const HomePage = () => {
           </div>
           {/* Event Cards */}
           <div className="flex flex-wrap justify-center gap-4 pt-4">
-
             <EventCard
               icon="🎂"
               title="Birthdays"
               bgColor="bg-gradient-to-br from-purple-100 to-violet-100"
+              link="/events.html#birthdays"
             />
-
             <EventCard
               icon="👶"
               title="Baby Shower"
               bgColor="bg-gradient-to-br from-blue-100 to-cyan-100"
+              link="/events.html#baby-shower"
             />
-            
             <EventCard
               icon="🏢"
               title="Corporate"
               bgColor="bg-gradient-to-br from-indigo-100 to-blue-100"
+              link="/events.html#corporate"
             />
-            
             <EventCard
               icon="🎨"
               title="Workshops"
               bgColor="bg-gradient-to-br from-green-100 to-teal-100"
+              link="/events.html#workshops"
             />
           </div>
         </div>
@@ -337,7 +334,6 @@ const HomePage = () => {
               allowTransparency="true"
               title="Instagram Reel 1"
             ></iframe>
-            
             <iframe 
               src="https://www.instagram.com/reel/DNC-sJuR0A4/embed?utm_source=ig_embed&hidecaption=true" 
               width="280" 
@@ -347,7 +343,6 @@ const HomePage = () => {
               allowTransparency="true"
               title="Instagram Reel 2"
             ></iframe>
-            
             <iframe 
               src="https://www.instagram.com/reel/DM91tFgvQrS/embed?utm_source=ig_embed&hidecaption=false" 
               width="280" 
@@ -417,9 +412,27 @@ const HomePage = () => {
               phone="+919686846100"
               onWhatsApp={() => openWhatsApp("919686846100", "Hi, I am interested in ArtGram activities in Vijayawada!")}
             />
+            <BranchCard
+              img="https://media2.thrillophilia.com/images/photos/000/013/594/original/1567154682_shutterstock_1304062492.jpg?w=753&h=450&dpr=1.5"
+              name="Yelagiri"
+              address="Nilavoor Road
+Yelagiri Hills - 635853, Tamil Nadu"
+              phone="+919566351199"
+              onWhatsApp={() => openWhatsApp("919566351199", "Hi, I am interested in ArtGram activities in Vijayawada!")}
+            />
+            <BranchCard
+              img="https://im.whatshot.in/img/2020/Aug/istock-1139387103-cropped-1597665160.jpg"
+              name="Nagpur"
+              address="Kidzee Planet
+Plot No. 18, Gajanan Mandir Road, Ring Road, Renghe Layout, Behind Bhagwaati Hall, Trimurtee Nagar, Nagpur, Maharashtra 440022
+"
+              phone="+91880630693"
+              onWhatsApp={() => openWhatsApp("918806320693", "Hi, I am interested in ArtGram activities in Vijayawada!")}
+            />
           </div>
         </div>
       </section>
+
       {/* Floating action buttons: Book Now and Scroll to Top */}
       <div aria-hidden={false} className="fixed right-6 bottom-6 z-50 flex flex-col items-end gap-3">
         <button
@@ -445,32 +458,33 @@ const HomePage = () => {
           </button>
         )}
       </div>
-
     </div>
   );
 };
 
-// Activity Card Component
-const ActivityCard = ({ img, title, text, bgColor }) => {
+// Activity Card Component with Link wrapper
+const ActivityCard = ({ img, title, text, bgColor, link }) => {
   return (
-    <div
-      className={`${bgColor} rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 flex flex-col border border-white/50`}
-    >
-      <div className="relative overflow-hidden">
-        <img
-          src={img}
-          alt={title}
-          className="w-full h-64 object-cover transition-transform duration-500 hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
+    <Link to={link} className="block no-underline">
+      <div
+        className={`${bgColor} rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 flex flex-col border border-white/50 cursor-pointer`}
+      >
+        <div className="relative overflow-hidden">
+          <img
+            src={img}
+            alt={title}
+            className="w-full h-64 object-cover transition-transform duration-500 hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
+        </div>
+        <div className="p-6 flex-1 flex flex-col">
+          <h3 className="font-bold text-xl mb-3 text-gray-800">{title}</h3>
+          <p className="text-gray-700 text-base leading-relaxed flex-grow">
+            {text}
+          </p>
+        </div>
       </div>
-      <div className="p-6 flex-1 flex flex-col">
-        <h3 className="font-bold text-xl mb-3 text-gray-800">{title}</h3>
-        <p className="text-gray-700 text-base leading-relaxed flex-grow">
-          {text}
-        </p>
-      </div>
-    </div>
+    </Link>
   );
 };
 
@@ -491,22 +505,23 @@ const TestimonialCard = ({ stars, text, name, bgColor }) => {
   );
 };
 
-// Event Card Component
-// Updated Event Card Component with smaller icons
-const EventCard = ({ icon, title, bgColor }) => {
+// Event Card Component with Link wrapper
+const EventCard = ({ icon, title, bgColor, link }) => {
   return (
-    <div
-      className={`text-center p-6 ${bgColor} rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/50`}
-    >
-      <div className="text-4xl mb-4 transform hover:scale-110 transition-transform duration-300">
-        {icon}
+    <Link to={link} className="block no-underline">
+      <div
+        className={`text-center p-6 ${bgColor} rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/50 cursor-pointer`}
+      >
+        <div className="text-4xl mb-4 transform hover:scale-110 transition-transform duration-300">
+          {icon}
+        </div>
+        <h3 className="text-lg font-bold text-gray-800">{title}</h3>
       </div>
-      <h3 className="text-lg font-bold text-gray-800">{title}</h3>
-    </div>
+    </Link>
   );
 };
 
-// Branch Card Component with official logos (from ContactUsPage.jsx)
+// Branch Card Component with official logos
 const BranchCard = ({ img, name, address, phone, onWhatsApp }) => {
   return (
     <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 cursor-pointer transform hover:scale-105">
@@ -518,16 +533,14 @@ const BranchCard = ({ img, name, address, phone, onWhatsApp }) => {
         <p className="text-slate-600 text-sm mb-4 flex-grow">{address}</p>
         <div className="flex gap-3 mt-auto">
           <a href={`tel:${phone}`} className="flex-1 flex items-center justify-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-semibold hover:bg-purple-200 transition-colors no-underline">
-            {/* Official Phone Icon */}
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
             </svg>
             <span>Call</span>
           </a>
           <button onClick={onWhatsApp} className="flex-1 flex items-center justify-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-lg font-semibold hover:bg-green-200 transition-colors">
-            {/* Official WhatsApp Logo */}
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.050-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
             <span>WhatsApp</span>
           </button>

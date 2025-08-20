@@ -199,15 +199,7 @@ export default function SlimePlayPage() {
     {/* You can add a heading/intro text here if needed */}
   </div>
 
-  {/* 🔘 Button pinned to bottom center */}
-  <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-    <a
-      href="#booking"
-      className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse"
-    >
-      Book Your Slime Experience
-    </a>
-  </div>
+ 
 </section>
 
 
@@ -261,7 +253,7 @@ export default function SlimePlayPage() {
             />
             <div>
               <h4 className="text-base md:text-lg font-bold text-red-600">
-                Slime Demo <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">15 min</span>
+                Slime Demo<span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold">15 min</span>
               </h4>
               <p className="text-sm text-gray-600 leading-tight mt-1">
                 Hands-on experience for 8+ years. In some sessions, 8+ kits/adults can make their own slime. 

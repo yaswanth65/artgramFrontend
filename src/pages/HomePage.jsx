@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 // Carousel images for hero section
 const carouselImages = [
@@ -12,6 +12,8 @@ const carouselImages = [
   "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754831665/HAR05956_cwxrxr.jpg",
   "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754831662/IMG_4561_axaohh.jpg",
 ];
+
+
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -65,8 +67,7 @@ const HomePage = () => {
   };
 
   const handleBookNow = () => {
-  // Use client-side navigation to avoid reloads and ensure React Router handles the route
-  navigate('/slime-play.html');
+    navigate('/slime-play.html');
   };
 
   return (
@@ -137,8 +138,6 @@ const HomePage = () => {
             />
           ))}
         </div>
-
-        
       </header>
 
       {/* About Section */}
@@ -164,7 +163,7 @@ const HomePage = () => {
               From Inspiration to Impact
             </h3>
             <p className="mb-4 text-lg leading-relaxed text-gray-700">
-              ArtGram began with a dream — to make art accessible, joyful, and
+              Artgram began with a dream — to make art accessible, joyful, and
               part of everyday life. What started as a small initiative has
               grown into a vibrant community, nurturing creativity across all
               ages.
@@ -177,27 +176,24 @@ const HomePage = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center">
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">25,000+</p>
-              <p className="text-gray-600 font-medium">Customers</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">40+</p>
-              <p className="text-gray-600 font-medium">Unique Designs</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">100+</p>
-              <p className="text-gray-600 font-medium">Birthday Parties</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-lg">
-              <p className="text-4xl font-bold text-rose-600">5</p>
-              <p className="text-gray-600 font-medium">Studio Locations</p>
-            </div>
+          <div className="p-6 bg-white rounded-2xl shadow-lg">
+            <p className="text-4xl font-bold text-rose-600">25,000+</p>
+            <p className="text-gray-600 font-medium">Customers</p>
           </div>
+          <div className="p-6 bg-white rounded-2xl shadow-lg">
+            <p className="text-4xl font-bold text-rose-600">40+</p>
+            <p className="text-gray-600 font-medium">Unique Designs</p>
+          </div>
+          <div className="p-6 bg-white rounded-2xl shadow-lg">
+            <p className="text-4xl font-bold text-rose-600">100+</p>
+            <p className="text-gray-600 font-medium">Birthday Parties</p>
+          </div>
+          <div className="p-6 bg-white rounded-2xl shadow-lg">
+            <p className="text-4xl font-bold text-rose-600">5</p>
+            <p className="text-gray-600 font-medium">Studio Locations</p>
+          </div>
+        </div>
       </section>
-
-      {/* Map Section (from ContactUsPage) */}
-     
 
       {/* Activities Section */}
       <section
@@ -216,18 +212,21 @@ const HomePage = () => {
               title="🎨 Art Making"
               text="Enjoy 30+ hands on activities for all age groups"
               bgColor="bg-gradient-to-br from-pink-100 to-purple-100"
+              link="/art-making-activity.html"
             />
             <ActivityCard
               img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754630801/HAR05956_c7944n.jpg"
               title="🌈 Slime Play"
               text="Get messy and creative with colorful, stretchy slime! Perfect for kids and adults who love sensory fun."
               bgColor="bg-gradient-to-br from-blue-100 to-cyan-100"
+              link="/slime-play.html"
             />
             <ActivityCard
               img="https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754651197/HAR05826_iefkzg.jpg"
               title="🧶 Tufting"
               text="Explore a new art form: make your own rugs and coasters to decorate your home."
               bgColor="bg-gradient-to-br from-green-100 to-emerald-100"
+              link="/tufting-activity.html"
             />
           </div>
         </div>
@@ -281,29 +280,29 @@ const HomePage = () => {
           </div>
           {/* Event Cards */}
           <div className="flex flex-wrap justify-center gap-4 pt-4">
-
             <EventCard
               icon="🎂"
               title="Birthdays"
               bgColor="bg-gradient-to-br from-purple-100 to-violet-100"
+              link="/events.html#birthdays"
             />
-
             <EventCard
               icon="👶"
               title="Baby Shower"
               bgColor="bg-gradient-to-br from-blue-100 to-cyan-100"
+              link="/events.html#baby-shower"
             />
-            
             <EventCard
               icon="🏢"
               title="Corporate"
               bgColor="bg-gradient-to-br from-indigo-100 to-blue-100"
+              link="/events.html#corporate"
             />
-            
             <EventCard
               icon="🎨"
               title="Workshops"
               bgColor="bg-gradient-to-br from-green-100 to-teal-100"
+              link="/events.html#workshops"
             />
           </div>
         </div>
@@ -311,55 +310,84 @@ const HomePage = () => {
 
       {/* Instagram Feed Placeholder */}
       <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-            From Our Instagram
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Follow us{" "}
-            <a
-              href="https://www.instagram.com/artgram_yourhobbylobby/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-pink-600 hover:text-purple-600 hover:underline transition-colors"
-            >
-              @artgram_yourhobbylobby
-            </a>
-          </p>
+  <div className="max-w-6xl mx-auto px-6 text-center">
+    <h2 className="text-3xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+      From Our Instagram
+    </h2>
+    <p className="text-gray-600 mb-10">
+      Follow us{" "}
+      <a
+        href="https://www.instagram.com/artgram_yourhobbylobby/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold text-pink-600 hover:text-purple-600 hover:underline transition-colors"
+      >
+        @artgram_yourhobbylobby
+      </a>
+    </p>
 
-          <div className="flex justify-center gap-12 flex-wrap">
-            <iframe 
-              src="https://www.instagram.com/reel/DGS5MUppMc4/embed" 
-              width="280" 
-              height="360" 
-              frameBorder="0" 
-              scrolling="no" 
-              allowTransparency="true"
-              title="Instagram Reel 1"
-            ></iframe>
-            
-            <iframe 
-              src="https://www.instagram.com/reel/DNC-sJuR0A4/embed?utm_source=ig_embed&hidecaption=true" 
-              width="280" 
-              height="360" 
-              frameBorder="0" 
-              scrolling="no" 
-              allowTransparency="true"
-              title="Instagram Reel 2"
-            ></iframe>
-            
-            <iframe 
-              src="https://www.instagram.com/reel/DM91tFgvQrS/embed?utm_source=ig_embed&hidecaption=false" 
-              width="280" 
-              height="360" 
-              frameBorder="0" 
-              scrolling="no" 
-              allowTransparency="true"
-              title="Instagram Reel 3"
-            ></iframe>
-          </div>
+    {/* Instagram-like cards */}
+    <div className="grid md:grid-cols-3 gap-8">
+      {/* Card 1 */}
+      <div className="relative group rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+        <img
+          src="https://res.cloudinary.com/dwb3vztcv/image/upload/v1755697368/480422168_673070211723714_4415539318595045525_n_dhm03i.jpg"
+          alt="Reel 1"
+          className="w-full h-96 object-cover transform group-hover:scale-110 transition duration-500"
+        />
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <a
+            href="https://www.instagram.com/reel/DGS5MUppMc4/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-black px-4 py-2 rounded-full font-semibold hover:bg-pink-600 hover:text-white transition"
+          >
+            View on Instagram
+          </a>
         </div>
-      </section>
+      </div>
+
+      {/* Card 2 */}
+      <div className="relative group rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+        <img
+          src="https://res.cloudinary.com/dwb3vztcv/image/upload/v1755697413/527539994_1083129567123356_9166913181327332852_n_cx6okk.jpg"
+          alt="Reel 2"
+          className="w-full h-96 object-cover transform group-hover:scale-110 transition duration-500"
+        />
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <a
+            href="https://www.instagram.com/reel/DNC-sJuR0A4/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-black px-4 py-2 rounded-full font-semibold hover:bg-pink-600 hover:text-white transition"
+          >
+            View on Instagram
+          </a>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className="relative group rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+        <img
+          src="https://res.cloudinary.com/dwb3vztcv/image/upload/v1755697208/528978528_1298911128567327_2580940791983865225_n_qxbuqg.jpg"
+          alt="Reel 3"
+          className="w-full h-96 object-cover transform group-hover:scale-110 transition duration-500"
+        />
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <a
+            href="https://www.instagram.com/reel/DM91tFgvQrS/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-black px-4 py-2 rounded-full font-semibold hover:bg-pink-600 hover:text-white transition"
+          >
+            View on Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Testimonials Section */}
       <section className="py-24 bg-white">
@@ -401,6 +429,8 @@ const HomePage = () => {
               name="Hyderabad"
               address="#NO.8-2-686/K/1 AND 8-2686/K/2, 5TH FLOOR, KIMTEE SQUARE, ROAD NO-12, BANJARA HILLS, CIRCLE 37, HYDERABAD 500034"
               phone="+917766012299"
+              openTime="9:00 AM"
+              closeTime="9:00 PM"
               onWhatsApp={() => openWhatsApp("917766012299", "Hi, I am interested in ArtGram activities in Hyderabad!")}
             />
             <BranchCard
@@ -408,6 +438,8 @@ const HomePage = () => {
               name="Bangalore"
               address="#418, 4TH FLOOR, JB ARCADE, 27TH MAIN ROAD, HSR LAYOUT, SECTOR 1, BENGALURU 560102"
               phone="+919216345672"
+              openTime="9:30 AM"
+              closeTime="9:30 PM"
               onWhatsApp={() => openWhatsApp("919216345672", "Hi, I am interested in ArtGram activities in Bangalore!")}
             />
             <BranchCard
@@ -415,11 +447,36 @@ const HomePage = () => {
               name="Vijayawada"
               address="#40-6-11, 2ND FLOOR, MEENAKSHI TOWERS HOTEL, MURALI FORTUNE ROAD, MOGALRAJPURAM, OPP. SUBWAY 520010"
               phone="+919686846100"
+              openTime="10:00 AM"
+              closeTime="8:00 PM"
               onWhatsApp={() => openWhatsApp("919686846100", "Hi, I am interested in ArtGram activities in Vijayawada!")}
+            />
+       
+            <BranchCard
+              img="https://media2.thrillophilia.com/images/photos/000/013/594/original/1567154682_shutterstock_1304062492.jpg?w=753&h=450&dpr=1.5"
+              name="Yelagiri"
+              address="Nilavoor Road
+Yelagiri Hills - 635853, Tamil Nadu"
+              phone="+919566351199"
+               openTime="9:30 AM"
+              closeTime="9:30 PM"
+              onWhatsApp={() => openWhatsApp("919566351199", "Hi, I am interested in ArtGram activities in Vijayawada!")}
+            />
+            <BranchCard
+              img="https://im.whatshot.in/img/2020/Aug/istock-1139387103-cropped-1597665160.jpg"
+              name="Nagpur"
+              address="Kidzee Planet
+Plot No. 18, Gajanan Mandir Road, Ring Road, Renghe Layout, Behind Bhagwaati Hall, Trimurtee Nagar, Nagpur, Maharashtra 440022
+"
+              phone="+91880630693"
+               openTime="9:30 AM"
+              closeTime="9:30 PM"
+              onWhatsApp={() => openWhatsApp("918806320693", "Hi, I am interested in ArtGram activities in Vijayawada!")}
             />
           </div>
         </div>
       </section>
+
       {/* Floating action buttons: Book Now and Scroll to Top */}
       <div aria-hidden={false} className="fixed right-6 bottom-6 z-50 flex flex-col items-end gap-3">
         <button
@@ -445,32 +502,33 @@ const HomePage = () => {
           </button>
         )}
       </div>
-
     </div>
   );
 };
 
-// Activity Card Component
-const ActivityCard = ({ img, title, text, bgColor }) => {
+// Activity Card Component with Link wrapper
+const ActivityCard = ({ img, title, text, bgColor, link }) => {
   return (
-    <div
-      className={`${bgColor} rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 flex flex-col border border-white/50`}
-    >
-      <div className="relative overflow-hidden">
-        <img
-          src={img}
-          alt={title}
-          className="w-full h-64 object-cover transition-transform duration-500 hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
+    <Link to={link} className="block no-underline">
+      <div
+        className={`${bgColor} rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 flex flex-col border border-white/50 cursor-pointer`}
+      >
+        <div className="relative overflow-hidden">
+          <img
+            src={img}
+            alt={title}
+            className="w-full h-64 object-cover transition-transform duration-500 hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
+        </div>
+        <div className="p-6 flex-1 flex flex-col">
+          <h3 className="font-bold text-xl mb-3 text-gray-800">{title}</h3>
+          <p className="text-gray-700 text-base leading-relaxed flex-grow">
+            {text}
+          </p>
+        </div>
       </div>
-      <div className="p-6 flex-1 flex flex-col">
-        <h3 className="font-bold text-xl mb-3 text-gray-800">{title}</h3>
-        <p className="text-gray-700 text-base leading-relaxed flex-grow">
-          {text}
-        </p>
-      </div>
-    </div>
+    </Link>
   );
 };
 
@@ -491,47 +549,110 @@ const TestimonialCard = ({ stars, text, name, bgColor }) => {
   );
 };
 
-// Event Card Component
-// Updated Event Card Component with smaller icons
-const EventCard = ({ icon, title, bgColor }) => {
+// Event Card Component with Link wrapper
+const EventCard = ({ icon, title, bgColor, link }) => {
   return (
-    <div
-      className={`text-center p-6 ${bgColor} rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/50`}
-    >
-      <div className="text-4xl mb-4 transform hover:scale-110 transition-transform duration-300">
-        {icon}
+    <Link to={link} className="block no-underline">
+      <div
+        className={`text-center p-6 ${bgColor} rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/50 cursor-pointer`}
+      >
+        <div className="text-4xl mb-4 transform hover:scale-110 transition-transform duration-300">
+          {icon}
+        </div>
+        <h3 className="text-lg font-bold text-gray-800">{title}</h3>
       </div>
-      <h3 className="text-lg font-bold text-gray-800">{title}</h3>
-    </div>
+    </Link>
   );
 };
 
-// Branch Card Component with official logos (from ContactUsPage.jsx)
-const BranchCard = ({ img, name, address, phone, onWhatsApp }) => {
+const BranchCard = ({ img, name, address, phone, openTime, closeTime, onWhatsApp, instagram }) => {
   return (
     <div className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 cursor-pointer transform hover:scale-105">
       <div className="relative h-52 overflow-hidden">
-        <img src={img || "/placeholder.svg"} alt={name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+        <img 
+          src={img || "/placeholder.svg"} 
+          alt={name} 
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
       </div>
       <div className="p-6 flex flex-col flex-grow">
         <h4 className="text-xl font-bold mb-2 text-gray-800 group-hover:text-purple-600">{name}</h4>
-        <p className="text-slate-600 text-sm mb-4 flex-grow">{address}</p>
-        <div className="flex gap-3 mt-auto">
-          <a href={`tel:${phone}`} className="flex-1 flex items-center justify-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-semibold hover:bg-purple-200 transition-colors no-underline">
-            {/* Official Phone Icon */}
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-            </svg>
-            <span>Call</span>
+        
+        {/* Address with map icon and link */}
+        <div className="flex items-start mb-3">
+          <svg className="w-4 h-4 mt-1 mr-2 text-gray-500 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/>
+          </svg>
+          <a 
+            href={`https://maps.google.com/?q=${encodeURIComponent(address)}`} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-slate-600 text-sm hover:text-purple-600 transition-colors"
+          >
+            {address}
           </a>
-          <button onClick={onWhatsApp} className="flex-1 flex items-center justify-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-lg font-semibold hover:bg-green-200 transition-colors">
-            {/* Official WhatsApp Logo */}
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            <span>WhatsApp</span>
-          </button>
         </div>
+        
+        {/* Opening hours */}
+        <div className="flex items-start mb-4">
+          <svg className="w-4 h-4 mt-0.5 mr-2 text-gray-500 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+            <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+          <div className="text-slate-600 text-sm">
+            <div className="font-medium">Opening Hours:</div>
+            <div>{openTime} - {closeTime}</div>
+          </div>
+        </div>
+        
+        {/* Action buttons */}
+        <div className="flex gap-3 mt-auto">
+  {/* Call */}
+  <a 
+    href={`tel:${phone}`} 
+    className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors"
+  >
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+    </svg>
+  </a>
+
+  {/* WhatsApp */}
+  <button 
+    onClick={onWhatsApp} 
+    className="w-10 h-10 flex items-center justify-center rounded-full bg-green-100 text-green-700 hover:bg-green-200 transition-colors"
+  >
+   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+  <path d="M20.52 3.48A11.86 11.86 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.59 5.97L0 24l6.22-1.63A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 22.02a9.92 9.92 0 01-5.05-1.38l-.36-.22-3.7.97.99-3.61-.24-.37A9.94 9.94 0 012.02 12C2.02 6.48 6.48 2.02 12 2.02c2.67 0 5.18 1.04 7.07 2.93A9.94 9.94 0 0121.98 12c0 5.52-4.46 10.02-9.98 10.02zm5.38-7.47c-.29-.15-1.72-.85-1.98-.95s-.46-.15-.65.15c-.2.29-.75.95-.92 1.14-.17.2-.34.22-.63.07-.29-.15-1.21-.45-2.3-1.44-.85-.76-1.42-1.7-1.59-1.98-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.2.05-.37-.02-.52-.07-.15-.63-1.52-.87-2.08-.23-.55-.47-.47-.65-.48-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.29-1.05 1.02-1.05 2.49 0 1.47 1.08 2.89 1.23 3.09.15.2 2.14 3.38 5.18 4.61.73.32 1.3.51 1.74.65.73.23 1.39.2 1.91.12.58-.09 1.72-.7 1.96-1.37.24-.67.24-1.24.17-1.36-.07-.12-.27-.19-.57-.34z"/>
+</svg>
+
+  </button>
+
+  {/* Google Maps */}
+  <a 
+    href={`https://maps.google.com/?q=${encodeURIComponent(address)}`} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="w-10 h-10 flex items-center justify-center rounded-full bg-red-100 text-red-700 hover:bg-red-200 transition-colors"
+  >
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/>
+    </svg>
+  </a>
+
+  {/* Instagram */}
+  <a 
+    href={instagram} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="w-10 h-10 flex items-center justify-center rounded-full bg-pink-100 text-pink-700 hover:bg-pink-200 transition-colors"
+  >
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm8.75 2.25a.75.75 0 01.75.75v1a.75.75 0 01-1.5 0v-1a.75.75 0 01.75-.75zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/>
+    </svg>
+  </a>
+</div>
+
       </div>
     </div>
   );

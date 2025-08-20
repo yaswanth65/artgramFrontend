@@ -170,14 +170,7 @@ const TuftingActivityPage = () => {
   <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
     
   </div>
-    <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-    <a
-      href="#tufting-booking"
-      className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-10 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse"
-    >
-      Book Your  TUFTING ADVENTURE NOW!
-    </a>
-  </div>
+   
 </section>
 
       
@@ -601,4 +594,3 @@ const TuftStep = ({ title, color, isVisible, onBack, onNext, canNext, children }
 };
 
 export default TuftingActivityPage;
-

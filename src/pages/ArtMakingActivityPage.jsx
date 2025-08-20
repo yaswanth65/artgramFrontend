@@ -158,11 +158,7 @@ export default function ArtMakingActivityPage() {
   </div>
 
   {/* 🔘 Button pinned to bottom center */}
-  <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-    <h3 className="text-5xl md:text-7xl font-extrabold pt-2 pb-5
-                bg-gradient-to-r from-purple-300 via-pink-200 to-rose-300 
-                bg-clip-text text-transparent pt-5" >Art Making Studio</h3>
-  </div>
+ 
 </section>
 
       {/* Main Content */}
@@ -448,4 +444,3 @@ export default function ArtMakingActivityPage() {
     </div>
   );
 }
-

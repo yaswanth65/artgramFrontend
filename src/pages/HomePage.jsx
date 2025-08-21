@@ -13,8 +13,6 @@ const carouselImages = [
   "https://res.cloudinary.com/df2mieky2/image/upload/q_70/v1754831662/IMG_4561_axaohh.jpg",
 ];
 
-
-
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
@@ -73,73 +71,82 @@ const HomePage = () => {
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif" }}>
       {/* Hero Section with Carousel */}
-      <header className="relative h-[80vh] text-white flex items-end justify-center text-center overflow-hidden">
-        {/* Carousel Container */}
-        <div className="absolute inset-0">
-          {carouselImages.map((image, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ backgroundImage: `url('${image}')` }}
-            />
-          ))}
-        </div>
-
-        {/* Carousel Navigation */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-6 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 rounded-full p-3 transition-all duration-300 backdrop-blur-sm"
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+      <header className="relative w-full max-w-6xl mx-auto mt-4 md:mt-8 px-4">
+        <div className="relative w-full aspect-[4/3] md:aspect-video bg-gray-200 rounded-xl md:rounded-2xl shadow-lg overflow-hidden">
+          <img
+            key={currentSlide}
+            src={carouselImages[currentSlide]}
+            alt="Artgram creation"
+            className="w-full h-full object-cover transition-opacity duration-500"
+          />
+          
+          {/* Carousel Navigation - Hidden on mobile, visible on larger screens */}
+          <button
+            onClick={prevSlide}
+            className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/70 hover:bg-white rounded-full p-2 transition-all duration-300"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
+            <svg
+              className="w-5 h-5 text-gray-800"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
 
-        <button
-          onClick={nextSlide}
-          className="absolute right-6 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 rounded-full p-3 transition-all duration-300 backdrop-blur-sm"
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <button
+            onClick={nextSlide}
+            className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/70 hover:bg-white rounded-full p-2 transition-all duration-300"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
+            <svg
+              className="w-5 h-5 text-gray-800"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
 
-        {/* Carousel Indicators */}
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10 flex gap-2">
-          {carouselImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "bg-white scale-110" : "bg-white/50"
-              }`}
-            />
-          ))}
+          {/* Mobile navigation - swipe area indicators */}
+          <div className="md:hidden absolute inset-0 flex justify-between items-center z-10">
+            <div 
+              className="h-full w-1/4 flex items-center justify-start opacity-0 active:opacity-20 active:bg-gray-400 transition-opacity"
+              onClick={prevSlide}
+            ></div>
+            <div 
+              className="h-full w-1/4 flex items-center justify-end opacity-0 active:opacity-20 active:bg-gray-400 transition-opacity"
+              onClick={nextSlide}
+            ></div>
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+            {carouselImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all ${
+                  currentSlide === index ? 'bg-white scale-110' : 'bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </header>
 
+      {/* The rest of your components remain the same */}
       {/* About Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-gray-100">
         <div className="mx-auto max-w-6xl px-6 grid lg:grid-cols-2 gap-12 items-center">

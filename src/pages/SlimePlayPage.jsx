@@ -247,7 +247,7 @@ export default function SlimePlayPage() {
         </div>
       </div>
 
-      <h3 className="text-center">+</h3>
+      <h2 className="text-center">+</h2>
 
       {/* Slime Demo */}
       <div className="bg-white rounded-2xl p-4 md:p-5 flex items-start gap-4">
@@ -269,6 +269,7 @@ export default function SlimePlayPage() {
           </p>
         </div>
       </div>
+      <h2 className="text-center">or</h2>
 
       {/* Slime Making */}
       <div className="bg-white rounded-2xl p-4 md:p-5 flex items-start gap-4">
@@ -318,8 +319,59 @@ export default function SlimePlayPage() {
 
     <div className="mb-6">
       <div className="text-center font-semibold text-gray-600 mb-4 p-3 bg-purple-100 rounded-lg">
-        Everything in Base Package +
+        Everything in Base Package 
       </div>
+      
+      {/* Base Package Items */}
+      <div className="space-y-4 mb-4">
+        {/* Slime Play */}
+        <div className="bg-white rounded-2xl p-4 md:p-5 flex items-start gap-4">
+          <img
+            src="https://res.cloudinary.com/df2mieky2/image/upload/v1754831671/HAR05994_de7kjp.jpg"
+            alt="Slime Play"
+            className="w-14 h-14 md:w-16 md:h-16 object-cover rounded-lg border"
+          />
+          <div>
+            <h4 className="text-base md:text-lg font-bold text-red-600">
+              Slime Play 
+              <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold ml-2">
+                45 min
+              </span>
+            </h4>
+            <p className="text-sm text-gray-600 leading-tight mt-1">
+              Touch different colours and textures, slime throwing, jumping, magnetic slime and much more!
+            </p>
+          </div>
+        </div>
+
+        {/* Slime Demo OR Making */}
+        <div className="bg-white rounded-2xl p-4 md:p-5 flex items-start gap-4">
+          <img
+            src="https://res.cloudinary.com/df2mieky2/image/upload/v1754831672/DSC07792_xxy5w1.jpg"
+            alt="Slime Demo/Making"
+            className="w-14 h-14 md:w-16 md:h-16 object-cover rounded-lg border"
+          />
+          <div>
+            <h4 className="text-base md:text-lg font-bold text-red-600">
+              Slime Demo OR Making
+              <span className="bg-yellow-400 text-white px-2 py-1 rounded-full text-xs font-semibold ml-2">
+                15 min
+              </span>
+            </h4>
+            <p className="text-sm text-gray-600 leading-tight mt-1">
+              Hands-on experience for 8+ years. In some sessions, 8+ kits/adults can make their own slime. 
+              Not available in all sessions — please check while booking.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Plus Icon */}
+      <div className="flex justify-center my-3">
+        <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">+</div>
+      </div>
+      
+      {/* Premium Addition */}
       <div className="bg-white rounded-2xl p-4 md:p-6 border-2 border-pink-400 flex items-start gap-4">
         <img
           src="https://res.cloudinary.com/df2mieky2/image/upload/v1754831818/Screenshot_2025-08-10_184600_dugdpm.png"
